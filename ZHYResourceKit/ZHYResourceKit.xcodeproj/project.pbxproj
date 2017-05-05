@@ -16,7 +16,28 @@
 		D2CDA38A1EBC7BBF0085F997 /* ZHYResourceCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */; };
 		D2CDA3B61EBC85E40085F997 /* ZHYResourceNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */; };
 		D2CDA3B71EBC85E40085F997 /* ZHYResourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */; };
+		D2CDA3C11EBC88E30085F997 /* ZHYResourceKitForMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3C01EBC88E30085F997 /* ZHYResourceKitForMacTests.m */; };
+		D2CDA3C31EBC88E30085F997 /* ZHYResourceKitForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CDA3641EBC71760085F997 /* ZHYResourceKitForMac.framework */; };
+		D2CDA3D01EBC891F0085F997 /* ZHYResourceKitForiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3CF1EBC891F0085F997 /* ZHYResourceKitForiOSTests.m */; };
+		D2CDA3D21EBC891F0085F997 /* ZHYResourceKitForiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CDA37A1EBC72150085F997 /* ZHYResourceKitForiOS.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2CDA3C41EBC88E30085F997 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2CDA35B1EBC71760085F997 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2CDA3631EBC71760085F997;
+			remoteInfo = ZHYResourceKitForMac;
+		};
+		D2CDA3D31EBC891F0085F997 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2CDA35B1EBC71760085F997 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2CDA3791EBC72150085F997;
+			remoteInfo = ZHYResourceKitForiOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D2CDA3641EBC71760085F997 /* ZHYResourceKitForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZHYResourceKitForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +52,12 @@
 		D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceCenter.m; sourceTree = "<group>"; };
 		D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceNode.h; sourceTree = "<group>"; };
 		D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceNode.m; sourceTree = "<group>"; };
+		D2CDA3BE1EBC88E30085F997 /* ZHYResourceKitForMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZHYResourceKitForMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2CDA3C01EBC88E30085F997 /* ZHYResourceKitForMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceKitForMacTests.m; sourceTree = "<group>"; };
+		D2CDA3C21EBC88E30085F997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2CDA3CD1EBC891F0085F997 /* ZHYResourceKitForiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZHYResourceKitForiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2CDA3CF1EBC891F0085F997 /* ZHYResourceKitForiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceKitForiOSTests.m; sourceTree = "<group>"; };
+		D2CDA3D11EBC891F0085F997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +75,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2CDA3BB1EBC88E30085F997 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2CDA3C31EBC88E30085F997 /* ZHYResourceKitForMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2CDA3CA1EBC891F0085F997 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2CDA3D21EBC891F0085F997 /* ZHYResourceKitForiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -56,7 +99,9 @@
 			children = (
 				D2CDA3741EBC71C70085F997 /* ZHYResourceKit */,
 				D2CDA36F1EBC71900085F997 /* ZHYResourceKitForMac */,
+				D2CDA3BF1EBC88E30085F997 /* ZHYResourceKitForMacTests */,
 				D2CDA37B1EBC72150085F997 /* ZHYResourceKitForiOS */,
+				D2CDA3CE1EBC891F0085F997 /* ZHYResourceKitForiOSTests */,
 				D2CDA3651EBC71760085F997 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +111,8 @@
 			children = (
 				D2CDA3641EBC71760085F997 /* ZHYResourceKitForMac.framework */,
 				D2CDA37A1EBC72150085F997 /* ZHYResourceKitForiOS.framework */,
+				D2CDA3BE1EBC88E30085F997 /* ZHYResourceKitForMacTests.xctest */,
+				D2CDA3CD1EBC891F0085F997 /* ZHYResourceKitForiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +146,24 @@
 				D2CDA37D1EBC72150085F997 /* Info.plist */,
 			);
 			path = ZHYResourceKitForiOS;
+			sourceTree = "<group>";
+		};
+		D2CDA3BF1EBC88E30085F997 /* ZHYResourceKitForMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2CDA3C01EBC88E30085F997 /* ZHYResourceKitForMacTests.m */,
+				D2CDA3C21EBC88E30085F997 /* Info.plist */,
+			);
+			path = ZHYResourceKitForMacTests;
+			sourceTree = "<group>";
+		};
+		D2CDA3CE1EBC891F0085F997 /* ZHYResourceKitForiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2CDA3CF1EBC891F0085F997 /* ZHYResourceKitForiOSTests.m */,
+				D2CDA3D11EBC891F0085F997 /* Info.plist */,
+			);
+			path = ZHYResourceKitForiOSTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +227,42 @@
 			productReference = D2CDA37A1EBC72150085F997 /* ZHYResourceKitForiOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D2CDA3BD1EBC88E30085F997 /* ZHYResourceKitForMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2CDA3C61EBC88E30085F997 /* Build configuration list for PBXNativeTarget "ZHYResourceKitForMacTests" */;
+			buildPhases = (
+				D2CDA3BA1EBC88E30085F997 /* Sources */,
+				D2CDA3BB1EBC88E30085F997 /* Frameworks */,
+				D2CDA3BC1EBC88E30085F997 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2CDA3C51EBC88E30085F997 /* PBXTargetDependency */,
+			);
+			name = ZHYResourceKitForMacTests;
+			productName = ZHYResourceKitForMacTests;
+			productReference = D2CDA3BE1EBC88E30085F997 /* ZHYResourceKitForMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D2CDA3CC1EBC891F0085F997 /* ZHYResourceKitForiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2CDA3D51EBC891F0085F997 /* Build configuration list for PBXNativeTarget "ZHYResourceKitForiOSTests" */;
+			buildPhases = (
+				D2CDA3C91EBC891F0085F997 /* Sources */,
+				D2CDA3CA1EBC891F0085F997 /* Frameworks */,
+				D2CDA3CB1EBC891F0085F997 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2CDA3D41EBC891F0085F997 /* PBXTargetDependency */,
+			);
+			name = ZHYResourceKitForiOSTests;
+			productName = ZHYResourceKitForiOSTests;
+			productReference = D2CDA3CD1EBC891F0085F997 /* ZHYResourceKitForiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,6 +278,16 @@
 						ProvisioningStyle = Automatic;
 					};
 					D2CDA3791EBC72150085F997 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 24QJT553GT;
+						ProvisioningStyle = Automatic;
+					};
+					D2CDA3BD1EBC88E30085F997 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 24QJT553GT;
+						ProvisioningStyle = Automatic;
+					};
+					D2CDA3CC1EBC891F0085F997 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 24QJT553GT;
 						ProvisioningStyle = Automatic;
@@ -197,6 +308,8 @@
 			targets = (
 				D2CDA3631EBC71760085F997 /* ZHYResourceKitForMac */,
 				D2CDA3791EBC72150085F997 /* ZHYResourceKitForiOS */,
+				D2CDA3BD1EBC88E30085F997 /* ZHYResourceKitForMacTests */,
+				D2CDA3CC1EBC891F0085F997 /* ZHYResourceKitForiOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -211,6 +324,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D2CDA3781EBC72150085F997 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2CDA3BC1EBC88E30085F997 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2CDA3CB1EBC891F0085F997 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,7 +364,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2CDA3BA1EBC88E30085F997 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2CDA3C11EBC88E30085F997 /* ZHYResourceKitForMacTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2CDA3C91EBC891F0085F997 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2CDA3D01EBC891F0085F997 /* ZHYResourceKitForiOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2CDA3C51EBC88E30085F997 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2CDA3631EBC71760085F997 /* ZHYResourceKitForMac */;
+			targetProxy = D2CDA3C41EBC88E30085F997 /* PBXContainerItemProxy */;
+		};
+		D2CDA3D41EBC891F0085F997 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2CDA3791EBC72150085F997 /* ZHYResourceKitForiOS */;
+			targetProxy = D2CDA3D31EBC891F0085F997 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D2CDA36A1EBC71760085F997 /* Debug */ = {
@@ -420,6 +576,59 @@
 			};
 			name = Release;
 		};
+		D2CDA3C71EBC88E30085F997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 24QJT553GT;
+				INFOPLIST_FILE = ZHYResourceKitForMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKitForMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D2CDA3C81EBC88E30085F997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 24QJT553GT;
+				INFOPLIST_FILE = ZHYResourceKitForMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKitForMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D2CDA3D61EBC891F0085F997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 24QJT553GT;
+				INFOPLIST_FILE = ZHYResourceKitForiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKitForiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D2CDA3D71EBC891F0085F997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 24QJT553GT;
+				INFOPLIST_FILE = ZHYResourceKitForiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKitForiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -445,6 +654,22 @@
 			buildConfigurations = (
 				D2CDA3801EBC72150085F997 /* Debug */,
 				D2CDA3811EBC72150085F997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2CDA3C61EBC88E30085F997 /* Build configuration list for PBXNativeTarget "ZHYResourceKitForMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2CDA3C71EBC88E30085F997 /* Debug */,
+				D2CDA3C81EBC88E30085F997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2CDA3D51EBC891F0085F997 /* Build configuration list for PBXNativeTarget "ZHYResourceKitForiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2CDA3D61EBC891F0085F997 /* Debug */,
+				D2CDA3D71EBC891F0085F997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
