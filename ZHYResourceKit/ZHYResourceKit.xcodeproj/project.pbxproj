@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		D2CDA3721EBC71900085F997 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CDA3701EBC71900085F997 /* Info.plist */; };
-		D2CDA3731EBC71900085F997 /* ZHYResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3711EBC71900085F997 /* ZHYResourceKit.h */; };
-		D2CDA37E1EBC72150085F997 /* ZHYResourceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA37C1EBC72150085F997 /* ZHYResourceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */; };
+		D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
+		D2CDA3861EBC7B290085F997 /* ZHYResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */; };
+		D2CDA3891EBC7BBF0085F997 /* ZHYResourceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */; };
+		D2CDA38A1EBC7BBF0085F997 /* ZHYResourceCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */; };
+		D2CDA3B61EBC85E40085F997 /* ZHYResourceNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */; };
+		D2CDA3B71EBC85E40085F997 /* ZHYResourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D2CDA3641EBC71760085F997 /* ZHYResourceKitForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZHYResourceKitForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CDA3701EBC71900085F997 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2CDA3711EBC71900085F997 /* ZHYResourceKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKit.h; sourceTree = "<group>"; };
+		D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKitForMac.h; sourceTree = "<group>"; };
 		D2CDA37A1EBC72150085F997 /* ZHYResourceKitForiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZHYResourceKitForiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2CDA37C1EBC72150085F997 /* ZHYResourceKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKit.h; sourceTree = "<group>"; };
+		D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKitForiOS.h; sourceTree = "<group>"; };
 		D2CDA37D1EBC72150085F997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceManager.h; sourceTree = "<group>"; };
+		D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceManager.m; sourceTree = "<group>"; };
+		D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceCenter.h; sourceTree = "<group>"; };
+		D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceCenter.m; sourceTree = "<group>"; };
+		D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceNode.h; sourceTree = "<group>"; };
+		D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				D2CDA3701EBC71900085F997 /* Info.plist */,
-				D2CDA3711EBC71900085F997 /* ZHYResourceKit.h */,
+				D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */,
 			);
 			path = ZHYResourceKitForMac;
 			sourceTree = "<group>";
@@ -70,6 +82,12 @@
 		D2CDA3741EBC71C70085F997 /* ZHYResourceKit */ = {
 			isa = PBXGroup;
 			children = (
+				D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */,
+				D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */,
+				D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */,
+				D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */,
+				D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */,
+				D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */,
 			);
 			path = ZHYResourceKit;
 			sourceTree = "<group>";
@@ -77,7 +95,7 @@
 		D2CDA37B1EBC72150085F997 /* ZHYResourceKitForiOS */ = {
 			isa = PBXGroup;
 			children = (
-				D2CDA37C1EBC72150085F997 /* ZHYResourceKit.h */,
+				D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */,
 				D2CDA37D1EBC72150085F997 /* Info.plist */,
 			);
 			path = ZHYResourceKitForiOS;
@@ -90,7 +108,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2CDA3731EBC71900085F997 /* ZHYResourceKit.h in Headers */,
+				D2CDA3B61EBC85E40085F997 /* ZHYResourceNode.h in Headers */,
+				D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */,
+				D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */,
+				D2CDA3891EBC7BBF0085F997 /* ZHYResourceCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +119,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2CDA37E1EBC72150085F997 /* ZHYResourceKit.h in Headers */,
+				D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +224,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2CDA38A1EBC7BBF0085F997 /* ZHYResourceCenter.m in Sources */,
+				D2CDA3B71EBC85E40085F997 /* ZHYResourceNode.m in Sources */,
+				D2CDA3861EBC7B290085F997 /* ZHYResourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
