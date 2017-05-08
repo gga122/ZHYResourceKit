@@ -12,6 +12,10 @@
 		D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */; };
 		D2A005D41EC0607A000A272C /* ZHYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005D21EC0607A000A272C /* ZHYLogger.h */; };
 		D2A005D51EC0607A000A272C /* ZHYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D31EC0607A000A272C /* ZHYLogger.m */; };
+		D2A005D61EC060D1000A272C /* ZHYResourceNode+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */; };
+		D2A005D71EC0612B000A272C /* ZHYResourceNode+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */; };
+		D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005EC1EC0668B000A272C /* ZHYResourceKitDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2A005EE1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005EC1EC0668B000A272C /* ZHYResourceKitDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */; };
 		D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
@@ -48,6 +52,7 @@
 		D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYResourceNode+Private.m"; sourceTree = "<group>"; };
 		D2A005D21EC0607A000A272C /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHYLogger.h; path = ZHYResourceKit/ZHYLogger.h; sourceTree = "<group>"; };
 		D2A005D31EC0607A000A272C /* ZHYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZHYLogger.m; path = ZHYResourceKit/ZHYLogger.m; sourceTree = "<group>"; };
+		D2A005EC1EC0668B000A272C /* ZHYResourceKitDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKitDefines.h; sourceTree = "<group>"; };
 		D2CDA3641EBC71760085F997 /* ZHYResourceKitForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZHYResourceKitForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CDA3701EBC71900085F997 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKitForMac.h; sourceTree = "<group>"; };
@@ -147,6 +152,7 @@
 		D2CDA3741EBC71C70085F997 /* ZHYResourceKit */ = {
 			isa = PBXGroup;
 			children = (
+				D2A005EC1EC0668B000A272C /* ZHYResourceKitDefines.h */,
 				D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */,
 				D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */,
 				D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */,
@@ -193,6 +199,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D2A005CF1EC06040000A272C /* ZHYResourceNode+Private.h in Headers */,
 				D2CDA3B61EBC85E40085F997 /* ZHYResourceNode.h in Headers */,
 				D2A005D41EC0607A000A272C /* ZHYLogger.h in Headers */,
@@ -206,7 +213,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A005D61EC060D1000A272C /* ZHYResourceNode+Private.h in Headers */,
 				D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */,
+				D2A005EE1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A005D71EC0612B000A272C /* ZHYResourceNode+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

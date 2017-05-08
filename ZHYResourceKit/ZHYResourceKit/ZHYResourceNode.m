@@ -6,7 +6,7 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "ZHYResourceNode.h"
+#import "ZHYResourceNode+Private.h"
 
 NSString * const kZHYResourceNodeNameImage = @"kZHYResourceImage";
 NSString * const kZHYResourceNodeNameFont = @"kZHYResourceFont";

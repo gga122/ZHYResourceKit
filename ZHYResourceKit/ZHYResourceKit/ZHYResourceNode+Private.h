@@ -7,7 +7,10 @@
 //
 
 #import "ZHYResourceNode.h"
+#import "ZHYResourceCenter.h"
 
 @interface ZHYResourceNode (Private)
+
+@property (nonatomic, weak) ZHYResourceCenter *center;
 
 @end

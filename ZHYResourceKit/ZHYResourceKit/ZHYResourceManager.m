@@ -6,9 +6,10 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
+#import "ZHYLogger.h"
 #import "ZHYResourceManager.h"
 #import "ZHYResourceCenter.h"
-#import "ZHYLogger.h"
+#import "ZHYResourceKitDefines.h"
 
 /**** Configuration notifications ****/
 NSString * const kZHYResourceConfigurationsWillUnloadNotification = @"kZHYResourceConfigurationsWillUnloadNotification";
@@ -19,9 +20,6 @@ NSString * const kZHYResourceKeyConfigurations = @"configurations";
 NSString * const kZHYResourceBundleWillUnloadNotification = @"kZHYResourceBundleWillUnloadNotification";
 NSString * const kZHYResourceBundleDidUnloadNotification = @"kZHYResourceBundleDidUnloadNotification";
 NSString * const kZHYResourceKeyBundle = @"bundle";
-
-
-static NSString * const kZHYResourceDefaultBundleKey = @"default";
 
 static ZHYResourceManager *s_globalManager;
 
@@ -83,6 +81,7 @@ static ZHYResourceManager *s_globalManager;
     self.configurations = [NSDictionary dictionaryWithContentsOfFile:filePath];
     if (!self.configurations) {
         ZHYLogError(@"Invalid configuration format.");
+        return NO;
     }
 
     [self loadbundle:kZHYResourceKeyBundle];

@@ -6,11 +6,14 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "ZHYResourceCenter.h"
 #import "ZHYLogger.h"
+#import "ZHYResourceCenter.h"
+#import "ZHYResourceNode+Private.h"
+#import "ZHYResourceKitDefines.h"
 
 @interface ZHYResourceCenter ()
 
+@property (nonatomic, strong) NSDictionary<NSString *, id> *structDescriptor;
 @property (nonatomic, strong) NSCache *cachedResources;
 
 @end
@@ -30,32 +33,38 @@
         _bundle = bundle;
     }
     
-    NSArray<NSString *> *directories = [self updateIndex];
+    [self loadStructDescriptor:_bundle];
     
     return self;
 }
 
-#pragma mark - Overridden
-
-
-
 #pragma mark - Private Methods
 
-- (NSArray<NSString *> *)updateIndex {
-    if ([self.bundle isEqual:[NSBundle mainBundle]]) {
-        
+- (BOOL)loadStructDescriptor:(NSBundle *)bundle {
+    if (!bundle) {
+        ZHYLogError(@"bundle is nil");
+        return NO;
     }
     
-    NSString *resourcePath = [self.bundle resourcePath];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator<NSString *> *enumerator = [fileManager enumeratorAtPath:resourcePath];
+    NSString *descriptorFilePath = [[bundle resourcePath] stringByAppendingPathComponent:kZHYResourceStructDescriptorFileName];
+    BOOL isDirectory = NO;
+    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:descriptorFilePath isDirectory:&isDirectory];
+    if (!existed || isDirectory) {
+        ZHYLogError(@"Invalid file path. <bundle: %@><descriptorFilePath: %@>", bundle, descriptorFilePath);
+        return NO;
+    }
     
+    self.structDescriptor = [NSDictionary dictionaryWithContentsOfFile:descriptorFilePath];
+    if (!self.structDescriptor) {
+        ZHYLogError(@"Invalid configuration format.");
+        return NO;
+    }
     
-    NSArray<NSString *> *subPaths = [fileManager subpathsAtPath:resourcePath];
-        
-    NSArray<NSString *> *directories = [fileManager subpathsOfDirectoryAtPath:resourcePath error:nil];
+    return YES;
+}
+
+- (void)awakeFromStructDescriptor:(NSDictionary<NSString *, id> *)structDescriptor {
     
-    return directories;
 }
 
 @end
