@@ -7,12 +7,24 @@
 //
 
 #import "ZHYResourceCenter.h"
+#import "ZHYLogger.h"
+
+@interface ZHYResourceCenter ()
+
+@property (nonatomic, strong) NSCache *cachedResources;
+
+@end
 
 @implementation ZHYResourceCenter
 
 #pragma mark - DESIGNATED INITIALIZER
 
 - (instancetype)initWithBundle:(NSBundle *)bundle {
+    if (!bundle) {
+        ZHYLogWarning(@"can not init from nil");
+        return nil;
+    }
+    
     self = [super init];
     if (self) {
         _bundle = bundle;
@@ -25,9 +37,7 @@
 
 #pragma mark - Overridden
 
-- (instancetype)init {
-    return [self initWithBundle:[NSBundle mainBundle]];
-}
+
 
 #pragma mark - Private Methods
 

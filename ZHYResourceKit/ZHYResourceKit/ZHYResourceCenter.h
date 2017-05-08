@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHYResourceCenter : NSObject
 
 - (instancetype)initWithBundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 

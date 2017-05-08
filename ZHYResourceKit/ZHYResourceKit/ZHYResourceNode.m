@@ -8,6 +8,9 @@
 
 #import "ZHYResourceNode.h"
 
+NSString * const kZHYResourceNodeNameImage = @"kZHYResourceImage";
+NSString * const kZHYResourceNodeNameFont = @"kZHYResourceFont";
+
 @implementation ZHYResourceNode
 
 #pragma mark - DESIGNATED INITIALIZER
@@ -24,5 +27,7 @@
     
     return self;
 }
+
+#pragma mark - Overridden
 
 @end

@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameImage;
+FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameFont;
+
 @interface ZHYResourceNode : NSObject
 
 - (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *name;
 
