@@ -17,8 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)loadConfigurations:(NSString *)filePath;
 - (void)unloadConfigurations;
 
-@property (nonatomic, copy, readonly) NSArray<NSString *> *configurations;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSDictionary *> *configurations;
+
+- (BOOL)loadbundle:(NSString *)bundleKey;
+@property (nonatomic, copy, readonly) NSString *currentBundle;
 
 @end
+
+
+
 
 NS_ASSUME_NONNULL_END

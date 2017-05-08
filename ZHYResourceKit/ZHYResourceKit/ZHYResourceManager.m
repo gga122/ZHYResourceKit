@@ -7,9 +7,31 @@
 //
 
 #import "ZHYResourceManager.h"
+#import "ZHYResourceCenter.h"
 #import "ZHYLogger.h"
 
+/**** Configuration notifications ****/
+NSString * const kZHYResourceConfigurationsWillUnloadNotification = @"kZHYResourceConfigurationsWillUnloadNotification";
+NSString * const kZHYResourceConfigurationsDidUnloadNotification = @"kZHYResourceConfigurationsDidUnloadNotification";
+NSString * const kZHYResourceKeyConfigurations = @"configurations";
+
+/**** Bundle notifications ****/
+NSString * const kZHYResourceBundleWillUnloadNotification = @"kZHYResourceBundleWillUnloadNotification";
+NSString * const kZHYResourceBundleDidUnloadNotification = @"kZHYResourceBundleDidUnloadNotification";
+NSString * const kZHYResourceKeyBundle = @"bundle";
+
+
+static NSString * const kZHYResourceDefaultBundleKey = @"default";
+
 static ZHYResourceManager *s_globalManager;
+
+@interface ZHYResourceManager ()
+
+@property (nonatomic, copy, readwrite) NSDictionary<NSString *, NSDictionary *> *configurations;
+
+@property (nonatomic, strong) ZHYResourceCenter *currentCenter;
+
+@end
 
 @implementation ZHYResourceManager
 
@@ -27,11 +49,9 @@ static ZHYResourceManager *s_globalManager;
         return s_globalManager;
     }
     
-    ZHYLogDebug(@"ss: %@", s_globalManager);
-    
     self = [super init];
     if (self) {
-        
+        ZHYLogDebug(@"ZHYResource manager did init");
     }
     
     return self;
@@ -43,26 +63,90 @@ static ZHYResourceManager *s_globalManager;
     return s_globalManager;
 }
 
+#pragma mark - Public Methods (Configuration)
+
 - (BOOL)loadConfigurations:(NSString *)filePath {
     if (!filePath) {
-        NSLog(@"");
+        ZHYLogError(@"File path is nil");
+        return NO;
+    }
+    
+    BOOL isDirectory = NO;
+    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory];
+    if (!existed || isDirectory) {
+        ZHYLogError(@"Invalid file path. <filePath: %@>", filePath);
         return NO;
     }
     
     [self unloadConfigurations];
     
-    BOOL isDirectory = NO;
-    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory];
-    if (!existed || isDirectory) {
-
-        return NO;
+    self.configurations = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    if (!self.configurations) {
+        ZHYLogError(@"Invalid configuration format.");
     }
+
+    [self loadbundle:kZHYResourceKeyBundle];
     
     return YES;
 }
 
 - (void)unloadConfigurations {
-    
+    if (self.configurations) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceConfigurationsWillUnloadNotification object:self userInfo:nil];
+        
+        self.configurations = nil;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceConfigurationsDidUnloadNotification object:self userInfo:nil];
+    } else {
+        NSAssert(self.configurations, @"Configurations is nil");
+        
+    }
 }
+
+#pragma mark - Public Methods (Bundle)
+
+- (BOOL)loadbundle:(NSString *)bundleKey {
+    if (!bundleKey) {
+        ZHYLogError(@"Bundle key is nil");
+        return NO;
+    }
+    
+    NSDictionary<NSString *, id> *configuration = [self.configurations objectForKey:bundleKey];
+    if (!configuration) {
+        ZHYLogError(@"Failed to find configuration for '%@'.", bundleKey);
+        return NO;
+    }
+    
+    [self unloadBundle];
+    
+    
+    
+    return YES;
+}
+
+- (NSString *)currentBundle {
+    return self.currentCenter.bundle.bundleIdentifier;
+}
+
+#pragma mark - Private Methods (Bundle)
+
+- (void)unloadBundle {
+    ZHYResourceCenter *center = self.currentCenter;
+    
+    if (center) {
+        NSDictionary *userInfo = nil;
+        if (center.bundle) {
+            userInfo = @{kZHYResourceKeyBundle: center.bundle};
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleWillUnloadNotification object:self userInfo:userInfo];
+        
+        self.currentCenter = nil;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleDidUnloadNotification object:self userInfo:userInfo];
+    }
+}
+
+
 
 @end
