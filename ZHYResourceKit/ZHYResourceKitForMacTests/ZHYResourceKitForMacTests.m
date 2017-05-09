@@ -24,17 +24,4 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    ZHYResourceCenter *center = [[ZHYResourceCenter alloc] initWithBundle:[NSBundle mainBundle]];
-    
-    ZHYLogError(@"hello %@", center);
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
-
 @end
