@@ -129,6 +129,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D28F0A211EC1748A007B1408 /* ColorWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				D28F0A0A1EC16421007B1408 /* ZHYColorWrapper.h */,
+				D28F0A0B1EC16421007B1408 /* ZHYColorWrapper.m */,
+				D28F0A0E1EC16733007B1408 /* ZHYColorWrapper+Plist.h */,
+				D28F0A0F1EC16733007B1408 /* ZHYColorWrapper+Plist.m */,
+			);
+			name = ColorWrapper;
+			sourceTree = "<group>";
+		};
+		D28F0A221EC174A2007B1408 /* FontWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				D28F0A061EC161C1007B1408 /* ZHYFontWrapper.h */,
+				D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */,
+			);
+			name = FontWrapper;
+			sourceTree = "<group>";
+		};
 		D2A005C71EC0192B000A272C /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,12 +205,8 @@
 				D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */,
 				D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */,
 				D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */,
-				D28F0A061EC161C1007B1408 /* ZHYFontWrapper.h */,
-				D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */,
-				D28F0A0A1EC16421007B1408 /* ZHYColorWrapper.h */,
-				D28F0A0B1EC16421007B1408 /* ZHYColorWrapper.m */,
-				D28F0A0E1EC16733007B1408 /* ZHYColorWrapper+Plist.h */,
-				D28F0A0F1EC16733007B1408 /* ZHYColorWrapper+Plist.m */,
+				D28F0A221EC174A2007B1408 /* FontWrapper */,
+				D28F0A211EC1748A007B1408 /* ColorWrapper */,
 			);
 			path = ZHYResourceKit;
 			sourceTree = "<group>";
