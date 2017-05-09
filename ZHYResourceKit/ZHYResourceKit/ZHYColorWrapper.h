@@ -6,7 +6,7 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
 typedef UIColor ZHYColor;
 #else

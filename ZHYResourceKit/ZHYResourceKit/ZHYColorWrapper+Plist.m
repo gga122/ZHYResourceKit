@@ -10,8 +10,8 @@
 #import "ZHYColorWrapper+Plist.h"
 #import "ZHYResourceKitDefines.h"
 
-#if TARGET_OS_IPHONE
-
+#if TARGET_OS_IOS
+#import "UIColor+Hex.h"
 #else
 #import "NSColor+Hex.h"
 #endif
@@ -27,7 +27,19 @@
     }
     
     NSString *colorHex = [plist objectForKey:kZHYColorKeyColorHex];
+    ZHYColor *color;
+#if TARGET_OS_IOS
+    color = [UIColor colorWithHexARGB:colorHex];
+#else
+    color = [NSColor colorWithHexARGB:colorHex];
+#endif
+    if (!color) {
+        return nil;
+    }
     
+    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
+    
+    return [self initWithColor:color forName:name detail:detail];
 }
 
 @end
