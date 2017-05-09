@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) ZHYColor *color;
 @property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *detail;
+@property (nonatomic, copy, readonly, nullable) NSString *detail;
 
 @end
 

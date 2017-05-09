@@ -14,13 +14,17 @@ typedef UIFont ZHYFont;
 typedef NSFont ZHYFont;
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ZHYFontWrapper : NSObject
 
-- (instancetype)initWithFont:(ZHYFont *)font forName:(NSString *)name detail:(NSString *)detail NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFont:(ZHYFont *)font forName:(NSString *)name detail:(nullable NSString *)detail NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) ZHYFont *font;
 @property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *detail;
+@property (nonatomic, copy, readonly, nullable) NSString *detail;
 
 @end
+
+NS_ASSUME_NONNULL_END
