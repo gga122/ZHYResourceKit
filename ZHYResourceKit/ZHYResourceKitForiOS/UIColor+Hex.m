@@ -36,7 +36,7 @@
     static NSUInteger const RRGGBBHexLength = 6;
     static NSUInteger const AARRGGBBHexLength = 8;
     
-    switch (hex.length) {
+    switch (colorHex.length) {
         case RGBHexLength: {
             *a = 1.0f;
             *r = [self componentFromHex:colorHex start:0 length:1];
