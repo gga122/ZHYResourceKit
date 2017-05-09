@@ -20,7 +20,7 @@ typedef NSFont ZHYFont;
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) ZHYFont *font;
-@property (nonatomic, copy, readonly) NSString name;
+@property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *detail;
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
+#import "ZHYLogger.h"
 #import "ZHYFontWrapper.h"
 
 @implementation ZHYFontWrapper
