@@ -15,6 +15,8 @@
 		D28F0A111EC16733007B1408 /* ZHYColorWrapper+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A0F1EC16733007B1408 /* ZHYColorWrapper+Plist.m */; };
 		D28F0A121EC1675E007B1408 /* ZHYColorWrapper+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A0E1EC16733007B1408 /* ZHYColorWrapper+Plist.h */; };
 		D28F0A131EC16762007B1408 /* ZHYColorWrapper+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A0F1EC16733007B1408 /* ZHYColorWrapper+Plist.m */; };
+		D28F0A191EC16B77007B1408 /* NSColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A171EC16B77007B1408 /* NSColor+Hex.h */; };
+		D28F0A1A1EC16B77007B1408 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A181EC16B77007B1408 /* NSColor+Hex.m */; };
 		D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */; };
 		D2A005CF1EC06040000A272C /* ZHYResourceNode+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */; };
 		D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */; };
@@ -62,6 +64,8 @@
 		D28F0A0B1EC16421007B1408 /* ZHYColorWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYColorWrapper.m; sourceTree = "<group>"; };
 		D28F0A0E1EC16733007B1408 /* ZHYColorWrapper+Plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYColorWrapper+Plist.h"; sourceTree = "<group>"; };
 		D28F0A0F1EC16733007B1408 /* ZHYColorWrapper+Plist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYColorWrapper+Plist.m"; sourceTree = "<group>"; };
+		D28F0A171EC16B77007B1408 /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Hex.h"; sourceTree = "<group>"; };
+		D28F0A181EC16B77007B1408 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hex.m"; sourceTree = "<group>"; };
 		D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceNode+Private.h"; sourceTree = "<group>"; };
 		D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYResourceNode+Private.m"; sourceTree = "<group>"; };
 		D2A005D21EC0607A000A272C /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHYLogger.h; path = ZHYResourceKit/ZHYLogger.h; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 		D2CDA36F1EBC71900085F997 /* ZHYResourceKitForMac */ = {
 			isa = PBXGroup;
 			children = (
+				D28F0A171EC16B77007B1408 /* NSColor+Hex.h */,
+				D28F0A181EC16B77007B1408 /* NSColor+Hex.m */,
 				D2CDA3701EBC71900085F997 /* Info.plist */,
 				D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */,
 			);
@@ -201,7 +207,7 @@
 				D2CDA3C21EBC88E30085F997 /* Info.plist */,
 			);
 			path = ZHYResourceKitForMacTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		D2CDA3CE1EBC891F0085F997 /* ZHYResourceKitForiOSTests */ = {
 			isa = PBXGroup;
@@ -228,6 +234,7 @@
 				D2A005D41EC0607A000A272C /* ZHYLogger.h in Headers */,
 				D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */,
 				D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */,
+				D28F0A191EC16B77007B1408 /* NSColor+Hex.h in Headers */,
 				D2CDA3891EBC7BBF0085F997 /* ZHYResourceCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +417,7 @@
 				D2CDA38A1EBC7BBF0085F997 /* ZHYResourceCenter.m in Sources */,
 				D2CDA3B71EBC85E40085F997 /* ZHYResourceNode.m in Sources */,
 				D2CDA3861EBC7B290085F997 /* ZHYResourceManager.m in Sources */,
+				D28F0A1A1EC16B77007B1408 /* NSColor+Hex.m in Sources */,
 				D28F0A111EC16733007B1408 /* ZHYColorWrapper+Plist.m in Sources */,
 				D28F0A091EC161C1007B1408 /* ZHYFontWrapper.m in Sources */,
 				D28F0A0D1EC16421007B1408 /* ZHYColorWrapper.m in Sources */,
