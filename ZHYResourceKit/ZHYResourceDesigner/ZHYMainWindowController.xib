@@ -28,6 +28,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="bundleButtonDidClick:" target="-2" id="84Y-2z-fVe"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCh-1A-3yS">
                         <rect key="frame" x="34" y="64" width="77" height="32"/>

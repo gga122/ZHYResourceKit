@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
 
+@property (nonatomic, strong) NSDictionary *resourceConfigurations;
+
 @end
 
 @implementation ZHYMainWindowController
@@ -21,12 +23,21 @@
     [super windowDidLoad];
 }
 
+- (IBAction)bundleButtonDidClick:(id)sender {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ZHYResourceStruct.descriptor" ofType:@"plist"];
+    
+    self.resourceConfigurations = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+}
+
 - (IBAction)imageButtonDidClick:(id)sender {
     
 }
 
 - (IBAction)colorButtonDidClick:(id)sender {
     [self.colorWindowController.window makeKeyAndOrderFront:nil];
+    
+    NSArray *attributes = [self.resourceConfigurations objectForKey:@"colorResource"];
+    self.colorWindowController.attributes = attributes;
 }
 
 - (IBAction)fontButtonDidClick:(id)sender {

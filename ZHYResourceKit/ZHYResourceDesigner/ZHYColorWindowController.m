@@ -6,7 +6,33 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
+#import "NSColor+Hex.h"
 #import "ZHYColorWindowController.h"
+
+@interface ZHYColorView : NSView
+
+@property (nonatomic, copy) NSColor *color;
+
+@end
+
+@implementation ZHYColorView
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+    
+    [self.color set];
+    NSRectFill(dirtyRect);
+}
+
+- (void)setColor:(NSColor *)color {
+    if (_color != color) {
+        _color = [color copy];
+    }
+    
+    self.needsDisplay = YES;
+}
+
+@end
 
 @interface ZHYColorWindowController () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -23,6 +49,14 @@
 @end
 
 @implementation ZHYColorWindowController
+
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    
+    if (self.attributes.count > 0) {
+        [self.colorTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
+    }
+}
 
 #pragma mark - Actions
 
@@ -51,8 +85,78 @@
     return self.attributes.count;
 }
 
-- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+- (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
+    static NSString * const textIdentifier = @"textIdentifier";
+    static NSString * const colorIdentifier = @"colorIdentifier";
     
+    NSDictionary<NSString *, NSString *> *config = [self.attributes objectAtIndex:row];
+    
+    if ([tableColumn.title isEqualToString:@"name"] || [tableColumn.title isEqualToString:@"detail"]) {
+        NSTextField *textField = [tableView makeViewWithIdentifier:textIdentifier owner:self];
+        if (!textField) {
+            textField = [[NSTextField alloc] initWithFrame:NSZeroRect];
+            textField.bordered = NO;
+            textField.editable = NO;
+            textField.selectable = NO;
+            textField.drawsBackground = NO;
+        }
+        
+        textField.stringValue = [config objectForKey:tableColumn.title] ? : @"";
+        return textField;
+    } else if ([tableColumn.title isEqualToString:@"color"]) {
+        ZHYColorView *colorView = [tableView makeViewWithIdentifier:colorIdentifier owner:self];
+        if (!colorView) {
+            colorView = [[ZHYColorView alloc] initWithFrame:NSZeroRect];
+        }
+        
+        NSString *hex = [config objectForKey:tableColumn.title];
+        NSColor *color = [NSColor colorWithHexARGB:hex];
+        if (!color) {
+            color = [NSColor whiteColor];
+        }
+        colorView.color = color;
+        
+        return colorView;
+    }
+    
+    return nil;
+}
+
+#pragma mark - NSTableView Delegate
+
+
+
+#pragma mark - NSTableView Notification
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    if (notification.object == self.colorTableView) {
+        NSInteger selectedRow = self.colorTableView.selectedRow;
+        
+        NSMutableDictionary<NSString *, NSString *> *config = [self.attributes objectAtIndex:selectedRow];
+        self.attribute = config;
+    }
+}
+
+#pragma mark - Public Property
+
+- (void)setAttributes:(NSArray<NSMutableDictionary<NSString *,NSString *> *> *)attributes {
+    if (_attributes != attributes) {
+        _attributes = attributes;
+        
+        [self.colorTableView reloadData];
+    }
+}
+
+#pragma mark - Private Property
+
+- (void)setAttribute:(NSMutableDictionary<NSString *,NSString *> *)attribute {
+    if (_attribute != attribute) {
+        _attribute = attribute;
+        
+        self.nameTextField.stringValue = [_attribute objectForKey:@"name"] ? : @"";
+        self.colorTextField.stringValue = [_attribute objectForKey:@"color"] ? : @"";
+        self.detailTextField.stringValue = [_attribute objectForKey:@"detail"] ? : @"";
+    }
 }
 
 @end
