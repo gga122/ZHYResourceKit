@@ -28,6 +28,10 @@
 		D28F0A561EC1B271007B1408 /* ZHYImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A521EC1B206007B1408 /* ZHYImageWrapper.m */; };
 		D28F0A5A1EC1B450007B1408 /* ZHYImageWrapper+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A581EC1B450007B1408 /* ZHYImageWrapper+Plist.h */; };
 		D28F0A5B1EC1B450007B1408 /* ZHYImageWrapper+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A591EC1B450007B1408 /* ZHYImageWrapper+Plist.m */; };
+		D28F0A5E1EC2B367007B1408 /* ZHYFontWrapper+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A5C1EC2B367007B1408 /* ZHYFontWrapper+Plist.h */; };
+		D28F0A5F1EC2B367007B1408 /* ZHYFontWrapper+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A5D1EC2B367007B1408 /* ZHYFontWrapper+Plist.m */; };
+		D28F0A601EC2B389007B1408 /* ZHYFontWrapper+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A5C1EC2B367007B1408 /* ZHYFontWrapper+Plist.h */; };
+		D28F0A611EC2B38D007B1408 /* ZHYFontWrapper+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A5D1EC2B367007B1408 /* ZHYFontWrapper+Plist.m */; };
 		D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */; };
 		D2A005CF1EC06040000A272C /* ZHYResourceNode+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */; };
 		D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */; };
@@ -85,6 +89,8 @@
 		D28F0A521EC1B206007B1408 /* ZHYImageWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYImageWrapper.m; sourceTree = "<group>"; };
 		D28F0A581EC1B450007B1408 /* ZHYImageWrapper+Plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYImageWrapper+Plist.h"; sourceTree = "<group>"; };
 		D28F0A591EC1B450007B1408 /* ZHYImageWrapper+Plist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYImageWrapper+Plist.m"; sourceTree = "<group>"; };
+		D28F0A5C1EC2B367007B1408 /* ZHYFontWrapper+Plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYFontWrapper+Plist.h"; sourceTree = "<group>"; };
+		D28F0A5D1EC2B367007B1408 /* ZHYFontWrapper+Plist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYFontWrapper+Plist.m"; sourceTree = "<group>"; };
 		D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceNode+Private.h"; sourceTree = "<group>"; };
 		D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYResourceNode+Private.m"; sourceTree = "<group>"; };
 		D2A005D21EC0607A000A272C /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHYLogger.h; path = ZHYResourceKit/ZHYLogger.h; sourceTree = "<group>"; };
@@ -160,6 +166,8 @@
 			children = (
 				D28F0A061EC161C1007B1408 /* ZHYFontWrapper.h */,
 				D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */,
+				D28F0A5C1EC2B367007B1408 /* ZHYFontWrapper+Plist.h */,
+				D28F0A5D1EC2B367007B1408 /* ZHYFontWrapper+Plist.m */,
 			);
 			name = FontWrapper;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 			files = (
 				D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D28F0A0C1EC16421007B1408 /* ZHYColorWrapper.h in Headers */,
+				D28F0A601EC2B389007B1408 /* ZHYFontWrapper+Plist.h in Headers */,
 				D28F0A081EC161C1007B1408 /* ZHYFontWrapper.h in Headers */,
 				D2A005CF1EC06040000A272C /* ZHYResourceNode+Private.h in Headers */,
 				D2CDA3B61EBC85E40085F997 /* ZHYResourceNode.h in Headers */,
@@ -304,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28F0A531EC1B206007B1408 /* ZHYImageWrapper.h in Headers */,
+				D28F0A5E1EC2B367007B1408 /* ZHYFontWrapper+Plist.h in Headers */,
 				D28F0A121EC1675E007B1408 /* ZHYColorWrapper+Plist.h in Headers */,
 				D2A005D61EC060D1000A272C /* ZHYResourceNode+Private.h in Headers */,
 				D28F0A5A1EC1B450007B1408 /* ZHYImageWrapper+Plist.h in Headers */,
@@ -479,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */,
+				D28F0A611EC2B38D007B1408 /* ZHYFontWrapper+Plist.m in Sources */,
 				D2CDA38A1EBC7BBF0085F997 /* ZHYResourceCenter.m in Sources */,
 				D2CDA3B71EBC85E40085F997 /* ZHYResourceNode.m in Sources */,
 				D2CDA3861EBC7B290085F997 /* ZHYResourceManager.m in Sources */,
@@ -500,6 +511,7 @@
 				D28F0A5B1EC1B450007B1408 /* ZHYImageWrapper+Plist.m in Sources */,
 				D2A005D71EC0612B000A272C /* ZHYResourceNode+Private.m in Sources */,
 				D28F0A541EC1B206007B1408 /* ZHYImageWrapper.m in Sources */,
+				D28F0A5F1EC2B367007B1408 /* ZHYFontWrapper+Plist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +657,7 @@
 				INFOPLIST_FILE = ZHYResourceKitForMac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -665,6 +678,7 @@
 				INFOPLIST_FILE = ZHYResourceKitForMac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -683,7 +697,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ZHYResourceKitForiOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKitForiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -705,7 +719,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ZHYResourceKitForiOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ZHY.ZHYResourceKitForiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
