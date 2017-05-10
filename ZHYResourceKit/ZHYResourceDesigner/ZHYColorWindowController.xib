@@ -109,6 +109,10 @@
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-2" id="0q3-4c-Cfj"/>
+                                        <outlet property="delegate" destination="-2" id="7eY-KU-4TL"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                         </clipView>
@@ -214,9 +218,9 @@
                             <rect key="frame" x="2" y="2" width="343" height="99"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="4LO-SC-I58">
+                                <colorWell bordered="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LO-SC-I58">
                                     <rect key="frame" x="12" y="13" width="319" height="74"/>
-                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="color" red="0.25092167611525401" green="0.96238052845001221" blue="0.94760856153384776" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </colorWell>
                             </subviews>
                             <constraints>

@@ -8,7 +8,7 @@
 
 #import "ZHYColorWindowController.h"
 
-@interface ZHYColorWindowController ()
+@interface ZHYColorWindowController () <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (weak) IBOutlet NSTableView *colorTableView;
 

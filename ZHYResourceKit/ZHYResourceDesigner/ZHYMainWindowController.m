@@ -9,7 +9,6 @@
 #import "ZHYMainWindowController.h"
 #import "ZHYColorWindowController.h"
 
-
 @interface ZHYMainWindowController ()
 
 @property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
@@ -43,6 +42,5 @@
     
     return _colorWindowController;
 }
-
 
 @end
