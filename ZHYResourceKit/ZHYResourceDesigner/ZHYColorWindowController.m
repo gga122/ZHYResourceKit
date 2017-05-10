@@ -10,14 +10,20 @@
 
 @interface ZHYColorWindowController ()
 
+@property (weak) IBOutlet NSTableView *colorTableView;
+
+@property (weak) IBOutlet NSTextField *nameTextField;
+@property (weak) IBOutlet NSTextField *colorTextField;
+@property (weak) IBOutlet NSTextField *detailTextField;
+
+@property (weak) IBOutlet NSColorWell *colorWell;
+
 @end
 
 @implementation ZHYColorWindowController
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 @end
