@@ -28,8 +28,7 @@ static NSString * const kZHYFontKeyFont = @"font" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 
 static NSString * const kZHYFontKeyFontFamily = @"family" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                      // optional
 static NSString * const kZHYFontKeyFontName = @"name" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                          // optional
 static NSString * const kZHYFontKeyFontSize = @"size" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                          // required
-static NSString * const kZHYFontKeyFontBold = @"bold" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                          // optional
-static NSString * const kZHYFontKeyFontItalic = @"italic" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                      // optional
+static NSString * const kZHYFontKeyFontTrait = @"trait" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                        // optional
 static NSString * const kZHYFontKeyDetail = @"detail" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 2);                      // optional
 
 #endif /* ZHYResourceKitDefines_h */

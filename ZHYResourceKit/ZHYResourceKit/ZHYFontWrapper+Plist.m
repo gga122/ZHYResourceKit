@@ -10,8 +10,8 @@
 
 @implementation ZHYFontWrapper (Plist)
 
-- (instancetype)initWithPlist:(NSDictionary<NSString *, id> *)plist {
-    
-}
+//- (instancetype)initWithPlist:(NSDictionary<NSString *, id> *)plist {
+//    
+//}
 
 @end
