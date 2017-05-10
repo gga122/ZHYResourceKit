@@ -20,8 +20,6 @@
 		D28F0A1D1EC1725B007B1408 /* UIColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A1B1EC1725B007B1408 /* UIColor+Hex.h */; };
 		D28F0A1E1EC1725B007B1408 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A1C1EC1725B007B1408 /* UIColor+Hex.m */; };
 		D28F0A4A1EC1AE7A007B1408 /* ZHYColorWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A491EC1AE7A007B1408 /* ZHYColorWrapperTest.m */; };
-		D28F0A4E1EC1AEEE007B1408 /* Color.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A4C1EC1AEE7007B1408 /* Color.plist */; };
-		D28F0A4F1EC1AEEE007B1408 /* Color.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A4C1EC1AEE7007B1408 /* Color.plist */; };
 		D28F0A531EC1B206007B1408 /* ZHYImageWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A511EC1B206007B1408 /* ZHYImageWrapper.h */; };
 		D28F0A541EC1B206007B1408 /* ZHYImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A521EC1B206007B1408 /* ZHYImageWrapper.m */; };
 		D28F0A551EC1B255007B1408 /* ZHYImageWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A511EC1B206007B1408 /* ZHYImageWrapper.h */; };
@@ -43,6 +41,12 @@
 		D28F0A951EC2F0C4007B1408 /* ZHYFontWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A931EC2F0C4007B1408 /* ZHYFontWindowController.m */; };
 		D28F0A961EC2F0C4007B1408 /* ZHYFontWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A941EC2F0C4007B1408 /* ZHYFontWindowController.xib */; };
 		D28F0A9A1EC2F103007B1408 /* ZHYColorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A991EC2F103007B1408 /* ZHYColorWindowController.xib */; };
+		D28F0AA11EC3019B007B1408 /* Color.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A9F1EC3019B007B1408 /* Color.plist */; };
+		D28F0AA21EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0AA01EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist */; };
+		D28F0AA31EC301CD007B1408 /* ZHYResourceStruct.descriptor.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0AA01EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist */; };
+		D28F0AA41EC301CD007B1408 /* ZHYResourceStruct.descriptor.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0AA01EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist */; };
+		D28F0AA51EC301D0007B1408 /* Color.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A9F1EC3019B007B1408 /* Color.plist */; };
+		D28F0AA61EC301D0007B1408 /* Color.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A9F1EC3019B007B1408 /* Color.plist */; };
 		D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */; };
 		D2A005CF1EC06040000A272C /* ZHYResourceNode+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */; };
 		D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */; };
@@ -95,7 +99,6 @@
 		D28F0A1B1EC1725B007B1408 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		D28F0A1C1EC1725B007B1408 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		D28F0A491EC1AE7A007B1408 /* ZHYColorWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYColorWrapperTest.m; sourceTree = "<group>"; };
-		D28F0A4C1EC1AEE7007B1408 /* Color.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Color.plist; sourceTree = "<group>"; };
 		D28F0A511EC1B206007B1408 /* ZHYImageWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYImageWrapper.h; sourceTree = "<group>"; };
 		D28F0A521EC1B206007B1408 /* ZHYImageWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYImageWrapper.m; sourceTree = "<group>"; };
 		D28F0A581EC1B450007B1408 /* ZHYImageWrapper+Plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYImageWrapper+Plist.h"; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 		D28F0A931EC2F0C4007B1408 /* ZHYFontWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYFontWindowController.m; sourceTree = "<group>"; };
 		D28F0A941EC2F0C4007B1408 /* ZHYFontWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYFontWindowController.xib; sourceTree = "<group>"; };
 		D28F0A991EC2F103007B1408 /* ZHYColorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYColorWindowController.xib; sourceTree = "<group>"; };
+		D28F0A9F1EC3019B007B1408 /* Color.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Color.plist; path = TestResource/Color.plist; sourceTree = "<group>"; };
+		D28F0AA01EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ZHYResourceStruct.descriptor.plist; path = TestResource/ZHYResourceStruct.descriptor.plist; sourceTree = "<group>"; };
 		D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceNode+Private.h"; sourceTree = "<group>"; };
 		D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYResourceNode+Private.m"; sourceTree = "<group>"; };
 		D2A005D21EC0607A000A272C /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHYLogger.h; path = ZHYResourceKit/ZHYLogger.h; sourceTree = "<group>"; };
@@ -210,7 +215,8 @@
 		D28F0A4B1EC1AEA7007B1408 /* TestResource */ = {
 			isa = PBXGroup;
 			children = (
-				D28F0A4C1EC1AEE7007B1408 /* Color.plist */,
+				D28F0A9F1EC3019B007B1408 /* Color.plist */,
+				D28F0AA01EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist */,
 			);
 			name = TestResource;
 			sourceTree = "<group>";
@@ -547,7 +553,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28F0A8F1EC2C770007B1408 /* ZHYMainWindowController.xib in Resources */,
+				D28F0AA21EC3019B007B1408 /* ZHYResourceStruct.descriptor.plist in Resources */,
 				D28F0A9A1EC2F103007B1408 /* ZHYColorWindowController.xib in Resources */,
+				D28F0AA11EC3019B007B1408 /* Color.plist in Resources */,
 				D28F0A751EC2C2F2007B1408 /* Assets.xcassets in Resources */,
 				D28F0A7E1EC2C327007B1408 /* MainMenu.xib in Resources */,
 				D28F0A961EC2F0C4007B1408 /* ZHYFontWindowController.xib in Resources */,
@@ -572,7 +580,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D28F0A4E1EC1AEEE007B1408 /* Color.plist in Resources */,
+				D28F0AA61EC301D0007B1408 /* Color.plist in Resources */,
+				D28F0AA31EC301CD007B1408 /* ZHYResourceStruct.descriptor.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +589,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D28F0A4F1EC1AEEE007B1408 /* Color.plist in Resources */,
+				D28F0AA51EC301D0007B1408 /* Color.plist in Resources */,
+				D28F0AA41EC301CD007B1408 /* ZHYResourceStruct.descriptor.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

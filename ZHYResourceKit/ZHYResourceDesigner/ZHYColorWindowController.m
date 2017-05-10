@@ -24,9 +24,7 @@
 
 @implementation ZHYColorWindowController
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-}
+#pragma mark - Actions
 
 - (IBAction)colorDidChange:(id)sender {
     NSColor *color = self.colorWell.color;
@@ -47,8 +45,14 @@
     self.colorTextField.stringValue = [hex uppercaseString];
 }
 
+#pragma mark - NSTableView Datasource
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.attributes.count;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    
 }
 
 @end
