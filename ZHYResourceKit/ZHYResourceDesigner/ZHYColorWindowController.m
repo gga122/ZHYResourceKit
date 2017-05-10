@@ -18,12 +18,37 @@
 
 @property (weak) IBOutlet NSColorWell *colorWell;
 
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *attribute;
+
 @end
 
 @implementation ZHYColorWindowController
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+}
+
+- (IBAction)colorDidChange:(id)sender {
+    NSColor *color = self.colorWell.color;
+    
+    static CGFloat const colorMaxValue = 255.0;
+    
+    CGFloat alpha = round(color.alphaComponent * colorMaxValue);
+    CGFloat red = round(color.redComponent * colorMaxValue);
+    CGFloat green = round(color.greenComponent * colorMaxValue);
+    CGFloat blue = round(color.blueComponent * colorMaxValue);
+    
+    NSMutableString *hex = [NSMutableString stringWithString:@"#"];
+    if (colorMaxValue - alpha > 1.0) {
+        [hex appendFormat:@"%2x", (int)alpha];
+    }
+    [hex appendFormat:@"%02x%02x%02x", (int)red, (int)green, (int)blue];
+    
+    self.colorTextField.stringValue = [hex uppercaseString];
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return self.attributes.count;
 }
 
 @end

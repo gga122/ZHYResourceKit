@@ -10,6 +10,6 @@
 
 @interface ZHYColorWindowController : NSWindowController
 
-@property (nonatomic, strong) NSArray<NSDictionary<NSString *, NSString *> *> *attributes;
+@property (nonatomic, strong) NSArray<NSMutableDictionary<NSString *, NSString *> *> *attributes;
 
 @end

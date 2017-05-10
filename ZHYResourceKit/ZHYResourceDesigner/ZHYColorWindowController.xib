@@ -218,9 +218,12 @@
                             <rect key="frame" x="2" y="2" width="343" height="99"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <colorWell bordered="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LO-SC-I58">
+                                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="4LO-SC-I58">
                                     <rect key="frame" x="12" y="13" width="319" height="74"/>
                                     <color key="color" red="0.25092167611525401" green="0.96238052845001221" blue="0.94760856153384776" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <connections>
+                                        <action selector="colorDidChange:" target="-2" id="wiW-7X-kda"/>
+                                    </connections>
                                 </colorWell>
                             </subviews>
                             <constraints>
