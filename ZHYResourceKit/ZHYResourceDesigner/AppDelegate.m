@@ -7,21 +7,24 @@
 //
 
 #import "AppDelegate.h"
+#import "ZHYMainWindowController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) NSWindowController *mainWindowController;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    _mainWindowController = [[ZHYMainWindowController alloc] initWithWindowNibName:@"ZHYMainWindowController"];
+    
+    [self.mainWindowController.window makeKeyAndOrderFront:nil];
 }
-
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
-
 
 @end

@@ -35,9 +35,14 @@
 		D28F0A641EC2BE6F007B1408 /* ZHYFontWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A631EC2BE6F007B1408 /* ZHYFontWrapperTest.m */; };
 		D28F0A6D1EC2C2F2007B1408 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A6C1EC2C2F2007B1408 /* AppDelegate.m */; };
 		D28F0A701EC2C2F2007B1408 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A6F1EC2C2F2007B1408 /* main.m */; };
-		D28F0A731EC2C2F2007B1408 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A721EC2C2F2007B1408 /* ViewController.m */; };
 		D28F0A751EC2C2F2007B1408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A741EC2C2F2007B1408 /* Assets.xcassets */; };
 		D28F0A7E1EC2C327007B1408 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A7D1EC2C327007B1408 /* MainMenu.xib */; };
+		D28F0A891EC2C64D007B1408 /* ZHYColorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A871EC2C64D007B1408 /* ZHYColorWindowController.m */; };
+		D28F0A8E1EC2C770007B1408 /* ZHYMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A8C1EC2C770007B1408 /* ZHYMainWindowController.m */; };
+		D28F0A8F1EC2C770007B1408 /* ZHYMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A8D1EC2C770007B1408 /* ZHYMainWindowController.xib */; };
+		D28F0A951EC2F0C4007B1408 /* ZHYFontWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A931EC2F0C4007B1408 /* ZHYFontWindowController.m */; };
+		D28F0A961EC2F0C4007B1408 /* ZHYFontWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A941EC2F0C4007B1408 /* ZHYFontWindowController.xib */; };
+		D28F0A9A1EC2F103007B1408 /* ZHYColorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28F0A991EC2F103007B1408 /* ZHYColorWindowController.xib */; };
 		D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */; };
 		D2A005CF1EC06040000A272C /* ZHYResourceNode+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */; };
 		D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */; };
@@ -102,11 +107,18 @@
 		D28F0A6B1EC2C2F2007B1408 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D28F0A6C1EC2C2F2007B1408 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D28F0A6F1EC2C2F2007B1408 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D28F0A711EC2C2F2007B1408 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D28F0A721EC2C2F2007B1408 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D28F0A741EC2C2F2007B1408 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D28F0A791EC2C2F2007B1408 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D28F0A7D1EC2C327007B1408 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D28F0A861EC2C64D007B1408 /* ZHYColorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYColorWindowController.h; sourceTree = "<group>"; };
+		D28F0A871EC2C64D007B1408 /* ZHYColorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYColorWindowController.m; sourceTree = "<group>"; };
+		D28F0A8B1EC2C770007B1408 /* ZHYMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYMainWindowController.h; sourceTree = "<group>"; };
+		D28F0A8C1EC2C770007B1408 /* ZHYMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYMainWindowController.m; sourceTree = "<group>"; };
+		D28F0A8D1EC2C770007B1408 /* ZHYMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYMainWindowController.xib; sourceTree = "<group>"; };
+		D28F0A921EC2F0C4007B1408 /* ZHYFontWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYFontWindowController.h; sourceTree = "<group>"; };
+		D28F0A931EC2F0C4007B1408 /* ZHYFontWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYFontWindowController.m; sourceTree = "<group>"; };
+		D28F0A941EC2F0C4007B1408 /* ZHYFontWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYFontWindowController.xib; sourceTree = "<group>"; };
+		D28F0A991EC2F103007B1408 /* ZHYColorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYColorWindowController.xib; sourceTree = "<group>"; };
 		D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceNode+Private.h"; sourceTree = "<group>"; };
 		D2A005D01EC0604C000A272C /* ZHYResourceNode+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYResourceNode+Private.m"; sourceTree = "<group>"; };
 		D2A005D21EC0607A000A272C /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHYLogger.h; path = ZHYResourceKit/ZHYLogger.h; sourceTree = "<group>"; };
@@ -217,10 +229,17 @@
 		D28F0A6A1EC2C2F2007B1408 /* ZHYResourceDesigner */ = {
 			isa = PBXGroup;
 			children = (
+				D28F0A921EC2F0C4007B1408 /* ZHYFontWindowController.h */,
+				D28F0A931EC2F0C4007B1408 /* ZHYFontWindowController.m */,
+				D28F0A941EC2F0C4007B1408 /* ZHYFontWindowController.xib */,
+				D28F0A861EC2C64D007B1408 /* ZHYColorWindowController.h */,
+				D28F0A871EC2C64D007B1408 /* ZHYColorWindowController.m */,
+				D28F0A991EC2F103007B1408 /* ZHYColorWindowController.xib */,
+				D28F0A8B1EC2C770007B1408 /* ZHYMainWindowController.h */,
+				D28F0A8C1EC2C770007B1408 /* ZHYMainWindowController.m */,
+				D28F0A8D1EC2C770007B1408 /* ZHYMainWindowController.xib */,
 				D28F0A6B1EC2C2F2007B1408 /* AppDelegate.h */,
 				D28F0A6C1EC2C2F2007B1408 /* AppDelegate.m */,
-				D28F0A711EC2C2F2007B1408 /* ViewController.h */,
-				D28F0A721EC2C2F2007B1408 /* ViewController.m */,
 				D28F0A7D1EC2C327007B1408 /* MainMenu.xib */,
 				D28F0A741EC2C2F2007B1408 /* Assets.xcassets */,
 				D28F0A791EC2C2F2007B1408 /* Info.plist */,
@@ -527,8 +546,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28F0A8F1EC2C770007B1408 /* ZHYMainWindowController.xib in Resources */,
+				D28F0A9A1EC2F103007B1408 /* ZHYColorWindowController.xib in Resources */,
 				D28F0A751EC2C2F2007B1408 /* Assets.xcassets in Resources */,
 				D28F0A7E1EC2C327007B1408 /* MainMenu.xib in Resources */,
+				D28F0A961EC2F0C4007B1408 /* ZHYFontWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,9 +591,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D28F0A731EC2C2F2007B1408 /* ViewController.m in Sources */,
+				D28F0A8E1EC2C770007B1408 /* ZHYMainWindowController.m in Sources */,
 				D28F0A701EC2C2F2007B1408 /* main.m in Sources */,
 				D28F0A6D1EC2C2F2007B1408 /* AppDelegate.m in Sources */,
+				D28F0A891EC2C64D007B1408 /* ZHYColorWindowController.m in Sources */,
+				D28F0A951EC2F0C4007B1408 /* ZHYFontWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
