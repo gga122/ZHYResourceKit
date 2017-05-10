@@ -11,13 +11,25 @@
 
 #import <Foundation/Foundation.h>
 
+#define ZHY_DESCRIPTOR_PLIST_LEVEL(x, y)           // Do nothing, just mark key level, 'x' is current level, 'y' is total level
+
 static NSString * const kZHYResourceDefaultBundleKey = @"default";
 
 static NSString * const kZHYResourceStructDescriptorFileName = @"ZHYResourceStruct.descriptor.plist";
 
+/***** Color Plist Keys *****/
+static NSString * const kZHYColorKeyName = @"name" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                         // required
+static NSString * const kZHYColorKeyColorHex = @"color" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                    // required
+static NSString * const kZHYColorKeyDetail = @"detail" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                     // optional
 
-static NSString * const kZHYColorKeyName = @"name";
-static NSString * const kZHYColorKeyColorHex = @"color";
-static NSString * const kZHYColorKeyDetail = @"detail";
+/***** Font Plist Keys *****/
+static NSString * const kZHYFontKeyName = @"name" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 2);                          // required
+static NSString * const kZHYFontKeyFont = @"font" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 2);                          // required
+static NSString * const kZHYFontKeyFontFamily = @"family" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                      // optional
+static NSString * const kZHYFontKeyFontName = @"name" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                          // optional
+static NSString * const kZHYFontKeyFontSize = @"size" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                          // required
+static NSString * const kZHYFontKeyFontBold = @"bold" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                          // optional
+static NSString * const kZHYFontKeyFontItalic = @"italic" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                      // optional
+static NSString * const kZHYFontKeyDetail = @"detail" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 2);                      // optional
 
 #endif /* ZHYResourceKitDefines_h */
