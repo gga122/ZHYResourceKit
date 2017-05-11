@@ -83,4 +83,34 @@
     return hexComponent / 255.0;
 }
 
+#pragma mark - Public Property
+
+- (NSString *)hexARGB {
+    static CGFloat const colorMaxValue = 255.0;
+    
+    CGFloat alpha = 1.0;
+    CGFloat red = 1.0;
+    CGFloat green = 1.0;
+    CGFloat blue = 1.0;
+    
+    BOOL response = [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    if (!response) {
+        ZHYLogError(@"Convert to hex failed. <color: %@>", self);
+        return nil;
+    }
+    
+    alpha = round(alpha * colorMaxValue);
+    red = round(red * colorMaxValue);
+    green = round(green * colorMaxValue);
+    blue = round(blue * colorMaxValue);
+    
+    NSMutableString *hex = [NSMutableString stringWithString:@"#"];
+    if (colorMaxValue - alpha > 1.0) {
+        [hex appendFormat:@"%2x", (int)alpha];
+    }
+    [hex appendFormat:@"%02x%02x%02x", (int)red, (int)green, (int)blue];
+    
+    return [hex uppercaseString];
+}
+
 @end
