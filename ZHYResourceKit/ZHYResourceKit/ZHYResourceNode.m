@@ -10,6 +10,7 @@
 
 NSString * const kZHYResourceNodeNameImage = @"kZHYResourceImage";
 NSString * const kZHYResourceNodeNameFont = @"kZHYResourceFont";
+NSString * const kZHYResourceNodeNameColor = @"kZHYResourceColor";
 
 @implementation ZHYResourceNode
 

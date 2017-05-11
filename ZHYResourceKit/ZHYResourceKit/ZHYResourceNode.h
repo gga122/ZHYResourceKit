@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameImage;
 FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameFont;
 
+/**
+ Resource node represent a hub of one type resources.
+ 
+ Resource node is a container that contains all same type resources in the bundle. Resource center query a resource object to ask for resource node.
+ */
 @interface ZHYResourceNode : NSObject
 
 - (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;

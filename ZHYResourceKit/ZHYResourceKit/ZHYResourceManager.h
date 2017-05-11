@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Resource manager handle all resources with bundles.
+ */
 @interface ZHYResourceManager : NSObject
 
 + (instancetype)defaultManager;
