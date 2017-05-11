@@ -14,14 +14,12 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <window title="Designer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="0A2-IP-W2l">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Designer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="0A2-IP-W2l">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="283" y="305" width="640" height="480"/>
+            <rect key="contentRect" x="283" y="305" width="640" height="310"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <value key="minSize" type="size" width="640" height="480"/>
-            <value key="maxSize" type="size" width="800" height="600"/>
             <view key="contentView" id="8U6-pT-ceH">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="310"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -83,6 +81,9 @@
                                 <constraint firstAttribute="bottom" secondItem="3GA-w1-ONQ" secondAttribute="bottom" constant="10" id="y8g-5O-BOp"/>
                             </constraints>
                         </view>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="600" id="7wG-nF-Cq6"/>
+                        </constraints>
                     </box>
                     <box title="Image" translatesAutoresizingMaskIntoConstraints="NO" id="Ix1-KP-e9O">
                         <rect key="frame" x="17" y="148" width="606" height="58"/>
@@ -135,7 +136,6 @@
                     <constraint firstItem="Ix1-KP-e9O" firstAttribute="leading" secondItem="5ik-4T-JM9" secondAttribute="leading" id="7b0-ZY-pAl"/>
                     <constraint firstItem="5ik-4T-JM9" firstAttribute="top" secondItem="8U6-pT-ceH" secondAttribute="top" constant="10" id="8GU-Gb-Itb"/>
                     <constraint firstItem="7Un-9X-kvK" firstAttribute="trailing" secondItem="3GA-w1-ONQ" secondAttribute="trailing" id="EK1-0c-7PZ"/>
-                    <constraint firstItem="Ix1-KP-e9O" firstAttribute="height" secondItem="5ik-4T-JM9" secondAttribute="height" id="Eh7-e0-0O9"/>
                     <constraint firstItem="dCh-1A-3yS" firstAttribute="trailing" secondItem="zYr-iv-ItP" secondAttribute="trailing" id="FkO-BK-6vM"/>
                     <constraint firstItem="dCh-1A-3yS" firstAttribute="width" secondItem="7Un-9X-kvK" secondAttribute="width" id="Iut-ia-HZU"/>
                     <constraint firstItem="7Un-9X-kvK" firstAttribute="trailing" secondItem="dCh-1A-3yS" secondAttribute="trailing" id="JP4-98-Wh3"/>

@@ -21,7 +21,7 @@
 @property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
 
 @property (nonatomic, strong) NSBundle *bundle;
-@property (nonatomic, strong) NSDictionary *resourceConfigurations;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<NSMutableDictionary *> *> *resourceConfigurations;
 
 @property (weak) IBOutlet NSTextField *pathLabel;
 
@@ -31,7 +31,17 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification object:nil];
 }
+
+- (void)dealloc {
+    if (self.windowLoaded) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+}
+
+#pragma mark - Actions
 
 - (IBAction)bundleButtonDidClick:(id)sender {
     NSInteger response = [self.openPanel runModal];
@@ -41,6 +51,11 @@
     }
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"ZHYResourceStruct.descriptor" ofType:@"plist"];
+    if (!path) {
+        NSError *error = [NSError errorWithDomain:@"ZHYResourceKitForDesigner" code:26 userInfo:@{@"message": @"Invalid bundle structure"}];
+        [NSAlert alertWithError:error];
+        return;
+    }
     
     self.resourceConfigurations = [NSMutableDictionary dictionaryWithContentsOfFile:path];
 }
@@ -58,6 +73,27 @@
 
 - (IBAction)fontButtonDidClick:(id)sender {
     [self.fontWindowController.window makeKeyAndOrderFront:nil];
+}
+
+#pragma mark - Notifications
+
+- (void)windowWillClose:(NSNotification *)notify {
+    if (self.fontWindowController.windowLoaded && notify.object == self.fontWindowController.window) {
+        [self saveConfigurations];
+    } else if (self.imageWindowController.windowLoaded && notify.object == self.imageWindowController.window) {
+        [self saveConfigurations];
+    } else if (self.colorWindowController.windowLoaded && notify.object == self.colorWindowController.window) {
+        [self saveConfigurations];
+    }
+}
+
+#pragma mark - Private Methods
+
+- (void)saveConfigurations {
+    if (self.bundle && self.resourceConfigurations) {
+        NSString *path = [self.bundle.resourcePath stringByAppendingPathComponent:@"ZHYResourceStruct.descriptor.plist"];
+        [self.resourceConfigurations writeToFile:path atomically:YES];
+    }
 }
 
 #pragma mark - Private Property

@@ -34,7 +34,7 @@
 
 @end
 
-@interface ZHYColorWindowController () <NSTableViewDelegate, NSTableViewDataSource>
+@interface ZHYColorWindowController () <NSTableViewDelegate, NSTableViewDataSource, NSControlTextEditingDelegate>
 
 @property (weak) IBOutlet NSTableView *colorTableView;
 
@@ -55,6 +55,16 @@
     
     if (self.attributes.count > 0) {
         [self.colorTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.nameTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.colorTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.detailTextField];
+}
+
+- (void)dealloc {
+    if (self.windowLoaded) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 
@@ -77,6 +87,12 @@
     [hex appendFormat:@"%02x%02x%02x", (int)red, (int)green, (int)blue];
     
     self.colorTextField.stringValue = [hex uppercaseString];
+}
+
+#pragma mark - Notifications
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+    
 }
 
 #pragma mark - NSTableView Datasource
@@ -123,7 +139,6 @@
 }
 
 #pragma mark - NSTableView Delegate
-
 
 
 #pragma mark - NSTableView Notification
