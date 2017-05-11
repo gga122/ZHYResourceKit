@@ -12,4 +12,6 @@
 
 + (NSColor *)colorWithHexARGB:(NSString *)hex;
 
+@property (nonatomic, copy, readonly) NSString *hexARGB;
+
 @end
