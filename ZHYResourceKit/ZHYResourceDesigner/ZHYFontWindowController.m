@@ -8,7 +8,20 @@
 
 #import "ZHYFontWindowController.h"
 
+static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For Test only.测试1，2，3，4，5，6，7，8，9，10";
+
 @interface ZHYFontWindowController ()
+
+@property (weak) IBOutlet NSTableView *fontTableView;
+
+@property (weak) IBOutlet NSTextField *nameTextField;
+@property (weak) IBOutlet NSTextField *fontTextField;
+@property (weak) IBOutlet NSButton *fontPanelButton;
+@property (weak) IBOutlet NSTextField *detailTextField;
+
+@property (weak) IBOutlet NSTextField *testTextLabel;
+
+@property (nonatomic, copy) NSFont *currentFont;
 
 @end
 
@@ -16,8 +29,41 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+}
+
+#pragma mark - Actions
+
+- (IBAction)fontPanelButtonDidClick:(id)sender {
+    [[NSFontManager sharedFontManager] setTarget:self];
+    [[NSFontManager sharedFontManager] orderFrontFontPanel:self];
+}
+
+- (void)changeFont:(id)sender {
+    NSFont *font = self.currentFont;
+    if (!font) {
+        font = [NSFont systemFontOfSize:12.0];
+    }
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    self.currentFont = [sender convertFont:font];
+}
+
+#pragma mark - Private Property
+
+- (void)setCurrentFont:(NSFont *)currentFont {
+    if (_currentFont != currentFont) {
+        _currentFont = [currentFont copy];
+        
+        if (_currentFont) {
+            NSString *fontInfo = [NSString stringWithFormat:@"%@ %.1f", _currentFont.fontName, _currentFont.pointSize];
+            self.fontTextField.stringValue = fontInfo;
+            
+            NSDictionary *attributes = @{NSFontAttributeName: _currentFont};
+            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:kZHYResouceTestText attributes:attributes];
+            self.testTextLabel.attributedStringValue = attributedText;
+        } else {
+            self.fontTextField.stringValue = @"";
+        }
+    }
 }
 
 @end
