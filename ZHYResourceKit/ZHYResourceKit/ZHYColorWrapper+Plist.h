@@ -11,5 +11,6 @@
 @interface ZHYColorWrapper (Plist)
 
 - (instancetype)initWithPlist:(NSDictionary<NSString *, NSString *> *)plist;
+- (NSDictionary<NSString *, NSString *> *)colorWrapperPlist;
 
 @end

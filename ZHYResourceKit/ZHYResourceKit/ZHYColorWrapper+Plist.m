@@ -27,12 +27,7 @@
     }
     
     NSString *colorHex = [plist objectForKey:kZHYColorKeyColorHex];
-    ZHYColor *color;
-#if TARGET_OS_IOS
-    color = [UIColor colorWithHexARGB:colorHex];
-#else
-    color = [NSColor colorWithHexARGB:colorHex];
-#endif
+    ZHYColor *color = [ZHYColor colorWithHexARGB:colorHex];
     if (!color) {
         return nil;
     }
@@ -40,6 +35,23 @@
     NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
     
     return [self initWithColor:color forName:name detail:detail];
+}
+
+- (NSDictionary<NSString *, NSString *> *)colorWrapperPlist {
+    NSMutableDictionary<NSString *, NSString *> *plist = [NSMutableDictionary dictionary];
+    
+    [plist setObject:self.name forKey:kZHYColorKeyName];
+    NSString *hex = self.color.hexARGB;
+    if (!hex) {
+        return nil;
+    }
+    [plist setObject:hex forKey:kZHYColorKeyColorHex];
+    
+    if (self.detail) {
+        [plist setObject:self.detail forKey:kZHYColorKeyDetail];
+    }
+    
+    return plist;
 }
 
 @end
