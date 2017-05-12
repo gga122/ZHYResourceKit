@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSString *detail;
 
+- (NSDictionary *)encodeToPlist;
++ (instancetype)decodeFromPlist:(NSDictionary *)plist;
+
 @end
 
 
@@ -28,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, readonly, nullable) id resource;
+@property (nonatomic, copy, readonly, nullable) id resource;
 @property (nonatomic, copy, readonly, nullable) NSString *detail;
 
 /**

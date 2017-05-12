@@ -13,9 +13,6 @@
 
 @property (nonatomic, strong) id<ZHYResourceInfo> resourceInfo;
 
-@property (nonatomic, readwrite) id resource;
-@property (nonatomic, assign) BOOL didTransform;
-
 @end
 
 @implementation ZHYResourceWrapper
@@ -53,17 +50,11 @@
 }
 
 - (id)resource {
-    if (self.didTransform) {
-        return _resource;
-    }
-    self.didTransform = YES;
-    
     if (![self class].transformer || !self.resourceInfo.content) {
         return nil;
     }
     
-    _resource = [[self class].transformer transformedValue:self.resourceInfo.content];
-    return _resource;
+    return [[self class].transformer transformedValue:self.resourceInfo.content];
 }
 
 - (NSString *)detail {

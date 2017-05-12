@@ -15,7 +15,7 @@
 #pragma mark - Public Property
 
 - (ZHYColor *)color {
-    return [self.resource copy];
+    return self.resource;
 }
 
 + (NSValueTransformer *)transformer {
@@ -51,6 +51,40 @@
     } else {
         self.hex = content;
     }
+}
+
+- (NSDictionary *)encodeToPlist {
+    if (!self.name || !self.hex) {
+        return nil;
+    }
+    
+    NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithCapacity:3];
+    
+    [plist setObject:self.name forKey:kZHYColorKeyName];
+    [plist setObject:self.hex forKey:kZHYColorKeyColorHex];
+    if (self.detail) {
+        [plist setObject:self.detail forKey:kZHYColorKeyDetail];
+    }
+    
+    return plist;
+}
+
++ (instancetype)decodeFromPlist:(NSDictionary *)plist {
+    NSString *name = [plist objectForKey:kZHYColorKeyName];
+    if (!name) {
+        return nil;
+    }
+    
+    NSString *hex = [plist objectForKey:kZHYColorKeyColorHex];
+    if (!hex) {
+        return nil;
+    }
+    
+    ZHYColorInfo *info = [[ZHYColorInfo alloc] initWithColorHex:hex forName:name];
+    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
+    info.detail = detail;
+    
+    return info;
 }
 
 @end

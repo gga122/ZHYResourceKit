@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHYColorWrapper : ZHYResourceWrapper
 
-@property (nonatomic, copy) ZHYColor *color;
+@property (nonatomic, copy, readonly) ZHYColor *color;
 
 @end
 
