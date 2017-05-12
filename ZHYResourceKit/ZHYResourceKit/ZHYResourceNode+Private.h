@@ -13,4 +13,7 @@
 
 @property (nonatomic, weak) ZHYResourceCenter *center;
 
+- (void)addResource:(id)resource;
+
+
 @end

@@ -14,6 +14,9 @@
 @interface ZHYResourceCenter ()
 
 @property (nonatomic, strong) NSDictionary<NSString *, id> *structDescriptor;
+
+@property (nonatomic, strong) NSMutableArray<ZHYResourceNode *> *nodes;
+
 @property (nonatomic, strong) NSCache *cachedResources;
 
 @end
@@ -34,6 +37,7 @@
     }
     
     [self loadStructDescriptor:_bundle];
+    [self awakeFromStructDescriptor:self.structDescriptor];
     
     return self;
 }
@@ -64,6 +68,17 @@
 }
 
 - (void)awakeFromStructDescriptor:(NSDictionary<NSString *, id> *)structDescriptor {
+    if (structDescriptor.count == 0) {
+        return;
+    }
+    
+    self.nodes = [NSMutableArray array];
+    NSArray *fontsDescriptor = [structDescriptor objectForKey:kZHYResourceKeyTypeFont];
+    if (fontsDescriptor) {
+        ZHYResourceNode *fontNode = [[ZHYResourceNode alloc] initWithName:kZHYResourceNodeNameFont];
+        [self.nodes addObject:fontNode];
+    }
+    
     
 }
 

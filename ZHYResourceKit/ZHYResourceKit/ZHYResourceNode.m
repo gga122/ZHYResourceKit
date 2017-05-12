@@ -12,6 +12,13 @@ NSString * const kZHYResourceNodeNameImage = @"kZHYResourceImage";
 NSString * const kZHYResourceNodeNameFont = @"kZHYResourceFont";
 NSString * const kZHYResourceNodeNameColor = @"kZHYResourceColor";
 
+@interface ZHYResourceNode ()
+
+@property (nonatomic, strong) NSMutableArray *resources;
+@property (nonatomic, strong) NSMutableDictionary *resourcesMap;
+
+@end
+
 @implementation ZHYResourceNode
 
 #pragma mark - DESIGNATED INITIALIZER
