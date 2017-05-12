@@ -30,8 +30,8 @@ NSValueTransformerName const kZHYColorTransformer = @"zhy.resourceKit.transforme
     return [ZHYColor colorWithHexARGB:hex];
 }
 
-- (NSString *)reverseTransformedValue:(ZHYColor *)value {
-    return value.hexARGB;
+- (NSString *)reverseTransformedValue:(ZHYColor *)color {
+    return color.hexARGB;
 }
 
 @end

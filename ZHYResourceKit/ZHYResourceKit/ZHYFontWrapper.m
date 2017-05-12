@@ -15,20 +15,11 @@
     return self.resource;
 }
 
-
++ (NSValueTransformer *)transformer {
+    return [NSValueTransformer valueTransformerForName:kZHYFontTransformer];
+}
 
 #pragma mark - Overridden
 
-- (NSString *)description {
-    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
-    
-    [desc appendFormat:@"<name: %@>", _name];
-    [desc appendFormat:@"<font: %@>", _font];
-    if (_detail) {
-        [desc appendFormat:@"<detail: %@>", _detail];
-    }
-    
-    return desc;
-}
 
 @end
