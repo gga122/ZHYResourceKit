@@ -6,6 +6,8 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
+#import "ZHYResourceWrapper.h"
+
 #if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
 typedef UIFont ZHYFont;

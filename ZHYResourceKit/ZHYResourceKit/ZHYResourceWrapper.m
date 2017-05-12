@@ -20,6 +20,8 @@
 
 @implementation ZHYResourceWrapper
 
+#pragma mark - DESIGNATED INITIALIZER
+
 - (instancetype)initWithResourceInfo:(id<ZHYResourceInfo>)info {
     if (!info) {
         ZHYLogError(@"Resource info is nil");
@@ -56,16 +58,20 @@
     }
     self.didTransform = YES;
     
-    if (!self.transformer || !self.resourceInfo.content) {
+    if (![self class].transformer || !self.resourceInfo.content) {
         return nil;
     }
     
-    _resource = [self.transformer transformedValue:self.resourceInfo.content];
+    _resource = [[self class].transformer transformedValue:self.resourceInfo.content];
     return _resource;
 }
 
 - (NSString *)detail {
     return self.resourceInfo.detail;
+}
+
++ (NSValueTransformer *)transformer {
+    return nil;
 }
 
 @end

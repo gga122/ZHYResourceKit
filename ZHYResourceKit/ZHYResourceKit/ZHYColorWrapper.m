@@ -7,44 +7,17 @@
 //
 
 #import "ZHYLogger.h"
-#import "ZHYColorWrapper.h"
 
-@implementation ZHYColorWrapper
+@implementation ZHYColorWrapper 
 
-#pragma mark - DESIGNATED INITIALIZER
+#pragma mark - Public Property
 
-- (instancetype)initWithColor:(ZHYColor *)color forName:(NSString *)name detail:(NSString *)detail {
-    if (!color) {
-        ZHYLogError(@"color can not be nil.");
-        return nil;
-    }
-    
-    if (!name) {
-        ZHYLogError(@"name can not be nil.");
-    }
-    
-    self = [super init];
-    if (self) {
-        _color = [color copy];
-        _name = [name copy];
-        _detail = [detail copy];
-    }
-    
-    return self;
+- (ZHYColor *)color {
+    return [self.resource copy];
 }
 
-#pragma mark - Overridden
-
-- (NSString *)description {
-    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
-    
-    [desc appendFormat:@"<name: %@>", _name];
-    [desc appendFormat:@"<color: %@>", _color];
-    if (_detail) {
-        [desc appendFormat:@"<detail: %@>", _detail];
-    }
-        
-    return desc;
++ (NSValueTransformer *)transformer {
+    return [NSValueTransformer valueTransformerForName:kZHYColorTransformer];
 }
 
 @end

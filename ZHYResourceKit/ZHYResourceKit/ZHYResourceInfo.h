@@ -12,9 +12,9 @@
 
 @required
 
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, strong, readonly) id content;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) id content;
 
-@property (nonatomic, copy, readonly) NSString *detail;
+@property (nonatomic, copy) NSString *detail;
 
 @end
