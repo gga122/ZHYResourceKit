@@ -46,3 +46,24 @@
 }
 
 @end
+
+@implementation ZHYImageInfo
+
+- (instancetype)initWithPath:(NSString *)path forName:(NSString *)name {
+    BOOL isGuard = (!path || !name);
+    if (isGuard) {
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _path = [path copy];
+        _name = [name copy];
+    }
+    
+    return self;
+}
+
+
+
+@end

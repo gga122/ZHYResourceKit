@@ -54,7 +54,12 @@
         return nil;
     }
     
-    return [[self class].transformer transformedValue:self.resourceInfo.content];
+    id r = [[self class].transformer transformedValue:self.resourceInfo.content];
+    if (!r) {
+        [NSException raise:NSInternalInconsistencyException format:@"Invalid resource. <resourceInfo: %@>", _resourceInfo];
+    }
+    
+    return r;
 }
 
 - (NSString *)detail {

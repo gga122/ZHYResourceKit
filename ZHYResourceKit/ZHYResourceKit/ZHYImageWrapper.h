@@ -27,4 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ZHYImageInfo : NSObject
+
+- (instancetype)initWithPath:(NSString *)path forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy, nullable) NSString *detail;
+
+@end
+
 NS_ASSUME_NONNULL_END

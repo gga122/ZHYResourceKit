@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *hex;
-@property (nonatomic, copy) NSString *detail;
+@property (nonatomic, copy, nullable) NSString *detail;
 
 @end
 
