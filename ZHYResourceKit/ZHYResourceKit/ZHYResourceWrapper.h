@@ -6,9 +6,21 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "ZHYResourceInfo.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol ZHYResourceInfo <NSObject>
+
+@required
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) id content;
+
+@property (nonatomic, copy, nullable) NSString *detail;
+
+@end
+
 
 @interface ZHYResourceWrapper : NSObject
 
