@@ -7,8 +7,7 @@
 //
 
 #import "ZHYLogger.h"
-#import "ZHYResourceManager.h"
-#import "ZHYResourceCenter.h"
+#import "ZHYResourceManager+Private.h"
 #import "ZHYResourceKitDefines.h"
 
 /**** Configuration notifications ****/
@@ -27,7 +26,7 @@ static ZHYResourceManager *s_globalManager;
 
 @property (nonatomic, copy, readwrite) NSDictionary<NSString *, NSDictionary *> *configurations;
 
-@property (nonatomic, strong) ZHYResourceCenter *currentCenter;
+@property (nonatomic, strong, readwrite) ZHYResourceCenter *currentCenter;
 
 @end
 

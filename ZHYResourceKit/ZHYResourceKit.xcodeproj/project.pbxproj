@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D285F4701EC46AA0003D806A /* ZHYImageWrapper+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A581EC1B450007B1408 /* ZHYImageWrapper+Plist.h */; };
+		D285F4711EC46AA6003D806A /* ZHYImageWrapper+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A591EC1B450007B1408 /* ZHYImageWrapper+Plist.m */; };
+		D285F4741EC46BED003D806A /* ZHYResourceManager+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D285F4721EC46BED003D806A /* ZHYResourceManager+Private.h */; };
+		D285F4771EC46C50003D806A /* ZHYResourceManager+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D285F4761EC46C50003D806A /* ZHYResourceManager+Private.m */; };
 		D28F0A081EC161C1007B1408 /* ZHYFontWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A061EC161C1007B1408 /* ZHYFontWrapper.h */; };
 		D28F0A091EC161C1007B1408 /* ZHYFontWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */; };
 		D28F0A0C1EC16421007B1408 /* ZHYColorWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F0A0A1EC16421007B1408 /* ZHYColorWrapper.h */; };
@@ -92,6 +96,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D285F4721EC46BED003D806A /* ZHYResourceManager+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceManager+Private.h"; sourceTree = "<group>"; };
+		D285F4761EC46C50003D806A /* ZHYResourceManager+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHYResourceManager+Private.m"; sourceTree = "<group>"; };
 		D28F0A061EC161C1007B1408 /* ZHYFontWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYFontWrapper.h; sourceTree = "<group>"; };
 		D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYFontWrapper.m; sourceTree = "<group>"; };
 		D28F0A0A1EC16421007B1408 /* ZHYColorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYColorWrapper.h; sourceTree = "<group>"; };
@@ -325,6 +331,8 @@
 				D2A005EC1EC0668B000A272C /* ZHYResourceKitDefines.h */,
 				D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */,
 				D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */,
+				D285F4721EC46BED003D806A /* ZHYResourceManager+Private.h */,
+				D285F4761EC46C50003D806A /* ZHYResourceManager+Private.m */,
 				D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */,
 				D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */,
 				D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */,
@@ -377,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
+				D285F4741EC46BED003D806A /* ZHYResourceManager+Private.h in Headers */,
 				D28F0A0C1EC16421007B1408 /* ZHYColorWrapper.h in Headers */,
 				D28F0A601EC2B389007B1408 /* ZHYFontWrapper+Plist.h in Headers */,
 				D28F0A081EC161C1007B1408 /* ZHYFontWrapper.h in Headers */,
@@ -389,6 +398,7 @@
 				D28F0A191EC16B77007B1408 /* NSColor+Hex.h in Headers */,
 				D28F0A551EC1B255007B1408 /* ZHYImageWrapper.h in Headers */,
 				D2CDA3891EBC7BBF0085F997 /* ZHYResourceCenter.h in Headers */,
+				D285F4701EC46AA0003D806A /* ZHYImageWrapper+Plist.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D285F4711EC46AA6003D806A /* ZHYImageWrapper+Plist.m in Sources */,
 				D2A005D11EC0604C000A272C /* ZHYResourceNode+Private.m in Sources */,
 				D28F0A611EC2B38D007B1408 /* ZHYFontWrapper+Plist.m in Sources */,
 				D2CDA38A1EBC7BBF0085F997 /* ZHYResourceCenter.m in Sources */,
@@ -638,6 +649,7 @@
 				D28F0A0D1EC16421007B1408 /* ZHYColorWrapper.m in Sources */,
 				D2A005D51EC0607A000A272C /* ZHYLogger.m in Sources */,
 				D28F0A561EC1B271007B1408 /* ZHYImageWrapper.m in Sources */,
+				D285F4771EC46C50003D806A /* ZHYResourceManager+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,6 +969,7 @@
 				D28F0A7C1EC2C2F2007B1408 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2CDA35E1EBC71760085F997 /* Build configuration list for PBXProject "ZHYResourceKit" */ = {
 			isa = XCConfigurationList;
