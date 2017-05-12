@@ -10,4 +10,6 @@
 
 @interface ZHYImageWrapper (Plist)
 
+- (instancetype)initWithPlist:(NSDictionary<NSString *, NSString *> *)plist;
+
 @end

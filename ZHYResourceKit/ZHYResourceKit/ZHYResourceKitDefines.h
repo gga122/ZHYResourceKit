@@ -36,4 +36,9 @@ static NSString * const kZHYFontKeyFontSize = @"size" ZHY_DESCRIPTOR_PLIST_LEVEL
 static NSString * const kZHYFontKeyFontTrait = @"trait" ZHY_DESCRIPTOR_PLIST_LEVEL(2, 2);                        // optional
 static NSString * const kZHYFontKeyDetail = @"detail" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 2);                      // optional
 
+/***** Image Plist Keys *****/
+static NSString * const kZHYImageKeyName = @"name" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                         // required
+static NSString * const kZHYImageKeyPath = @"path" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                         // required
+static NSString * const kZHYImageKeyDetail = @"detail" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                     // optional
+
 #endif /* ZHYResourceKitDefines_h */

@@ -23,12 +23,14 @@
 - (instancetype)initWithPlist:(NSDictionary<NSString *, NSString *> *)plist {
     NSString *name = [plist objectForKey:kZHYColorKeyName];
     if (!name) {
+        ZHYLogError(@"color name is nil");
         return nil;
     }
     
     NSString *colorHex = [plist objectForKey:kZHYColorKeyColorHex];
     ZHYColor *color = [ZHYColor colorWithHexARGB:colorHex];
     if (!color) {
+        ZHYLogError(@"color hex is nil");
         return nil;
     }
     
