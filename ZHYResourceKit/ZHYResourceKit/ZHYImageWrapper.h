@@ -6,24 +6,14 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#if TARGET_OS_IOS
-#import <UIKit/UIKit.h>
-typedef UIImage ZHYImage;
-#else
-#import <Cocoa/Cocoa.h>
-typedef NSImage ZHYImage;
-#endif
+#import "ZHYResourceWrapper.h"
+#import "ZHYImageTransformer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHYImageWrapper : NSObject
-
-- (instancetype)initWithImage:(ZHYImage *)image forName:(NSString *)name detail:(nullable NSString *)detail NS_DESIGNATED_INITIALIZER;
-- (instancetype)init NS_UNAVAILABLE;
+@interface ZHYImageWrapper : ZHYResourceWrapper
 
 @property (nonatomic, strong, readonly) ZHYImage *image;
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly, nullable) NSString *detail;
 
 @end
 

@@ -1,40 +1,36 @@
 //
-//  ZHYImageWrapper+Plist.m
+//  ZHYImageTransformer.m
 //  ZHYResourceKit
 //
-//  Created by MickyZhu on 9/5/2017.
+//  Created by MickyZhu on 15/5/2017.
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
 #import "ZHYLogger.h"
-#import "ZHYImageWrapper+Plist.h"
+#import "ZHYImageTransformer.h"
 #import "ZHYResourceManager+Private.h"
-#import "ZHYResourceKitDefines.h"
 
-@implementation ZHYImageWrapper (Plist)
+NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transformer.image";
 
-- (instancetype)initWithPlist:(NSDictionary<NSString *,NSString *> *)plist {
-    NSString *name = [plist objectForKey:kZHYImageKeyName];
-    if (!name) {
-        ZHYLogError(@"image name is nil");
-        return nil;
-    }
-    
-    NSString *path = [plist objectForKey:kZHYImageKeyPath];
-    if (!path) {
-        ZHYLogError(@"image path is nil");
-        return nil;
-    }
-    ZHYImage *image = [self imageForPath:path];
-    if (!image) {
-        ZHYLogError(@"Failed to create image from '%@'", path);
-        return nil;
-    }
-    
-    NSString *detail = [plist objectForKey:kZHYImageKeyDetail];
-    
-    return [self initWithImage:image forName:name detail:detail];
+@implementation ZHYImageTransformer
+
++ (void)initialize {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ZHYImageTransformer *transformer = [[ZHYImageTransformer alloc] init];
+        [[self class] setValueTransformer:transformer forName:kZHYImageTransformer];
+    });
 }
+
+- (ZHYImage *)transformedValue:(NSString *)path  {
+    return [self imageForPath:path];
+}
+
+- (NSString *)reverseTransformedValue:(ZHYImage *)image {
+    return nil;
+}
+
+#pragma mark - Private Methods
 
 - (ZHYImage *)imageForPath:(NSString *)path {
     NSString *absolutedPath = [self absolutedPathForPath:path];
