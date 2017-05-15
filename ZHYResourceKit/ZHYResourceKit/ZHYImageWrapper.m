@@ -8,6 +8,7 @@
 
 #import "ZHYLogger.h"
 #import "ZHYImageWrapper.h"
+#import "ZHYResourceKitDefines.h"
 
 @implementation ZHYImageWrapper
 
@@ -48,6 +49,40 @@
     } else {
         self.path = content;
     }
+}
+
+- (NSDictionary *)encodeToPlist {
+    if (!self.path || !self.name) {
+        return nil;
+    }
+    
+    NSMutableDictionary<NSString *, NSString *> *plist = [NSMutableDictionary dictionary];
+    
+    [plist setObject:self.name forKey:kZHYImageKeyName];
+    [plist setObject:self.path forKey:kZHYImageKeyPath];
+    if (self.detail) {
+        [plist setObject:self.detail forKey:kZHYImageKeyDetail];
+    }
+    
+    return plist;
+}
+
++ (instancetype)decodeFromPlist:(NSDictionary *)plist {
+    NSString *name = [plist objectForKey:kZHYImageKeyName];
+    if (!name) {
+        return nil;
+    }
+    
+    NSString *path = [plist objectForKey:kZHYImageKeyPath];
+    if (!path) {
+        return nil;
+    }
+    
+    ZHYImageInfo *info = [[ZHYImageInfo alloc] initWithPath:path forName:name];
+    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
+    info.detail = detail;
+    
+    return info;
 }
 
 @end
