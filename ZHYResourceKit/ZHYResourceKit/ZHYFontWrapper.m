@@ -24,6 +24,8 @@
 
 @implementation ZHYFontInfo
 
+#pragma mark - DESIGNATED INITIALIZER
+
 - (instancetype)initWithDescriptor:(NSDictionary *)descriptor forName:(NSString *)name {
     BOOL isGuard = (!descriptor || !name);
     if (isGuard) {
@@ -38,6 +40,22 @@
     
     return self;
 }
+
+#pragma mark - Overridden
+
+- (NSString *)description {
+    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
+    
+    [desc appendFormat:@"<name: %@>", _name];
+    [desc appendFormat:@"<font: %@>", _descriptor];
+    if (_detail) {
+        [desc appendFormat:@"<detail: %@>", _detail];
+    }
+    
+    return desc;
+}
+
+#pragma mark - ZHYResourceInfo Protocol
 
 - (id)content {
     return self.descriptor;

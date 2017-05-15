@@ -26,6 +26,8 @@
 
 @implementation ZHYColorInfo
 
+#pragma mark - DESIGNATED INITIALIZER
+
 - (instancetype)initWithColorHex:(NSString *)hex forName:(NSString *)name {
     BOOL isGuard = (!hex || !name);
     if (isGuard) {
@@ -40,6 +42,22 @@
     
     return self;
 }
+
+#pragma mark - Overridden
+
+- (NSString *)description {
+    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
+    
+    [desc appendFormat:@"<name: %@>", _name];
+    [desc appendFormat:@"<hex: %@>", _hex];
+    if (_detail) {
+        [desc appendFormat:@"<detail: %@>", _detail];
+    }
+    
+    return desc;
+}
+
+#pragma mark - ZHYResourceInfo Protocol
 
 - (id)content {
     return self.hex;

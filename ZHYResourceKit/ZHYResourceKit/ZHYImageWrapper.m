@@ -24,6 +24,8 @@
 
 @implementation ZHYImageInfo
 
+#pragma mark - DESIGNATED INITIALIZER
+
 - (instancetype)initWithPath:(NSString *)path forName:(NSString *)name {
     BOOL isGuard = (!path || !name);
     if (isGuard) {
@@ -38,6 +40,22 @@
     
     return self;
 }
+
+#pragma mark - Overridden
+
+- (NSString *)description {
+    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
+    
+    [desc appendFormat:@"<name: %@>", _name];
+    [desc appendFormat:@"<path: %@>", _path];
+    if (_detail) {
+        [desc appendFormat:@"<detail: %@>", _detail];
+    }
+    
+    return desc;
+}
+
+#pragma mark - ZHYResourceInfo Protocol
 
 - (id)content {
     return self.path;
