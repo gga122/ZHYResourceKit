@@ -85,6 +85,8 @@
 		D2AF248C1EC991C100113B9C /* ZHYResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */; };
 		D2AF248D1EC991C100113B9C /* ZHYResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */; };
 		D2AF248E1EC991C500113B9C /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
+		D2AF24911EC9AFED00113B9C /* ZHYResourceMap.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AF248F1EC9AFED00113B9C /* ZHYResourceMap.h */; };
+		D2AF24921EC9AFED00113B9C /* ZHYResourceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */; };
 		D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */; };
 		D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
@@ -167,6 +169,8 @@
 		D2AF24781EC94F6F00113B9C /* ZHYImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYImageTransformer.m; sourceTree = "<group>"; };
 		D2AF247D1EC983D600113B9C /* ZHYImageSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYImageSearcher.h; sourceTree = "<group>"; };
 		D2AF247E1EC983D600113B9C /* ZHYImageSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYImageSearcher.m; sourceTree = "<group>"; };
+		D2AF248F1EC9AFED00113B9C /* ZHYResourceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceMap.h; sourceTree = "<group>"; };
+		D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceMap.m; sourceTree = "<group>"; };
 		D2CDA3641EBC71760085F997 /* ZHYResourceKitForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZHYResourceKitForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CDA3701EBC71900085F997 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKitForMac.h; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 				D285F4761EC46C50003D806A /* ZHYResourceManager+Private.m */,
 				D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */,
 				D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */,
+				D2AF248F1EC9AFED00113B9C /* ZHYResourceMap.h */,
+				D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */,
 				D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */,
 				D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */,
 				D2A005CE1EC06040000A272C /* ZHYResourceNode+Private.h */,
@@ -424,6 +430,7 @@
 				D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */,
 				D284C6DB1EC5B70200FB15CB /* ZHYFontTransformer.h in Headers */,
 				D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */,
+				D2AF24911EC9AFED00113B9C /* ZHYResourceMap.h in Headers */,
 				D2AF24791EC94F6F00113B9C /* ZHYImageTransformer.h in Headers */,
 				D28F0A191EC16B77007B1408 /* NSColor+Hex.h in Headers */,
 				D28F0A551EC1B255007B1408 /* ZHYImageWrapper.h in Headers */,
@@ -692,6 +699,7 @@
 				D2AF247A1EC94F6F00113B9C /* ZHYImageTransformer.m in Sources */,
 				D2A005D51EC0607A000A272C /* ZHYLogger.m in Sources */,
 				D284C6C81EC5956D00FB15CB /* ZHYResourceWrapper.m in Sources */,
+				D2AF24921EC9AFED00113B9C /* ZHYResourceMap.m in Sources */,
 				D28F0A561EC1B271007B1408 /* ZHYImageWrapper.m in Sources */,
 				D284C6CF1EC5A2D300FB15CB /* ZHYColorTransformer.m in Sources */,
 				D285F4771EC46C50003D806A /* ZHYResourceManager+Private.m in Sources */,
