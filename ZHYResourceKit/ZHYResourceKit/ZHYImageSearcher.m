@@ -26,6 +26,9 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
     self = [super init];
     if (self) {
         _bundle = bundle;
+        
+        _imagePaths = [self imagePathsForBundle:_bundle];
+        _infos = [self infosWithPaths:_imagePaths];
     }
     
     return self;
@@ -38,6 +41,10 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
     dispatch_once(&onceToken, ^{
         s_globalImageFilters = @[@"jpg", @"png"];
     });
+}
+
+- (instancetype)init {
+    return [self initWithBundle:nil];
 }
 
 #pragma mark - Public Methods
@@ -62,11 +69,57 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
     
     NSArray<NSString *> *extensions = [[self class] imageFilters];
     for (NSString *aExtension in extensions) {
-        NSArray<NSString *> extensionPaths = [bundle pathsForResourcesOfType:aExtension inDirectory:nil];
-        [imagePaths addObjectsFromArray:extensions];
+        NSArray<NSString *> *extensionPaths = [bundle pathsForResourcesOfType:aExtension inDirectory:nil];
+        [imagePaths addObjectsFromArray:extensionPaths];
     }
     
     return imagePaths;
+}
+
+- (NSArray<ZHYImageInfo *> *)infosWithPaths:(NSArray<NSString *> *)paths {
+    if (paths.count == 0) {
+        return nil;
+    }
+    
+    NSMutableArray<ZHYImageInfo *> *infos = [NSMutableArray array];
+    
+    for (NSString *aPath in paths) {
+        ZHYImageInfo *aInfo = [self infoForPath:aPath];
+        if (aInfo) {
+            [infos addObject:aInfo];
+        } else {
+            ZHYLogError(@"can not create image info with '%@'", aPath);
+        }
+    }
+    
+    return infos;
+}
+
+- (ZHYImageInfo *)infoForPath:(NSString *)path {
+    if (!path) {
+        return nil;
+    }
+    
+    NSString *lastComponent = path.lastPathComponent;
+    NSUInteger length = lastComponent.length;
+    
+    NSString *fileName = nil;
+    
+    for (NSUInteger i = 0; i < length; ++i) {
+        NSUInteger index = length - 1 - i;
+        unichar c = [lastComponent characterAtIndex:index];
+        
+        if (c == '.') {
+            fileName = [lastComponent substringToIndex:index];
+        }
+    }
+    
+    if (!fileName) {
+        return nil;
+    }
+    
+    ZHYImageInfo *info = [[ZHYImageInfo alloc] initWithPath:path forName:fileName];
+    return info;
 }
 
 @end

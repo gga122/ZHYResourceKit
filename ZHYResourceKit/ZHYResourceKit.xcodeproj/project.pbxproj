@@ -74,6 +74,17 @@
 		D2AF24801EC983D600113B9C /* ZHYImageSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF247E1EC983D600113B9C /* ZHYImageSearcher.m */; };
 		D2AF24811EC983F900113B9C /* ZHYImageSearcher.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AF247D1EC983D600113B9C /* ZHYImageSearcher.h */; };
 		D2AF24821EC983FC00113B9C /* ZHYImageSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF247E1EC983D600113B9C /* ZHYImageSearcher.m */; };
+		D2AF24831EC98D3100113B9C /* ZHYImageSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF247E1EC983D600113B9C /* ZHYImageSearcher.m */; };
+		D2AF24851EC9919100113B9C /* ZHYColorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A0B1EC16421007B1408 /* ZHYColorWrapper.m */; };
+		D2AF24861EC9919B00113B9C /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
+		D2AF24871EC991A900113B9C /* ZHYColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6CD1EC5A2D300FB15CB /* ZHYColorTransformer.m */; };
+		D2AF24881EC991B300113B9C /* ZHYImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF24781EC94F6F00113B9C /* ZHYImageTransformer.m */; };
+		D2AF24891EC991B600113B9C /* ZHYImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A521EC1B206007B1408 /* ZHYImageWrapper.m */; };
+		D2AF248A1EC991BD00113B9C /* ZHYResourceManager+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D285F4761EC46C50003D806A /* ZHYResourceManager+Private.m */; };
+		D2AF248B1EC991BE00113B9C /* ZHYResourceManager+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = D285F4761EC46C50003D806A /* ZHYResourceManager+Private.m */; };
+		D2AF248C1EC991C100113B9C /* ZHYResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */; };
+		D2AF248D1EC991C100113B9C /* ZHYResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3841EBC7B290085F997 /* ZHYResourceManager.m */; };
+		D2AF248E1EC991C500113B9C /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
 		D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */; };
 		D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
@@ -432,6 +443,7 @@
 				D2AF24811EC983F900113B9C /* ZHYImageSearcher.h in Headers */,
 				D284C6D01EC5A34E00FB15CB /* ZHYColorTransformer.h in Headers */,
 				D2A005D61EC060D1000A272C /* ZHYResourceNode+Private.h in Headers */,
+				D2AF248E1EC991C500113B9C /* ZHYResourceManager.h in Headers */,
 				D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */,
 				D2A005EE1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D28F0A1D1EC1725B007B1408 /* UIColor+Hex.h in Headers */,
@@ -646,12 +658,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28F0A8E1EC2C770007B1408 /* ZHYMainWindowController.m in Sources */,
+				D2AF24871EC991A900113B9C /* ZHYColorTransformer.m in Sources */,
+				D2AF24881EC991B300113B9C /* ZHYImageTransformer.m in Sources */,
 				D28F0A701EC2C2F2007B1408 /* main.m in Sources */,
+				D2AF24861EC9919B00113B9C /* ZHYResourceWrapper.m in Sources */,
 				D28F0A6D1EC2C2F2007B1408 /* AppDelegate.m in Sources */,
 				D28F0AA81EC30854007B1408 /* ZHYLogger.m in Sources */,
 				D28F0A891EC2C64D007B1408 /* ZHYColorWindowController.m in Sources */,
 				D28F0AA71EC30796007B1408 /* NSColor+Hex.m in Sources */,
 				D28F0A951EC2F0C4007B1408 /* ZHYFontWindowController.m in Sources */,
+				D2AF24851EC9919100113B9C /* ZHYColorWrapper.m in Sources */,
+				D2AF248A1EC991BD00113B9C /* ZHYResourceManager+Private.m in Sources */,
+				D2AF24891EC991B600113B9C /* ZHYImageWrapper.m in Sources */,
+				D2AF248D1EC991C100113B9C /* ZHYResourceManager.m in Sources */,
+				D2AF24831EC98D3100113B9C /* ZHYImageSearcher.m in Sources */,
 				D28F0AAD1EC3155B007B1408 /* ZHYImageWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,7 +702,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2AF248C1EC991C100113B9C /* ZHYResourceManager.m in Sources */,
 				D28F0A1E1EC1725B007B1408 /* UIColor+Hex.m in Sources */,
+				D2AF248B1EC991BE00113B9C /* ZHYResourceManager+Private.m in Sources */,
 				D2A005D71EC0612B000A272C /* ZHYResourceNode+Private.m in Sources */,
 				D2AF247B1EC950A300113B9C /* ZHYImageTransformer.m in Sources */,
 				D284C6DE1EC5B76400FB15CB /* ZHYFontTransformer.m in Sources */,

@@ -27,8 +27,6 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="900" height="480"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <value key="minSize" type="size" width="640" height="480"/>
-            <value key="maxSize" type="size" width="800" height="600"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="900" height="480"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -40,7 +38,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="YW8-37-D4s" viewBased="YES" id="dIU-dz-Ygb">
-                                    <rect key="frame" x="0.0" y="0.0" width="499" height="456"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="498" height="456"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +70,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="" width="230" minWidth="10" maxWidth="3.4028234663852886e+38" id="fY3-be-pq0">
+                                        <tableColumn identifier="" width="229" minWidth="10" maxWidth="3.4028234663852886e+38" id="fY3-be-pq0">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="detail">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -93,7 +91,7 @@
                                 </tableView>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="j0Z-rj-xM5">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="j0Z-rj-xM5">
                             <rect key="frame" x="1" y="463" width="498" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -102,7 +100,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="YW8-37-D4s">
-                            <rect key="frame" x="0.0" y="0.0" width="499" height="23"/>
+                            <rect key="frame" x="0.0" y="0.0" width="498" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
@@ -244,7 +242,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-608" y="152"/>
+            <point key="canvasLocation" x="258" y="129"/>
         </window>
     </objects>
 </document>

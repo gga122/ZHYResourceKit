@@ -10,4 +10,8 @@
 
 @interface ZHYImageWindowController : NSWindowController
 
+@property (nonatomic, strong) NSBundle *bundle;
+
+
+
 @end

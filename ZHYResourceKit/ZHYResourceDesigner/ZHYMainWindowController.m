@@ -61,6 +61,7 @@
 }
 
 - (IBAction)imageButtonDidClick:(id)sender {
+    self.imageWindowController.bundle = self.bundle;
     [self.imageWindowController.window makeKeyAndOrderFront:nil];
 }
 
