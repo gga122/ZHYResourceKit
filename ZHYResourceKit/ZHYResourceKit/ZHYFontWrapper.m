@@ -8,6 +8,7 @@
 
 #import "ZHYLogger.h"
 #import "ZHYFontWrapper.h"
+#import "ZHYResourceKitDefines.h"
 
 @implementation ZHYFontWrapper
 
@@ -50,6 +51,38 @@
     }
 }
 
+- (NSDictionary *)encodeToPlist {
+    if (!self.name || !self.descriptor) {
+        return nil;
+    }
+    
+    NSMutableDictionary<NSString *, id> *plist = [NSMutableDictionary dictionary];
+    
+    [plist setObject:self.name forKey:kZHYFontKeyName];
+    [plist setObject:self.descriptor forKey:kZHYFontKeyFont];
+    if (self.detail) {
+        [plist setObject:self.detail forKey:kZHYFontKeyDetail];
+    }
+    
+    return plist;
+}
 
++ (instancetype)decodeFromPlist:(NSDictionary *)plist {
+    NSString *name = [plist objectForKey:kZHYFontKeyName];
+    if (!name) {
+        return nil;
+    }
+    
+    NSDictionary *descriptor = [plist objectForKey:kZHYFontKeyFont];
+    if (!descriptor) {
+        return nil;
+    }
+    
+    ZHYFontInfo *info = [[ZHYFontInfo alloc] initWithDescriptor:descriptor forName:name];
+    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
+    info.detail = detail;
+    
+    return info;
+}
 
 @end
