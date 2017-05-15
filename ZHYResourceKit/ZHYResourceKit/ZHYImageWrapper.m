@@ -38,4 +38,16 @@
     return self;
 }
 
+- (id)content {
+    return self.path;
+}
+
+- (void)setContent:(id)content {
+    if (![content isKindOfClass:[NSString class]]) {
+        [NSException raise:NSInternalInconsistencyException format:@"Invalid content type. <content: %@>", content];
+    } else {
+        self.path = content;
+    }
+}
+
 @end
