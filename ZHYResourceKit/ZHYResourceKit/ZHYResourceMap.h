@@ -13,9 +13,9 @@
 @interface ZHYResourceMap : NSObject
 
 + (void)registerWrapper:(Class)wrapper forClassification:(NSString *)classification;
-+ (void)unregisterWrapper:(Class)wrapper forClassification:(NSString *)classification;
++ (void)unregisterWrapperForClassification:(NSString *)classification;
 
 + (void)registerResourceInfo:(Class)info forClassification:(NSString *)classification;
-+ (void)unregisterResourceInfo:(Class)info forClassification:(NSString *)classification;
++ (void)unregisterResourceInfoForClassification:(NSString *)classification;
 
 @end

@@ -33,6 +33,66 @@ if (flag) {\
 
 @implementation ZHYResourceMap
 
+#pragma mark - Public Methods
+
++ (void)registerWrapper:(Class)wrapper forClassification:(NSString *)classification {
+    [self registerWrapper:wrapper forClassification:classification willLock:YES];
+}
+
++ (void)unregisterWrapperForClassification:(NSString *)classification {
+    [self unregisterWrapperForClassification:classification willLock:YES];
+}
+
++ (void)registerResourceInfo:(Class)info forClassification:(NSString *)classification {
+    [self registerResourceInfo:info forClassification:classification willLock:YES];
+}
+
++ (void)unregisterResourceInfoForClassification:(NSString *)classification {
+    [self unregisterResourceInfoForClassification:classification willLock:YES];
+}
+
+#pragma mark - Private Methods
+
++ (void)registerWrapper:(Class)wrapper forClassification:(NSString *)classification willLock:(BOOL)lock {
+    if (!wrapper || !classification) {
+        return;
+    }
+    
+    G_LOCK(lock);
+    [[self wrappersMap] setObject:wrapper forKey:classification];
+    G_UNLOCK(lock);
+}
+
++ (void)unregisterWrapperForClassification:(NSString *)classification willLock:(BOOL)lock {
+    if (!classification) {
+        return;
+    }
+    
+    G_LOCK(lock);
+    [[self wrappersMap] removeObjectForKey:classification];
+    G_UNLOCK(lock);
+}
+
++ (void)registerResourceInfo:(Class)info forClassification:(NSString *)classification willLock:(BOOL)lock {
+    if (!info || !classification) {
+        return;
+    }
+    
+    G_LOCK(lock);
+    [[self infosMap] setObject:info forKey:classification];
+    G_UNLOCK(lock);
+}
+
++ (void)unregisterResourceInfoForClassification:(NSString *)classification willLock:(BOOL)lock {
+    if (!classification) {
+        return;
+    }
+    
+    G_LOCK(lock);
+    [[self infosMap] removeObjectForKey:classification];
+    G_UNLOCK(lock);
+}
+
 + (Class)wrapperForClassification:(NSString *)classification {
     return [self wrapperForClassification:classification willLock:YES];
 }
