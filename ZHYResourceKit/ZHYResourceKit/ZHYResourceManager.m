@@ -60,6 +60,24 @@ static ZHYResourceManager *s_globalManager;
     return s_globalManager;
 }
 
+#pragma mark - Public Methods (Resource)
+
+- (ZHYColor *)colorForName:(NSString *)name {
+    return [self resourceForName:name ofClassification:kZHYResourceKeyTypeColor];
+}
+
+- (ZHYImage *)imageForName:(NSString *)name {
+    return [self resourceForName:name ofClassification:kZHYResourceKeyTypeImage];
+}
+
+- (ZHYFont *)fontForName:(NSString *)name {
+    return [self resourceForName:name ofClassification:kZHYResourceKeyTypeFont];
+}
+
+- (id)resourceForName:(NSString *)name ofClassification:(NSString *)classification {
+    return [self.currentCenter resourceForName:name ofClassification:classification];
+}
+
 #pragma mark - Public Methods (Configuration)
 
 - (BOOL)loadConfigurations:(NSString *)filePath {

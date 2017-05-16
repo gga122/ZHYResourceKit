@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_IOS
+#import <UIKit/UIKit.h>
+typedef UIImage ZHYImage;
+typedef UIFont ZHYFont;
+typedef UIColor ZHYColor;
+#else
+#import <Cocoa/Cocoa.h>
+typedef NSImage ZHYImage;
+typedef NSFont ZHYFont;
+typedef NSColor ZHYColor;
+#endif
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -24,6 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)loadbundle:(NSString *)bundleKey;
 @property (nonatomic, copy, readonly) NSString *currentBundle;
+
+- (ZHYColor *)colorForName:(NSString *)name;
+- (ZHYImage *)imageForName:(NSString *)name;
+- (ZHYFont *)fontForName:(NSString *)name;
+
+- (id)resourceForName:(NSString *)name ofClassification:(NSString *)classification;
 
 @end
 
