@@ -6,12 +6,9 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ZHYResourceWrapper.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameImage;
-FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameFont;
 
 /**
  Resource node represent a hub of one type resources.
@@ -20,10 +17,14 @@ FOUNDATION_EXTERN NSString * const kZHYResourceNodeNameFont;
  */
 @interface ZHYResourceNode : NSObject
 
-- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithClassification:(NSString *)classification metaInfos:(NSArray<NSDictionary *> *)metaInfos NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *classification;
+
+- (id)resourceForName:(NSString *)name;
+
+@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *metaInfos;
 
 @end
 

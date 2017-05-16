@@ -6,16 +6,19 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "ZHYResourceNode+Private.h"
-
-NSString * const kZHYResourceNodeNameImage = @"kZHYResourceImage";
-NSString * const kZHYResourceNodeNameFont = @"kZHYResourceFont";
-NSString * const kZHYResourceNodeNameColor = @"kZHYResourceColor";
+#import "ZHYLogger.h"
+#import "ZHYResourceNode.h"
+#import "ZHYResourceMap.h"
 
 @interface ZHYResourceNode ()
 
 @property (nonatomic, strong) NSMutableArray *resources;
 @property (nonatomic, strong) NSMutableDictionary *resourcesMap;
+
+@property (nonatomic, assign) Class wrapperClass;
+@property (nonatomic, assign) Class<ZHYResourceInfo> infoClass;
+
+@property (nonatomic, assign) BOOL didAwake;
 
 @end
 
@@ -23,19 +26,93 @@ NSString * const kZHYResourceNodeNameColor = @"kZHYResourceColor";
 
 #pragma mark - DESIGNATED INITIALIZER
 
-- (instancetype)initWithName:(NSString *)name {
-    if (!name) {
+- (instancetype)initWithClassification:(NSString *)classification metaInfos:(nonnull NSArray<NSDictionary *> *)metaInfos {
+    if (!classification || !metaInfos) {
         return nil;
     }
     
     self = [super init];
     if (self) {
-        _name = [name copy];
+        _classification = [classification copy];
+        _metaInfos = [metaInfos copy];
+        
+        _wrapperClass = [ZHYResourceMap wrapperForClassification:_classification];
+        _infoClass = [ZHYResourceMap infoForClassification:_classification];
     }
     
     return self;
 }
 
-#pragma mark - Overridden
+#pragma mark - Public Methods
+
+- (id)resourceForName:(NSString *)name {
+    if (!name) {
+        return nil;
+    }
+    
+    if (!self.didAwake) {   // lazy load resource infos
+        [self loadResources];
+        self.didAwake = YES;
+    }
+    
+    ZHYResourceWrapper *resourceWrapper = [self.resourcesMap objectForKey:name];
+    return resourceWrapper.resource;
+}
+
+#pragma mark - Private Methods
+
+- (void)loadResources {
+    Class wrapperClass = self.wrapperClass;
+    Class<ZHYResourceInfo> infoClass = self.infoClass;
+    NSArray *metaInfos = self.metaInfos;
+    
+    BOOL isGuard = (!wrapperClass || !infoClass || metaInfos.count == 0);
+    if (isGuard) {
+        return;
+    }
+    
+    for (NSDictionary *aInfo in metaInfos) {
+        id<ZHYResourceInfo> aResourceInfo = [infoClass decodeFromPlist:aInfo];
+        if (!aResourceInfo) {
+            ZHYLogWarning(@"Create resource info failed. <plist: %@>", aInfo);
+            continue;
+        }
+    
+        ZHYResourceWrapper *resourceWrapper = [[wrapperClass alloc] initWithResourceInfo:aResourceInfo];
+        if (!resourceWrapper) {
+            ZHYLogWarning(@"Create resource wrapper failed. <resource info: %@>", aResourceInfo);
+            continue;
+        }
+        
+        [self.resources addObject:resourceWrapper];
+        [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
+    }
+}
+
+#pragma mark - Private Property
+
+- (NSMutableArray *)resources {
+    if (!_metaInfos) {
+        return nil;
+    }
+    
+    if (!_resources) {
+        _resources = [NSMutableArray array];
+    }
+    
+    return _resources;
+}
+
+- (NSMutableDictionary *)resourcesMap {
+    if (!_metaInfos) {
+        return nil;
+    }
+    
+    if (!_resourcesMap) {
+        _resourcesMap = [NSMutableDictionary dictionary];
+    }
+    
+    return _resourcesMap;
+}
 
 @end
