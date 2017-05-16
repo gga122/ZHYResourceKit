@@ -23,9 +23,6 @@ if (flag) {\
 
 @interface ZHYResourceMap ()
 
-+ (Class)wrapperForClassification:(NSString *)classification;
-+ (Class)infoForClassification:(NSString *)classification;
-
 + (NSMutableDictionary<NSString *, Class> *)wrappersMap;
 + (NSMutableDictionary<NSString *, Class> *)infosMap;
 
@@ -58,6 +55,10 @@ if (flag) {\
         return;
     }
     
+    if (![wrapper isSubclassOfClass:[ZHYResourceWrapper class]]) {
+        return;
+    }
+    
     G_LOCK(lock);
     [[self wrappersMap] setObject:wrapper forKey:classification];
     G_UNLOCK(lock);
@@ -75,6 +76,10 @@ if (flag) {\
 
 + (void)registerResourceInfo:(Class)info forClassification:(NSString *)classification willLock:(BOOL)lock {
     if (!info || !classification) {
+        return;
+    }
+    
+    if (![info conformsToProtocol:@protocol(ZHYResourceInfo)]) {
         return;
     }
     
