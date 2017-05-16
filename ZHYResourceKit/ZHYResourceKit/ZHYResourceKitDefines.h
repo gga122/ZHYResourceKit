@@ -18,9 +18,9 @@ static NSString * const kZHYResourceDefaultBundleKey = @"default";
 static NSString * const kZHYResourceStructDescriptorFileName = @"ZHYResourceStruct.descriptor.plist";
 
 /***** Resource Type Keys *****/
-static NSString * const kZHYResourceKeyTypeColor = @"colorResource";
-static NSString * const kZHYResourceKeyTypeFont = @"fontResource";
-static NSString * const kZHYResourceKeyTypeImage = @"imageResource";
+static NSString * const kZHYResourceKeyTypeColor = @"zhy.resourceKit.resource.color";
+static NSString * const kZHYResourceKeyTypeFont = @"zhy.resoureKit.resource.font";
+static NSString * const kZHYResourceKeyTypeImage = @"zhy.resourceKit.resource.image";
 
 /***** Color Plist Keys *****/
 static NSString * const kZHYColorKeyName = @"name" ZHY_DESCRIPTOR_PLIST_LEVEL(1, 1);                         // required
