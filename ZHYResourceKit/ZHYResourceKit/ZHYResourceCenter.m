@@ -8,7 +8,6 @@
 
 #import "ZHYLogger.h"
 #import "ZHYResourceCenter.h"
-#import "ZHYResourceNode+Private.h"
 #import "ZHYResourceKitDefines.h"
 
 @interface ZHYResourceCenter ()
@@ -16,6 +15,7 @@
 @property (nonatomic, strong) NSDictionary<NSString *, id> *structDescriptor;
 
 @property (nonatomic, strong) NSMutableArray<ZHYResourceNode *> *nodes;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceNode *> *nodesMap;
 
 @property (nonatomic, strong) NSCache *cachedResources;
 
@@ -40,6 +40,32 @@
     [self awakeFromStructDescriptor:self.structDescriptor];
     
     return self;
+}
+
+#pragma mark - Public Methods
+
+- (id)resourceForName:(NSString *)name ofClassification:(NSString *)classification {
+    if (!name) {
+        return nil;
+    }
+    
+    id resource = nil;
+    
+    if (classification) {
+        ZHYResourceNode *node = [self.nodesMap objectForKey:classification];
+        resource = [node resourceForName:name];
+    } else {
+        NSArray<ZHYResourceNode *> *nodes = [NSArray arrayWithArray:self.nodes];
+        
+        for (ZHYResourceNode *aNode in nodes) {
+            resource = [aNode resourceForName:name];
+            if (resource) {
+                break;
+            }
+        }
+    }
+
+    return resource;
 }
 
 #pragma mark - Private Methods
@@ -72,14 +98,47 @@
         return;
     }
     
-    self.nodes = [NSMutableArray array];
-    NSArray *fontsDescriptor = [structDescriptor objectForKey:kZHYResourceKeyTypeFont];
-    if (fontsDescriptor) {
-        ZHYResourceNode *fontNode = [[ZHYResourceNode alloc] initWithName:kZHYResourceNodeNameFont];
-        [self.nodes addObject:fontNode];
+    self.nodes = [NSMutableArray arrayWithCapacity:structDescriptor.count];
+    self.nodesMap = [NSMutableDictionary dictionaryWithCapacity:structDescriptor.count];
+    
+    NSMutableArray<NSString *> *allClassifications = [NSMutableArray arrayWithArray:structDescriptor.allKeys];
+    
+    /* ResourceKit reserved classifications */
+    NSArray<NSString *> *reservedClassfications = [[self class] resourceKitReservedClassifications];
+    for (NSString *aReserved in reservedClassfications) {
+        NSArray<NSDictionary *> *metaResourceInfos = [structDescriptor objectForKey:aReserved];
+        if (!metaResourceInfos) {
+            continue;
+        }
+        
+        ZHYResourceNode *aReservedNode = [[ZHYResourceNode alloc] initWithClassification:aReserved metaInfos:metaResourceInfos];
+        
+        [self.nodes addObject:aReservedNode];
+        [self.nodesMap setObject:aReservedNode forKey:aReserved];
+    }
+    [allClassifications removeObjectsInArray:reservedClassfications];  // remove reserved classifications
+
+    /* User custom classifications */
+    for (NSString *aCustom in allClassifications) {
+        NSArray<NSDictionary *> *metaResourceInfos = [structDescriptor objectForKey:aCustom];
+        if (!metaResourceInfos) {
+            continue;
+        }
+        
+        ZHYResourceNode *aCustomNode = [[ZHYResourceNode alloc] initWithClassification:aCustom metaInfos:metaResourceInfos];
+        
+        [self.nodes addObject:aCustomNode];
+        [self.nodesMap setObject:aCustomNode forKey:aCustom];
+    }
+}
+
++ (NSArray<NSString *> *)resourceKitReservedClassifications {
+    static NSArray<NSString *> *s_globalZHYResourceKitReservedClassifications = nil;
+    if (!s_globalZHYResourceKitReservedClassifications) {
+        s_globalZHYResourceKitReservedClassifications = @[kZHYResourceKeyTypeColor, kZHYResourceKeyTypeFont, kZHYResourceKeyTypeImage];
     }
     
-    
+    return s_globalZHYResourceKitReservedClassifications;
 }
 
 @end

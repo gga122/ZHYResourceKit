@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSArray<ZHYResourceNode *> *subNodes;
 
+- (id)resourceForName:(NSString *)name ofClassification:(NSString *)classification;
+
 @end
 
 NS_ASSUME_NONNULL_END
