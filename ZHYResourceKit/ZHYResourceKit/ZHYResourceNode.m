@@ -12,8 +12,8 @@
 
 @interface ZHYResourceNode ()
 
-@property (nonatomic, strong) NSMutableArray *resources;
-@property (nonatomic, strong) NSMutableDictionary *resourcesMap;
+@property (nonatomic, strong) NSMutableArray<ZHYResourceWrapper *> *resources;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceWrapper *> *resourcesMap;
 
 @property (nonatomic, assign) Class wrapperClass;
 @property (nonatomic, assign) Class<ZHYResourceInfo> infoClass;
@@ -87,6 +87,36 @@
         [self.resources addObject:resourceWrapper];
         [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
     }
+}
+
+#pragma mark - Public Property
+
+- (NSArray<ZHYResourceWrapper *> *)allResourceWrappers {
+    if (self.resources.count == 0) {
+        return nil;
+    }
+    
+    NSArray *allResourceWrappers = [NSArray arrayWithArray:self.resources];
+    return allResourceWrappers;
+}
+
+- (NSArray *)allResources {
+    if (self.resources.count == 0) {
+        return nil;
+    }
+    
+    NSMutableArray *allResources = [NSMutableArray arrayWithCapacity:self.resources.count];
+    for (ZHYResourceWrapper *aWrapper in self.resources) {
+        id resource = aWrapper.resource;
+        if (!resource) {
+            ZHYLogError(@"Resource wrapper did not contain a resource. <wrapper: %@>", aWrapper);
+            continue;
+        }
+        
+        [allResources addObject:resource];
+    }
+    
+    return allResources;
 }
 
 #pragma mark - Private Property

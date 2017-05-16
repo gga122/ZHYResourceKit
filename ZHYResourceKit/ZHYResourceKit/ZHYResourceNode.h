@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)resourceForName:(NSString *)name;
 
+@property (nonatomic, copy, readonly) NSArray<ZHYResourceWrapper *> *allResourceWrappers;
+@property (nonatomic, copy, readonly) NSArray *allResources;
+
 @property (nonatomic, copy, readonly) NSArray<NSDictionary *> *metaInfos;
 
 @end
