@@ -141,4 +141,14 @@
     return s_globalZHYResourceKitReservedClassifications;
 }
 
+#pragma mark - Private Property
+
+- (NSArray<ZHYResourceNode *> *)subNodes {
+    if (!self.nodes) {
+        return nil;
+    }
+    
+    return [NSArray arrayWithArray:self.nodes];
+}
+
 @end
