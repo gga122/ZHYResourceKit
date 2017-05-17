@@ -15,11 +15,10 @@ NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transforme
 @implementation ZHYImageTransformer
 
 + (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (self == [ZHYImageTransformer class]) {
         ZHYImageTransformer *transformer = [[ZHYImageTransformer alloc] init];
         [[self class] setValueTransformer:transformer forName:kZHYImageTransformer];
-    });
+    }
 }
 
 - (ZHYImage *)transformedValue:(NSString *)path  {

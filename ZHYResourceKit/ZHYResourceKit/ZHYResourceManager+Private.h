@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong, readonly) ZHYResourceCenter *currentCenter;
 
+- (void)loadBundle:(NSBundle *)bundle;
+
 @end

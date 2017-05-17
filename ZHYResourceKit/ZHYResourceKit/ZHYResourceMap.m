@@ -7,7 +7,7 @@
 //
 
 #import "ZHYResourceMap.h"
-#import <ZHYResourceKitDefines.h>
+#import "ZHYResourceKitDefines.h"
 
 static NSLock *s_globalLock = nil;
 
@@ -29,6 +29,22 @@ if (flag) {\
 @end
 
 @implementation ZHYResourceMap
+
+#pragma mark - Overridden
+
++ (void)initialize {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self registerWrapper:NSClassFromString(@"ZHYImageWrapper") forClassification:kZHYResourceKeyTypeImage willLock:NO];
+        [self registerResourceInfo:NSClassFromString(@"ZHYImageInfo") forClassification:kZHYResourceKeyTypeImage willLock:NO];
+        
+        [self registerWrapper:NSClassFromString(@"ZHYColorWrapper") forClassification:kZHYResourceKeyTypeColor willLock:NO];
+        [self registerResourceInfo:NSClassFromString(@"ZHYColorInfo") forClassification:kZHYResourceKeyTypeColor willLock:NO];
+        
+        [self registerWrapper:NSClassFromString(@"ZHYFontWrapper") forClassification:kZHYResourceKeyTypeFont willLock:NO];
+        [self registerResourceInfo:NSClassFromString(@"ZHYFontInfo") forClassification:kZHYResourceKeyTypeFont willLock:NO];
+    });
+}
 
 #pragma mark - Public Methods
 

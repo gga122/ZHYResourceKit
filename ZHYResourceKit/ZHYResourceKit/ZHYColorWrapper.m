@@ -12,6 +12,14 @@
 
 @implementation ZHYColorWrapper
 
+#pragma mark - Overridden
+
++ (void)initialize {
+    if (self == [ZHYColorWrapper class]) {
+        [ZHYColorTransformer class];
+    }
+}
+
 #pragma mark - Public Property
 
 - (ZHYColor *)color {

@@ -12,6 +12,16 @@
 
 @implementation ZHYFontWrapper
 
+#pragma mark - Overridden
+
++ (void)initialize {
+    if (self == [ZHYFontWrapper class]) {
+        [ZHYFontTransformer class]; // make transformer class awake
+    }
+}
+
+#pragma mark - Public Property
+
 - (ZHYFont *)font {
     return self.resource;
 }

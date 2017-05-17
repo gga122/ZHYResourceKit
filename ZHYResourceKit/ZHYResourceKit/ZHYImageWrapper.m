@@ -12,6 +12,16 @@
 
 @implementation ZHYImageWrapper
 
+#pragma mark - Overridden
+
++ (void)initialize {
+    if (self == [ZHYImageWrapper class]) {
+        [ZHYImageTransformer class];
+    }
+}
+
+#pragma mark - Public Property
+
 - (ZHYImage *)image {
     return self.resource;
 }

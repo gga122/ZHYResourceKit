@@ -12,6 +12,8 @@
 #import "ZHYFontWindowController.h"
 #import "ZHYColorWindowController.h"
 
+#import "ZHYResourceManager+Private.h"
+
 @interface ZHYMainWindowController ()
 
 @property (nonatomic, strong) NSOpenPanel *openPanel;
@@ -48,6 +50,8 @@
     if (response == NSFileHandlingPanelOKButton) {
         self.pathLabel.stringValue = self.openPanel.URL.absoluteString ? : @"";
         self.bundle = [NSBundle bundleWithURL:self.openPanel.URL];
+        
+        [[ZHYResourceManager defaultManager] loadBundle:self.bundle];
     }
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"ZHYResourceStruct.descriptor" ofType:@"plist"];
@@ -63,6 +67,9 @@
 - (IBAction)imageButtonDidClick:(id)sender {
     self.imageWindowController.bundle = self.bundle;
     [self.imageWindowController.window makeKeyAndOrderFront:nil];
+    
+    NSColor *color = [[ZHYResourceManager defaultManager] colorForName:@"color1"];
+    NSLog(@"color: %@", color);
 }
 
 - (IBAction)colorButtonDidClick:(id)sender {

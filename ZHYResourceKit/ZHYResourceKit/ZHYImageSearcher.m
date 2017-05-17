@@ -37,10 +37,9 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
 #pragma mark - Overridden
 
 + (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (self == [ZHYImageSearcher class]) {
         s_globalImageFilters = @[@"jpg", @"png"];
-    });
+    }
 }
 
 - (instancetype)init {

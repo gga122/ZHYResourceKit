@@ -49,7 +49,7 @@
     return self.resourceInfo.name;
 }
 
-- (id)resource {
+- (id)resource {    
     if (![self class].transformer || !self.resourceInfo.content) {
         return nil;
     }

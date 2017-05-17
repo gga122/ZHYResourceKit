@@ -19,11 +19,18 @@ NSValueTransformerName const kZHYColorTransformer = @"zhy.resourceKit.transforme
 @implementation ZHYColorTransformer
 
 + (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (self == [ZHYColorTransformer class]) {
         ZHYColorTransformer *transformer = [[ZHYColorTransformer alloc] init];
-        [[self class] setValueTransformer:transformer forName:kZHYColorTransformer];
-    });
+        [NSValueTransformer setValueTransformer:transformer forName:kZHYColorTransformer];
+    }
+}
+
++ (Class)transformedValueClass {
+    return [ZHYColor class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return YES;
 }
 
 - (ZHYColor *)transformedValue:(NSString *)hex {

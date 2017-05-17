@@ -20,7 +20,6 @@ typedef NSFont ZHYFont;
 typedef NSColor ZHYColor;
 #endif
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -35,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, NSDictionary *> *configurations;
 
-- (BOOL)loadbundle:(NSString *)bundleKey;
+- (BOOL)loadbundleWithKey:(NSString *)bundleKey;
 @property (nonatomic, copy, readonly) NSString *currentBundle;
 
 - (ZHYColor *)colorForName:(NSString *)name;

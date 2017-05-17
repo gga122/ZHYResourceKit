@@ -13,11 +13,10 @@ NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer
 @implementation ZHYFontTransformer
 
 + (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (self == [ZHYFontTransformer class]) {
         ZHYFontTransformer *transformer = [[ZHYFontTransformer alloc] init];
         [[self class] setValueTransformer:transformer forName:kZHYFontTransformer];
-    });
+    }
 }
 
 - (nullable ZHYFont *)transformedValue:(nullable NSDictionary *)info {

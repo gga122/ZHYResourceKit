@@ -16,6 +16,9 @@ NSString * const kZHYResourceConfigurationsDidUnloadNotification = @"kZHYResourc
 NSString * const kZHYResourceKeyConfigurations = @"configurations";
 
 /**** Bundle notifications ****/
+NSString * const kZHYResourceBundleWillLoadNotification = @"kZHYResourceBundleWillLoadNotification";
+NSString * const kZHYResourceBundleDidLoadNotification = @"kZHYResourceBundleDidLoadNotification";
+
 NSString * const kZHYResourceBundleWillUnloadNotification = @"kZHYResourceBundleWillUnloadNotification";
 NSString * const kZHYResourceBundleDidUnloadNotification = @"kZHYResourceBundleDidUnloadNotification";
 NSString * const kZHYResourceKeyBundle = @"bundle";
@@ -101,7 +104,7 @@ static ZHYResourceManager *s_globalManager;
         return NO;
     }
 
-    [self loadbundle:kZHYResourceKeyBundle];
+    [self loadbundleWithKey:kZHYResourceKeyBundle];
     
     return YES;
 }
@@ -121,7 +124,7 @@ static ZHYResourceManager *s_globalManager;
 
 #pragma mark - Public Methods (Bundle)
 
-- (BOOL)loadbundle:(NSString *)bundleKey {
+- (BOOL)loadbundleWithKey:(NSString *)bundleKey {
     if (!bundleKey) {
         ZHYLogError(@"Bundle key is nil");
         return NO;
@@ -133,7 +136,6 @@ static ZHYResourceManager *s_globalManager;
         return NO;
     }
     
-    [self unloadBundle];
     
     
     
@@ -145,6 +147,22 @@ static ZHYResourceManager *s_globalManager;
 }
 
 #pragma mark - Private Methods (Bundle)
+
+- (void)loadBundle:(NSBundle *)bundle {
+    [self unloadBundle]; // unload current bundle before load new one
+    
+    ZHYResourceCenter *center = [[ZHYResourceCenter alloc] initWithBundle:bundle];
+    NSDictionary *userInfo = nil;
+    if (center.bundle) {
+        userInfo = @{kZHYResourceKeyBundle: center.bundle};
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleWillLoadNotification object:self userInfo:userInfo];
+    
+    self.currentCenter = center;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleDidLoadNotification object:self userInfo:userInfo];
+}
 
 - (void)unloadBundle {
     ZHYResourceCenter *center = self.currentCenter;
@@ -162,7 +180,5 @@ static ZHYResourceManager *s_globalManager;
         [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleDidUnloadNotification object:self userInfo:userInfo];
     }
 }
-
-
 
 @end

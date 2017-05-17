@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>colorResource</key>
+	<key>zhy.resourceKit.resource.color</key>
 	<array>
 		<dict>
 			<key>name</key>
@@ -13,9 +13,9 @@
 			<string>test color1</string>
 		</dict>
 	</array>
-	<key>fontResource</key>
+	<key>zhy.resourceKit.resource.font</key>
 	<dict/>
-	<key>imageResource</key>
+	<key>zhy.resourceKit.resource.image</key>
 	<dict/>
 </dict>
 </plist>
