@@ -12,4 +12,6 @@
 
 + (instancetype)fontWithAttributes:(NSDictionary<NSString *, id> *)attributes;
 
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *attributes;
+
 @end

@@ -24,4 +24,8 @@
     return font;
 }
 
+- (NSDictionary<NSString *,id> *)attributes {
+    return self.fontDescriptor.fontAttributes;
+}
+
 @end

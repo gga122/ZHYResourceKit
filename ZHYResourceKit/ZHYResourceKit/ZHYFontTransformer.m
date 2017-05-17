@@ -8,6 +8,12 @@
 
 #import "ZHYFontTransformer.h"
 
+#if TARGET_OS_IOS
+#import "UIFont+ZHYAttributes.h"
+#else
+#import "NSFont+ZHYAttributes.h"
+#endif
+
 NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer.font";
 
 @implementation ZHYFontTransformer
@@ -19,8 +25,16 @@ NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer
     }
 }
 
++ (Class)transformedValueClass {
+    return [ZHYFont class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return YES;
+}
+
 - (nullable ZHYFont *)transformedValue:(nullable NSDictionary *)info {
-    return nil;
+    ZHYFont *font = [ZHYFont fontWithAttributes:info];
 }
 
 - (nullable NSDictionary *)reverseTransformedValue:(nullable ZHYFont *)font {
