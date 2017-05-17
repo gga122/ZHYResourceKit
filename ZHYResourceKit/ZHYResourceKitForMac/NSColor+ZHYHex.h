@@ -1,5 +1,5 @@
 //
-//  NSColor+Hex.h
+//  NSColor+ZHYHex.h
 //  ZHYResourceKit
 //
 //  Created by MickyZhu on 9/5/2017.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSColor (Hex)
+@interface NSColor (ZHYHex)
 
 + (NSColor *)colorWithHexARGB:(NSString *)hex;
 

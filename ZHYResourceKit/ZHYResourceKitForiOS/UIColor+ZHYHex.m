@@ -1,5 +1,5 @@
 //
-//  NSColor+Hex.m
+//  UIColor+Hex.m
 //  ZHYResourceKit
 //
 //  Created by MickyZhu on 9/5/2017.
@@ -7,28 +7,21 @@
 //
 
 #import "ZHYLogger.h"
-#import "NSColor+Hex.h"
+#import "UIColor+Hex.h"
 
-@implementation NSColor (Hex)
+@implementation UIColor (ZHYHex)
 
 #pragma mark - Public Methods
 
-+ (NSColor *)colorWithHexARGB:(NSString *)hex {
++ (UIColor *)colorWithHexARGB:(NSString *)hex {
     CGFloat components[4] = {0};
     BOOL succeed = [self componentsFromHex:hex red:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
     if (!succeed) {
         return nil;
     }
     
-    static NSColorSpace *s_colorSpace = nil;
-    if (!s_colorSpace) {
-        s_colorSpace = [NSColorSpace sRGBColorSpace];
-    }
-    
-    return [NSColor colorWithColorSpace:s_colorSpace components:components count:4];
+    return [UIColor colorWithRed:components[0] green:components[1] blue:components[2] alpha:components[3]];
 }
-
-#pragma mark - Private Methods
 
 + (BOOL)componentsFromHex:(NSString *)hex red:(out CGFloat *)r green:(out CGFloat *)g blue:(out CGFloat *)b alpha:(out CGFloat *)a {
     NSString *colorHex = [[hex stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
@@ -95,10 +88,21 @@
 - (NSString *)hexARGB {
     static CGFloat const colorMaxValue = 255.0;
     
-    CGFloat alpha = round(self.alphaComponent * colorMaxValue);
-    CGFloat red = round(self.redComponent * colorMaxValue);
-    CGFloat green = round(self.greenComponent * colorMaxValue);
-    CGFloat blue = round(self.blueComponent * colorMaxValue);
+    CGFloat alpha = 1.0;
+    CGFloat red = 1.0;
+    CGFloat green = 1.0;
+    CGFloat blue = 1.0;
+    
+    BOOL response = [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    if (!response) {
+        ZHYLogError(@"Convert to hex failed. <color: %@>", self);
+        return nil;
+    }
+    
+    alpha = round(alpha * colorMaxValue);
+    red = round(red * colorMaxValue);
+    green = round(green * colorMaxValue);
+    blue = round(blue * colorMaxValue);
     
     NSMutableString *hex = [NSMutableString stringWithString:@"#"];
     if (colorMaxValue - alpha > 1.0) {

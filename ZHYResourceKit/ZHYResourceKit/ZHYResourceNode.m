@@ -44,6 +44,18 @@
     return self;
 }
 
+#pragma mark - Overridden
+
+- (NSString *)description {
+    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
+    
+    [desc appendFormat:@"<Classification: %@>", _classification];
+    [desc appendFormat:@"<Wrapper: %@>", _wrapperClass];
+    [desc appendFormat:@"<Info: %@>", _infoClass];
+    
+    return desc;
+}
+
 #pragma mark - Public Methods
 
 - (id)resourceForName:(NSString *)name {

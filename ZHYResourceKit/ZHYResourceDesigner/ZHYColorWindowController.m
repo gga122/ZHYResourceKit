@@ -6,7 +6,7 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "NSColor+Hex.h"
+#import "NSColor+ZHYHex.h"
 #import "ZHYColorWindowController.h"
 
 @interface ZHYColorView : NSView

@@ -9,9 +9,9 @@
 #import "ZHYColorTransformer.h"
 
 #if TARGET_OS_IOS
-#import "UIColor+Hex.h"
+#import "UIColor+ZHYHex.h"
 #else
-#import "NSColor+Hex.h"
+#import "NSColor+ZHYHex.h"
 #endif
 
 NSValueTransformerName const kZHYColorTransformer = @"zhy.resourceKit.transformer.color";

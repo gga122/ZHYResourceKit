@@ -1,5 +1,5 @@
 //
-//  UIColor+Hex.h
+//  UIColor+ZHYHex.h
 //  ZHYResourceKit
 //
 //  Created by MickyZhu on 9/5/2017.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (Hex)
+@interface UIColor (ZHYHex)
 
 + (UIColor *)colorWithHexARGB:(NSString *)hex;
 
