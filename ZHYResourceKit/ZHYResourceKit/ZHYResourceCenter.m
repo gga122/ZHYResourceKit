@@ -17,8 +17,6 @@
 @property (nonatomic, strong) NSMutableArray<ZHYResourceNode *> *nodes;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceNode *> *nodesMap;
 
-@property (nonatomic, strong) NSCache *cachedResources;
-
 @end
 
 @implementation ZHYResourceCenter

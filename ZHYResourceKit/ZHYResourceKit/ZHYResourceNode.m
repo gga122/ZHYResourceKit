@@ -18,6 +18,7 @@
 @property (nonatomic, assign) Class wrapperClass;
 @property (nonatomic, assign) Class<ZHYResourceInfo> infoClass;
 
+@property (nonatomic, strong) NSCache *cachedResources;
 @property (nonatomic, assign) BOOL didAwake;
 
 @end
@@ -55,8 +56,17 @@
         self.didAwake = YES;
     }
     
-    ZHYResourceWrapper *resourceWrapper = [self.resourcesMap objectForKey:name];
-    return resourceWrapper.resource;
+    id resource = [self.cachedResources objectForKey:name];
+    if (!resource) {
+        ZHYResourceWrapper *resourceWrapper = [self.resourcesMap objectForKey:name];
+        resource = resourceWrapper.resource;
+        
+        if (resource) {
+            [self.cachedResources setObject:resource forKey:name];
+        }
+    }
+    
+    return resource;
 }
 
 #pragma mark - Private Methods
@@ -143,6 +153,14 @@
     }
     
     return _resourcesMap;
+}
+
+- (NSCache *)cachedResources {
+    if (!_cachedResources) {
+        _cachedResources = [[NSCache alloc] init];
+    }
+    
+    return _cachedResources;
 }
 
 @end
