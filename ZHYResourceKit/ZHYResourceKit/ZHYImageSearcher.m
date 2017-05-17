@@ -29,6 +29,7 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
         
         _imagePaths = [self imagePathsForBundle:_bundle];
         _infos = [self infosWithPaths:_imagePaths];
+        _metaInfos = [self metaInfosForInfos:_infos];
     }
     
     return self;
@@ -119,6 +120,25 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
     
     ZHYImageInfo *info = [[ZHYImageInfo alloc] initWithPath:path forName:fileName];
     return info;
+}
+
+- (NSArray<NSDictionary *> *)metaInfosForInfos:(NSArray<ZHYImageInfo *> *)infos {
+    if (!infos) {
+        return nil;
+    }
+    
+    NSMutableArray<NSDictionary *> *metaInfos = [NSMutableArray array];
+    for (ZHYImageInfo *aInfo in infos) {
+        NSDictionary *metaInfo = [aInfo encodeToPlist];
+        if (!metaInfos) {
+            ZHYLogWarning(@"Encode to plist failed. <Info: %@>", aInfo);
+            continue;
+        }
+        
+        [metaInfos addObject:metaInfo];
+    }
+    
+    return metaInfos;
 }
 
 @end

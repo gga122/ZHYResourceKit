@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) NSBundle *bundle;
 
 @property (nonatomic, copy, readonly, nullable) NSArray<ZHYImageInfo *> *infos;
+@property (nonatomic, copy, readonly, nullable) NSArray<NSDictionary *> *metaInfos;
 
 + (NSArray<NSString *> *)imageFilters;
 + (void)setImageFilters:(NSArray<NSString *> *)imageFilters;
