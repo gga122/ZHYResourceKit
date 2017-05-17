@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ZHYColorWrapper+Plist.h"
+#import "ZHYColorWrapper.h"
 
 @interface ZHYColorWrapperTest : XCTestCase
 
@@ -31,7 +31,10 @@
     NSDictionary<NSString *, NSString *> *testColorPlist = [NSDictionary dictionaryWithContentsOfFile:path];
     XCTAssertNotNil(testColorPlist);
 
-    ZHYColorWrapper *colorWrapper = [[ZHYColorWrapper alloc] initWithPlist:testColorPlist];
+    ZHYColorInfo *colorInfo = [ZHYColorInfo decodeFromPlist:testColorPlist];
+    XCTAssertNotNil(colorInfo);
+    
+    ZHYColorWrapper *colorWrapper = [[ZHYColorWrapper alloc] initWithResourceInfo:colorInfo];
     XCTAssertNotNil(colorWrapper);
 }
 
