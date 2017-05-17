@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D204F1B11ECC393900D470ED /* NSFont+ZHYAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = D204F1AF1ECC393900D470ED /* NSFont+ZHYAttributes.h */; };
+		D204F1B21ECC393900D470ED /* NSFont+ZHYAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204F1B01ECC393900D470ED /* NSFont+ZHYAttributes.m */; };
+		D204F1B51ECC3B1900D470ED /* UIFont+ZHYAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = D204F1B31ECC3B1900D470ED /* UIFont+ZHYAttributes.h */; };
+		D204F1B61ECC3B1900D470ED /* UIFont+ZHYAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204F1B41ECC3B1900D470ED /* UIFont+ZHYAttributes.m */; };
 		D284C6C71EC5956D00FB15CB /* ZHYResourceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */; };
 		D284C6C81EC5956D00FB15CB /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
 		D284C6CA1EC5959700FB15CB /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
@@ -121,6 +125,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D204F1AF1ECC393900D470ED /* NSFont+ZHYAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+ZHYAttributes.h"; sourceTree = "<group>"; };
+		D204F1B01ECC393900D470ED /* NSFont+ZHYAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+ZHYAttributes.m"; sourceTree = "<group>"; };
+		D204F1B31ECC3B1900D470ED /* UIFont+ZHYAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+ZHYAttributes.h"; sourceTree = "<group>"; };
+		D204F1B41ECC3B1900D470ED /* UIFont+ZHYAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ZHYAttributes.m"; sourceTree = "<group>"; };
 		D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceWrapper.h; sourceTree = "<group>"; };
 		D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceWrapper.m; sourceTree = "<group>"; };
 		D284C6CC1EC5A2D300FB15CB /* ZHYColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYColorTransformer.h; sourceTree = "<group>"; };
@@ -347,6 +355,8 @@
 		D2CDA36F1EBC71900085F997 /* ZHYResourceKitForMac */ = {
 			isa = PBXGroup;
 			children = (
+				D204F1AF1ECC393900D470ED /* NSFont+ZHYAttributes.h */,
+				D204F1B01ECC393900D470ED /* NSFont+ZHYAttributes.m */,
 				D28F0A171EC16B77007B1408 /* NSColor+Hex.h */,
 				D28F0A181EC16B77007B1408 /* NSColor+Hex.m */,
 				D2CDA3701EBC71900085F997 /* Info.plist */,
@@ -380,6 +390,8 @@
 		D2CDA37B1EBC72150085F997 /* ZHYResourceKitForiOS */ = {
 			isa = PBXGroup;
 			children = (
+				D204F1B31ECC3B1900D470ED /* UIFont+ZHYAttributes.h */,
+				D204F1B41ECC3B1900D470ED /* UIFont+ZHYAttributes.m */,
 				D28F0A1B1EC1725B007B1408 /* UIColor+Hex.h */,
 				D28F0A1C1EC1725B007B1408 /* UIColor+Hex.m */,
 				D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */,
@@ -418,6 +430,7 @@
 				D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D285F4741EC46BED003D806A /* ZHYResourceManager+Private.h in Headers */,
 				D28F0A0C1EC16421007B1408 /* ZHYColorWrapper.h in Headers */,
+				D204F1B11ECC393900D470ED /* NSFont+ZHYAttributes.h in Headers */,
 				D28F0A081EC161C1007B1408 /* ZHYFontWrapper.h in Headers */,
 				D284C6C71EC5956D00FB15CB /* ZHYResourceWrapper.h in Headers */,
 				D2CDA3B61EBC85E40085F997 /* ZHYResourceNode.h in Headers */,
@@ -453,6 +466,7 @@
 				D28F0A1D1EC1725B007B1408 /* UIColor+Hex.h in Headers */,
 				D284C6D81EC5A89000FB15CB /* ZHYColorWrapper.h in Headers */,
 				D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */,
+				D204F1B51ECC3B1900D470ED /* UIFont+ZHYAttributes.h in Headers */,
 				D284C6DD1EC5B76100FB15CB /* ZHYFontTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -695,6 +709,7 @@
 				D28F0A091EC161C1007B1408 /* ZHYFontWrapper.m in Sources */,
 				D28F0A0D1EC16421007B1408 /* ZHYColorWrapper.m in Sources */,
 				D2AF247A1EC94F6F00113B9C /* ZHYImageTransformer.m in Sources */,
+				D204F1B21ECC393900D470ED /* NSFont+ZHYAttributes.m in Sources */,
 				D2A005D51EC0607A000A272C /* ZHYLogger.m in Sources */,
 				D284C6C81EC5956D00FB15CB /* ZHYResourceWrapper.m in Sources */,
 				D2AF24921EC9AFED00113B9C /* ZHYResourceMap.m in Sources */,
@@ -718,6 +733,7 @@
 				D284C6D11EC5A35000FB15CB /* ZHYColorTransformer.m in Sources */,
 				D2AF24821EC983FC00113B9C /* ZHYImageSearcher.m in Sources */,
 				D28F0A541EC1B206007B1408 /* ZHYImageWrapper.m in Sources */,
+				D204F1B61ECC3B1900D470ED /* UIFont+ZHYAttributes.m in Sources */,
 				D2AF24941ECAE18300113B9C /* ZHYResourceMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
