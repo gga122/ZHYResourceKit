@@ -65,6 +65,37 @@
     return desc;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (object && [object isKindOfClass:[ZHYFontInfo class]]) {
+        return [self isEqualToZHYFontInfo:object];
+    }
+    
+    return NO;
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)isEqualToZHYFontInfo:(ZHYFontInfo *)fontInfo {
+    if (![self.name isEqualToString:fontInfo.name]) {
+        return NO;
+    }
+    
+    if (![self.descriptor isEqualToDictionary:fontInfo.descriptor]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    ZHYFontInfo *info = [[ZHYFontInfo allocWithZone:zone] initWithDescriptor:self.descriptor forName:self.name];
+    info.detail = self.detail;
+    
+    return info;
+}
+
 #pragma mark - ZHYResourceInfo Protocol
 
 - (id)content {

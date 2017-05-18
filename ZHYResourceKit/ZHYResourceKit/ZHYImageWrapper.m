@@ -65,6 +65,37 @@
     return desc;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (object && [object isKindOfClass:[ZHYImageInfo class]]) {
+        return [self isEqualToZHYImageInfo:object];
+    }
+    
+    return NO;
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)isEqualToZHYImageInfo:(ZHYImageInfo *)imageInfo {
+    if (![self.name isEqualToString:imageInfo.name]) {
+        return NO;
+    }
+    
+    if (![self.path isEqualToString:imageInfo.path]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    ZHYImageInfo *info = [[ZHYImageInfo allocWithZone:zone] initWithPath:self.path forName:self.name];
+    info.detail = self.detail;
+    
+    return info;
+}
+
 #pragma mark - ZHYResourceInfo Protocol
 
 - (id)content {
