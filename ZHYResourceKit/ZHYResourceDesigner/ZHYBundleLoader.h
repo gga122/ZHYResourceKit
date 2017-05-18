@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadBundle:(nullable NSBundle *)bundle;
 
 - (BOOL)addResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classification;
-- (BOOL)removeResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classifitcation;
+- (BOOL)removeResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classification;
 
 @property (nonatomic, copy, readonly) NSArray<ZHYColorWrapper *> *allColorWrappers;
 @property (nonatomic, copy, readonly) NSArray<ZHYFontWrapper *> *allFontWrappers;

@@ -7,7 +7,7 @@
 //
 
 #import "ZHYBundleLoader.h"
-#import "ZHYResourceMap.h"
+#import "ZHYResourceNode+Private.h"
 #import "ZHYResourceManager+Private.h"
 
 static ZHYBundleLoader *s_globalBundleLoader = nil;
@@ -63,13 +63,22 @@ static ZHYBundleLoader *s_globalBundleLoader = nil;
         return NO;
     }
     
-    id resource = [node resourceForName:resourceInfo.name];
-    if (resource) {
+    BOOL response = [node addResourceInfo:resourceInfo];
+    return response;
+}
+
+- (BOOL)removeResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classification {
+    if (!resourceInfo) {
         return NO;
     }
-        
     
-    return YES;
+    ZHYResourceNode *node = [self resourceNodeForClassification:classification];
+    if (!node) {
+        return NO;
+    }
+    
+    BOOL response = [node removeResourceInfo:resourceInfo];
+    return response;
 }
 
 #pragma mark - Private Methods
