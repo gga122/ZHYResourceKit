@@ -42,6 +42,14 @@
 
 #pragma mark - Public Methods
 
+- (ZHYResourceNode *)resourceNodeForClassification:(NSString *)classification {
+    if (!classification) {
+        return nil;
+    }
+    
+    return [self.nodesMap objectForKey:classification];
+}
+
 - (id)resourceForName:(NSString *)name ofClassification:(NSString *)classification {
     if (!name) {
         return nil;

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  1. Color
  2. Font
  3. Image
-
+ 4. Custom
  */
 @interface ZHYResourceCenter : NSObject
 
@@ -30,9 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 
-@property (nonatomic, copy, readonly) NSArray<ZHYResourceNode *> *subNodes;
-
 - (id)resourceForName:(NSString *)name ofClassification:(NSString *)classification;
+
+- (ZHYResourceNode *)resourceNodeForClassification:(NSString *)classification;
+@property (nonatomic, copy, readonly) NSArray<ZHYResourceNode *> *subNodes;
 
 @end
 

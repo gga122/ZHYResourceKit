@@ -15,4 +15,8 @@
 
 - (void)loadBundle:(NSBundle *)bundle;
 
+@property (nonatomic, copy, readonly) NSArray<ZHYColorWrapper *> *allColorWrappers;
+@property (nonatomic, copy, readonly) NSArray<ZHYImageWrapper *> *allImageWrappers;
+@property (nonatomic, copy, readonly) NSArray<ZHYFontWrapper *> *allFontWrappers;
+
 @end

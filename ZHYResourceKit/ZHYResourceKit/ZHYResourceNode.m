@@ -7,7 +7,7 @@
 //
 
 #import "ZHYLogger.h"
-#import "ZHYResourceNode.h"
+#import "ZHYResourceNode+Private.h"
 #import "ZHYResourceMap.h"
 
 @interface ZHYResourceNode ()
@@ -106,9 +106,20 @@
             continue;
         }
         
+        if ([self.resourcesMap objectForKey:resourceWrapper.name]) {
+            ZHYLogError(@"Found duplicate resource. <name: %@>", resourceWrapper.name);
+            continue;
+        }
+        
         [self.resources addObject:resourceWrapper];
         [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
     }
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)addResourceInfo:(id<ZHYResourceInfo>)resourceInfo {
+    
 }
 
 #pragma mark - Public Property

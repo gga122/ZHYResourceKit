@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSBundle *bundle;
 
-
+@property (nonatomic, copy, readonly) NSArray<NSDictionary *> *metaInfos;
 
 @end

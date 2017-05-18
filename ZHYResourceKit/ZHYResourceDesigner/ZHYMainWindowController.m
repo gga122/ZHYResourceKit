@@ -67,9 +67,6 @@
 - (IBAction)imageButtonDidClick:(id)sender {
     self.imageWindowController.bundle = self.bundle;
     [self.imageWindowController.window makeKeyAndOrderFront:nil];
-    
-    NSColor *color = [[ZHYResourceManager defaultManager] colorForName:@"color1"];
-    NSLog(@"color: %@", color);
 }
 
 - (IBAction)colorButtonDidClick:(id)sender {
@@ -109,7 +106,7 @@
 - (NSOpenPanel *)openPanel {
     if (!_openPanel) {
         _openPanel = [NSOpenPanel openPanel];
-        _openPanel.allowedFileTypes= @[@"bundle"];
+        _openPanel.allowedFileTypes = @[@"bundle"];
         _openPanel.allowsMultipleSelection = NO;
     }
     

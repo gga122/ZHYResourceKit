@@ -20,8 +20,7 @@
 - (void)windowDidLoad {
     [super windowDidLoad];
     
-    NSArray<ZHYImageInfo *> *infos = self.imageSearcher.infos;
-    NSLog(@"infos: %@", infos);
+    _metaInfos = self.imageSearcher.metaInfos;
 }
 
 - (void)setBundle:(NSBundle *)bundle {
