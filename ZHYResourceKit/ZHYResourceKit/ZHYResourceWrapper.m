@@ -7,7 +7,7 @@
 //
 
 #import "ZHYLogger.h"
-#import "ZHYResourceWrapper.h"
+#import "ZHYResourceWrapper+Private.h"
 
 @interface ZHYResourceWrapper ()
 
@@ -92,6 +92,12 @@
 
 + (NSValueTransformer *)transformer {
     return nil;
+}
+
+#pragma mark - Private Property
+
+- (id<ZHYResourceInfo>)resourceInfo {
+    return [_resourceInfo copy];
 }
 
 @end

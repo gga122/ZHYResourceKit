@@ -69,8 +69,10 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
     
     NSArray<NSString *> *extensions = [[self class] imageFilters];
     for (NSString *aExtension in extensions) {
-        NSArray<NSString *> *extensionPaths = [bundle pathsForResourcesOfType:aExtension inDirectory:nil];
-        [imagePaths addObjectsFromArray:extensionPaths];
+        @autoreleasepool {
+            NSArray<NSString *> *extensionPaths = [bundle pathsForResourcesOfType:aExtension inDirectory:nil];
+            [imagePaths addObjectsFromArray:extensionPaths];
+        }
     }
     
     return imagePaths;
@@ -84,11 +86,13 @@ static NSArray<NSString *> *s_globalImageFilters = nil;
     NSMutableArray<ZHYImageInfo *> *infos = [NSMutableArray array];
     
     for (NSString *aPath in paths) {
-        ZHYImageInfo *aInfo = [self infoForPath:aPath];
-        if (aInfo) {
-            [infos addObject:aInfo];
-        } else {
-            ZHYLogError(@"can not create image info with '%@'", aPath);
+        @autoreleasepool {
+            ZHYImageInfo *aInfo = [self infoForPath:aPath];
+            if (aInfo) {
+                [infos addObject:aInfo];
+            } else {
+                ZHYLogError(@"can not create image info with '%@'", aPath);
+            }
         }
     }
     

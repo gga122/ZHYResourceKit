@@ -14,4 +14,6 @@
 - (BOOL)addResourceInfo:(id<ZHYResourceInfo>)resourceInfo;
 - (BOOL)removeResourceInfo:(id<ZHYResourceInfo>)resourceInfo;
 
+- (NSArray<NSDictionary<NSString *, id> *> *)archiveToPlist;
+
 @end

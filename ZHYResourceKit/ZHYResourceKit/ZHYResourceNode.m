@@ -8,6 +8,7 @@
 
 #import "ZHYLogger.h"
 #import "ZHYResourceNode+Private.h"
+#import "ZHYResourceWrapper+Private.h"
 #import "ZHYResourceMap.h"
 
 @interface ZHYResourceNode ()
@@ -94,25 +95,27 @@
     }
     
     for (NSDictionary *aInfo in metaInfos) {
-        id<ZHYResourceInfo> aResourceInfo = [infoClass decodeFromPlist:aInfo];
-        if (!aResourceInfo) {
-            ZHYLogWarning(@"Create resource info failed. <plist: %@>", aInfo);
-            continue;
+        @autoreleasepool {
+            id<ZHYResourceInfo> aResourceInfo = [infoClass decodeFromPlist:aInfo];
+            if (!aResourceInfo) {
+                ZHYLogWarning(@"Create resource info failed. <plist: %@>", aInfo);
+                continue;
+            }
+            
+            ZHYResourceWrapper *resourceWrapper = [[wrapperClass alloc] initWithResourceInfo:aResourceInfo];
+            if (!resourceWrapper) {
+                ZHYLogWarning(@"Create resource wrapper failed. <resource info: %@>", aResourceInfo);
+                continue;
+            }
+            
+            if ([self.resourcesMap objectForKey:resourceWrapper.name]) {
+                ZHYLogError(@"Found duplicate resource. <name: %@>", resourceWrapper.name);
+                continue;
+            }
+            
+            [self.resources addObject:resourceWrapper];
+            [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
         }
-    
-        ZHYResourceWrapper *resourceWrapper = [[wrapperClass alloc] initWithResourceInfo:aResourceInfo];
-        if (!resourceWrapper) {
-            ZHYLogWarning(@"Create resource wrapper failed. <resource info: %@>", aResourceInfo);
-            continue;
-        }
-        
-        if ([self.resourcesMap objectForKey:resourceWrapper.name]) {
-            ZHYLogError(@"Found duplicate resource. <name: %@>", resourceWrapper.name);
-            continue;
-        }
-        
-        [self.resources addObject:resourceWrapper];
-        [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
     }
 }
 
@@ -142,6 +145,25 @@
     return YES;
 }
 
+- (NSArray<NSDictionary<NSString *, id> *> *)archiveToPlist {
+    NSMutableArray *plist = [NSMutableArray arrayWithCapacity:self.resources.count];
+    
+    for (ZHYResourceWrapper *aWrapper in self.resources) {
+        @autoreleasepool {
+            id<ZHYResourceInfo> resourceInfo = aWrapper.resourceInfo;
+            NSDictionary *infoPlist = [resourceInfo encodeToPlist];
+            
+            if (!infoPlist) {
+                continue;
+            }
+            
+            [plist addObject:infoPlist];
+        }
+    }
+    
+    return plist;
+}
+
 #pragma mark - Public Property
 
 - (NSArray<ZHYResourceWrapper *> *)allResourceWrappers {
@@ -160,13 +182,15 @@
     
     NSMutableArray *allResources = [NSMutableArray arrayWithCapacity:self.resources.count];
     for (ZHYResourceWrapper *aWrapper in self.resources) {
-        id resource = aWrapper.resource;
-        if (!resource) {
-            ZHYLogError(@"Resource wrapper did not contain a resource. <wrapper: %@>", aWrapper);
-            continue;
+        @autoreleasepool {
+            id resource = aWrapper.resource;
+            if (!resource) {
+                ZHYLogError(@"Resource wrapper did not contain a resource. <wrapper: %@>", aWrapper);
+                continue;
+            }
+            
+            [allResources addObject:resource];
         }
-        
-        [allResources addObject:resource];
     }
     
     return allResources;
