@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ZHYResourceInfo <NSObject>
+@protocol ZHYResourceInfo <NSObject, NSCopying>
 
 @required
 
@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id content;
 
 @property (nonatomic, copy, nullable) NSString *detail;
+
+- (instancetype)copy;
 
 - (NSDictionary *)encodeToPlist;
 + (instancetype)decodeFromPlist:(NSDictionary *)plist;

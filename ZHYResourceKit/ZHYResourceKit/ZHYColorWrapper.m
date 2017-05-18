@@ -65,6 +65,37 @@
     return desc;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (object && [object isKindOfClass:[ZHYColorInfo class]]) {
+        return [self isEqualToZHYColorInfo:object];
+    }
+    
+    return NO;
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)isEqualToZHYColorInfo:(ZHYColorInfo *)colorInfo {
+    if (![self.name isEqualToString:colorInfo.name]) {
+        return NO;
+    }
+    
+    if ([self.hex isEqualToString:colorInfo.hex]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    ZHYColorInfo *info = [[ZHYColorInfo allocWithZone:zone] initWithColorHex:self.hex forName:self.name];
+    info.detail = self.detail;
+    
+    return info;
+}
+
 #pragma mark - ZHYResourceInfo Protocol
 
 - (id)content {

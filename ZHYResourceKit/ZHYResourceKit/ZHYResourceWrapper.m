@@ -37,10 +37,34 @@
     
     self = [super init];
     if (self) {
-        _resourceInfo = info;
+        _resourceInfo = [info copy];
     }
     
     return self;
+}
+
+#pragma mark - Overridden
+
+- (BOOL)isEqual:(id)object {
+    if (object && [object isKindOfClass:[ZHYResourceWrapper class]]) {
+        return [self isEqualToZHYResourceWrapper:object];
+    }
+    
+    return NO;
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)isEqualToZHYResourceWrapper:(ZHYResourceWrapper *)wrapper {
+    if (![self.name isEqualToString:wrapper.name]) {
+        return NO;
+    }
+    
+    if (![self.resourceInfo isEqual:wrapper]) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - Public Property

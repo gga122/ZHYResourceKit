@@ -119,7 +119,27 @@
 #pragma mark - Private Methods
 
 - (BOOL)addResourceInfo:(id<ZHYResourceInfo>)resourceInfo {
+    if ([self.resourcesMap objectForKey:resourceInfo.name]) {
+        return NO;
+    }
     
+    ZHYResourceWrapper *resourceWrapper = [[self.wrapperClass alloc] initWithResourceInfo:resourceInfo];
+    [self.resources addObject:resourceWrapper];
+    [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
+    
+    return YES;
+}
+
+- (BOOL)removeResourceInfo:(id<ZHYResourceInfo>)resourceInfo {
+    if (![self.resourcesMap objectForKey:resourceInfo.name]) {
+        return NO;
+    }
+    
+    ZHYResourceWrapper *resourceWrapper = [[self.wrapperClass alloc] initWithResourceInfo:resourceInfo];
+    [self.resources removeObject:resourceWrapper];
+    [self.resourcesMap removeObjectForKey:resourceWrapper.name];
+    
+    return YES;
 }
 
 #pragma mark - Public Property
