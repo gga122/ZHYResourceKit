@@ -181,4 +181,21 @@ static ZHYResourceManager *s_globalManager;
     }
 }
 
+#pragma mark - Private Property
+
+- (NSArray *)allFontWrappers {
+    ZHYResourceNode *fontNode = [self.currentCenter resourceNodeForClassification:kZHYResourceKeyTypeFont];
+    return fontNode.allResourceWrappers;
+}
+
+- (NSArray *)allColorWrappers {
+    ZHYResourceNode *colorNode = [self.currentCenter resourceNodeForClassification:kZHYResourceKeyTypeColor];
+    return colorNode.allResourceWrappers;
+}
+
+- (NSArray *)allImageWrappers {
+    ZHYResourceNode *imageNode = [self.currentCenter resourceNodeForClassification:kZHYResourceKeyTypeImage];
+    return imageNode.allResourceWrappers;
+}
+
 @end
