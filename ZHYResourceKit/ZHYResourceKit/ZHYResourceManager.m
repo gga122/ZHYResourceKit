@@ -118,7 +118,6 @@ static ZHYResourceManager *s_globalManager;
         [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceConfigurationsDidUnloadNotification object:self userInfo:nil];
     } else {
         NSAssert(self.configurations, @"Configurations is nil");
-        
     }
 }
 
@@ -174,7 +173,7 @@ static ZHYResourceManager *s_globalManager;
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleWillUnloadNotification object:self userInfo:userInfo];
-        
+    
         self.currentCenter = nil;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kZHYResourceBundleDidUnloadNotification object:self userInfo:userInfo];

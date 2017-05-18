@@ -7,7 +7,9 @@
 //
 
 #import "ZHYBundleLoader.h"
+#import "ZHYResourceKitDefines.h"
 #import "ZHYResourceNode+Private.h"
+#import "ZHYResourceCenter+Private.h"
 #import "ZHYResourceManager+Private.h"
 
 static ZHYBundleLoader *s_globalBundleLoader = nil;
@@ -48,9 +50,8 @@ static ZHYBundleLoader *s_globalBundleLoader = nil;
 }
 
 - (void)loadBundle:(NSBundle *)bundle {
-    if (bundle) {
-        [[ZHYResourceManager defaultManager] loadBundle:bundle];
-    }
+    [self synchonizePlist];
+    [[ZHYResourceManager defaultManager] loadBundle:bundle];
 }
 
 - (BOOL)addResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classification {
@@ -79,6 +80,23 @@ static ZHYBundleLoader *s_globalBundleLoader = nil;
     
     BOOL response = [node removeResourceInfo:resourceInfo];
     return response;
+}
+
+- (void)synchonizePlist {
+    ZHYResourceCenter *center = [ZHYResourceManager defaultManager].currentCenter;
+    if (!center) {
+        return;
+    }
+    
+    NSDictionary *plist = [center archiveToPlist];
+    if (!plist) {
+        return;
+    }
+    
+    NSString *bundleResourcePath = center.bundle.resourcePath;
+    NSString *plistPath = [bundleResourcePath stringByAppendingPathComponent:kZHYResourceStructDescriptorFileName];
+    
+    [plist writeToFile:plistPath atomically:YES];
 }
 
 #pragma mark - Private Methods

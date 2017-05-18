@@ -7,7 +7,8 @@
 //
 
 #import "ZHYLogger.h"
-#import "ZHYResourceCenter.h"
+#import "ZHYResourceCenter+Private.h"
+#import "ZHYResourceNode+Private.h"
 #import "ZHYResourceKitDefines.h"
 
 @interface ZHYResourceCenter ()
@@ -145,6 +146,22 @@
     }
     
     return s_globalZHYResourceKitReservedClassifications;
+}
+
+- (NSDictionary<NSString *, id> *)archiveToPlist {
+    NSMutableDictionary *centerPlist = [NSMutableDictionary dictionary];
+    
+    for (ZHYResourceNode *aNode in self.nodes) {
+        NSArray *resourceList = [aNode archiveToPlist];
+        
+        if (!resourceList) {
+            continue;
+        }
+        
+        [centerPlist setObject:resourceList forKey:aNode.classification];
+    }
+    
+    return centerPlist;
 }
 
 #pragma mark - Private Property

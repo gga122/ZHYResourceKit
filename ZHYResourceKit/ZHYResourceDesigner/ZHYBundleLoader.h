@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSArray<ZHYFontWrapper *> *allFontWrappers;
 @property (nonatomic, copy, readonly) NSArray<ZHYImageWrapper *>*allImageWrappers;
 
+- (void)synchonizePlist;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -67,6 +67,8 @@
 		D290E1721ECD898000ABB9AD /* ZHYResourceNode+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D290E16E1ECD893100ABB9AD /* ZHYResourceNode+Private.h */; };
 		D290E1761ECD92D800ABB9AD /* ZHYResourceWrapper+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D290E1731ECD92B500ABB9AD /* ZHYResourceWrapper+Private.h */; };
 		D290E1771ECD92D800ABB9AD /* ZHYResourceWrapper+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D290E1731ECD92B500ABB9AD /* ZHYResourceWrapper+Private.h */; };
+		D290E17B1ECD9C7800ABB9AD /* ZHYResourceCenter+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D290E1781ECD9C6500ABB9AD /* ZHYResourceCenter+Private.h */; };
+		D290E17C1ECD9C7900ABB9AD /* ZHYResourceCenter+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D290E1781ECD9C6500ABB9AD /* ZHYResourceCenter+Private.h */; };
 		D2A005C61EC013A8000A272C /* ZHYResourceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */; };
 		D2A005D41EC0607A000A272C /* ZHYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A005D21EC0607A000A272C /* ZHYLogger.h */; };
 		D2A005D51EC0607A000A272C /* ZHYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A005D31EC0607A000A272C /* ZHYLogger.m */; };
@@ -183,6 +185,7 @@
 		D290E1651ECD7EDC00ABB9AD /* ZHYBundleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYBundleLoader.m; sourceTree = "<group>"; };
 		D290E16E1ECD893100ABB9AD /* ZHYResourceNode+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceNode+Private.h"; sourceTree = "<group>"; };
 		D290E1731ECD92B500ABB9AD /* ZHYResourceWrapper+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceWrapper+Private.h"; sourceTree = "<group>"; };
+		D290E1781ECD9C6500ABB9AD /* ZHYResourceCenter+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHYResourceCenter+Private.h"; sourceTree = "<group>"; };
 		D2A005D21EC0607A000A272C /* ZHYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHYLogger.h; path = ZHYResourceKit/ZHYLogger.h; sourceTree = "<group>"; };
 		D2A005D31EC0607A000A272C /* ZHYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZHYLogger.m; path = ZHYResourceKit/ZHYLogger.m; sourceTree = "<group>"; };
 		D2A005EC1EC0668B000A272C /* ZHYResourceKitDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceKitDefines.h; sourceTree = "<group>"; };
@@ -393,6 +396,7 @@
 				D285F4721EC46BED003D806A /* ZHYResourceManager+Private.h */,
 				D2CDA3871EBC7BBF0085F997 /* ZHYResourceCenter.h */,
 				D2CDA3881EBC7BBF0085F997 /* ZHYResourceCenter.m */,
+				D290E1781ECD9C6500ABB9AD /* ZHYResourceCenter+Private.h */,
 				D2AF248F1EC9AFED00113B9C /* ZHYResourceMap.h */,
 				D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */,
 				D2CDA3B41EBC85E40085F997 /* ZHYResourceNode.h */,
@@ -451,6 +455,7 @@
 				D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D285F4741EC46BED003D806A /* ZHYResourceManager+Private.h in Headers */,
 				D28F0A0C1EC16421007B1408 /* ZHYColorWrapper.h in Headers */,
+				D290E17B1ECD9C7800ABB9AD /* ZHYResourceCenter+Private.h in Headers */,
 				D204F1B11ECC393900D470ED /* NSFont+ZHYAttributes.h in Headers */,
 				D290E1761ECD92D800ABB9AD /* ZHYResourceWrapper+Private.h in Headers */,
 				D28F0A081EC161C1007B1408 /* ZHYFontWrapper.h in Headers */,
@@ -476,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2AF247C1EC950C100113B9C /* ZHYImageTransformer.h in Headers */,
+				D290E17C1ECD9C7900ABB9AD /* ZHYResourceCenter+Private.h in Headers */,
 				D28F0A531EC1B206007B1408 /* ZHYImageWrapper.h in Headers */,
 				D284C6CB1EC5959A00FB15CB /* ZHYResourceWrapper.h in Headers */,
 				D2AF24811EC983F900113B9C /* ZHYImageSearcher.h in Headers */,
