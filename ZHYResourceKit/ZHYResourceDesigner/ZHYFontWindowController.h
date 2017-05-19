@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ZHYBusinessViewController.h"
 
-@interface ZHYFontWindowController : NSWindowController
+@interface ZHYFontWindowController : NSWindowController <ZHYBusinessViewController>
 
 @property (nonatomic, strong) NSMutableArray<NSMutableDictionary<NSString *, id> *> *fontConfigurations;
 

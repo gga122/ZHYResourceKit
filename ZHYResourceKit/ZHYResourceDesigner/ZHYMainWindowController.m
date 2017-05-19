@@ -7,27 +7,22 @@
 //
 
 #import "ZHYBundleLoader.h"
-#import "ZHYResourceWindowController.h"
-
 #import "ZHYMainWindowController.h"
 
-#import "ZHYImageWindowController.h"
-#import "ZHYFontWindowController.h"
-#import "ZHYColorViewController.h"
+#import "ZHYColorTableRowView.h"
 
-@interface ZHYMainWindowController ()
+@interface ZHYMainWindowController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (nonatomic, strong) NSOpenPanel *openPanel;
 
-@property (nonatomic, strong) ZHYImageWindowController *imageWindowController;
-@property (nonatomic, strong) ZHYFontWindowController *fontWindowController;
-
-@property (nonatomic, strong) ZHYResourceWindowController *colorWindowController;
+@property (weak) IBOutlet NSOutlineView *resourceContentView;
 
 @property (nonatomic, strong) NSBundle *bundle;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<NSMutableDictionary *> *> *resourceConfigurations;
 
 @property (weak) IBOutlet NSTextField *pathLabel;
+
+@property (nonatomic, strong) NSArray<NSArray<ZHYResourceWrapper *> *> *resources;
 
 @end
 
@@ -35,14 +30,6 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification object:nil];
-}
-
-- (void)dealloc {
-    if (self.windowLoaded) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-    }
 }
 
 #pragma mark - Actions
@@ -55,32 +42,102 @@
     }
 }
 
-- (IBAction)imageButtonDidClick:(id)sender {
-    [self.imageWindowController.window makeKeyAndOrderFront:nil];
-}
-
-- (IBAction)colorButtonDidClick:(id)sender {
-    [self.colorWindowController.window makeKeyAndOrderFront:nil];
-}
-
-- (IBAction)fontButtonDidClick:(id)sender {
-    [self.fontWindowController.window makeKeyAndOrderFront:nil];
-}
-
 #pragma mark - Notifications
 
-- (void)windowWillClose:(NSNotification *)notify {
-    if (self.fontWindowController.windowLoaded && notify.object == self.fontWindowController.window) {
-        [self saveConfigurations];
-    } else if (self.imageWindowController.windowLoaded && notify.object == self.imageWindowController.window) {
-        [self saveConfigurations];
+- (IBAction)resourceContentViewDidDoubleClick:(id)sender {
+    
+}
+
+#pragma mark - NSOutlineView DataSource
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+    if (item) {
+        if ([item isKindOfClass:[NSArray class]]) {
+            NSArray *items = item;
+            return items.count;
+        } else {
+            return 0;
+        }
+    } else {
+        return self.resources.count;
     }
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(nullable id)item {
+    if (item) {
+        if ([item isKindOfClass:[NSArray class]]) {
+            NSArray *items = item;
+            return [items objectAtIndex:index];
+        } else {
+            return nil;
+        }
+    } else {
+        return [self.resources objectAtIndex:index];
+    }
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    return [item isKindOfClass:[NSArray class]];
+}
+
+- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(id)item {
+    if ([item isKindOfClass:[NSArray class]]) {
+        static NSString * const kZHYResourceGroupIdentifier = @"kZHYResourceGroupIdentifier";
+        
+        NSTableRowView *groupView = [outlineView makeViewWithIdentifier:kZHYResourceGroupIdentifier owner:self];
+        if (!groupView) {
+            groupView = [[NSTableRowView alloc] initWithFrame:NSZeroRect];
+        }
+        
+        groupView.backgroundColor = [NSColor redColor];
+        
+        return groupView;
+    } else {
+        static NSString * const kZHYColorChildIdentifier = @"kZHYColorChildIdentifier";
+        if ([item isKindOfClass:[ZHYColorWrapper class]]) {
+            ZHYColorTableRowView *childView = [outlineView makeViewWithIdentifier:kZHYColorChildIdentifier owner:self];
+            if (!childView) {
+                childView = [[ZHYColorTableRowView alloc] initWithFrame:NSZeroRect];
+            }
+            
+            childView.colorWrapper = item;
+            return childView;
+        }
+        return nil;
+    }
+}
+
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+    return nil;
 }
 
 #pragma mark - Private Methods
 
 - (void)saveConfigurations {
     [[ZHYBundleLoader defaultLoader] synchonizePlist];
+}
+
+- (void)updateResourcesAndReload {
+    NSMutableArray<NSArray *> *resources = [NSMutableArray array];
+    
+    NSArray<ZHYColorWrapper *> *allColorWrappers = [ZHYBundleLoader defaultLoader].allColorWrappers;
+    if (allColorWrappers) {
+        [resources addObject:allColorWrappers];
+    }
+    
+    NSArray<ZHYFontWrapper *> *allFontWrappers = [ZHYBundleLoader defaultLoader].allFontWrappers;
+    if (allFontWrappers) {
+        [resources addObject:allFontWrappers];
+    }
+    
+    NSArray<ZHYImageWrapper *> *allImageWrappers = [ZHYBundleLoader defaultLoader].allImageWrappers;
+    if (allImageWrappers) {
+        [resources addObject:allImageWrappers];
+    }
+    
+    self.resources = resources;
+    
+    [self.resourceContentView reloadData];
 }
 
 #pragma mark - Private Property
@@ -90,6 +147,8 @@
         _bundle = bundle;
         
         [[ZHYBundleLoader defaultLoader] loadBundle:_bundle];
+    
+        [self updateResourcesAndReload];
     }
 }
 
@@ -101,31 +160,6 @@
     }
     
     return _openPanel;
-}
-
-- (ZHYImageWindowController *)imageWindowController {
-    if (!_imageWindowController) {
-        _imageWindowController = [[ZHYImageWindowController alloc] initWithWindowNibName:@"ZHYImageWindowController"];
-    }
-    
-    return _imageWindowController;
-}
-
-- (ZHYFontWindowController *)fontWindowController {
-    if (!_fontWindowController) {
-        _fontWindowController = [[ZHYFontWindowController alloc] initWithWindowNibName:@"ZHYFontWindowController"];
-    }
-    
-    return _fontWindowController;
-}
-
-- (ZHYResourceWindowController *)colorWindowController {
-    if (!_colorWindowController) {
-        ZHYColorViewController *colorViewController = [[ZHYColorViewController alloc] init];
-        _colorWindowController = [[ZHYResourceWindowController alloc] initWithBusinessViewController:colorViewController];
-    }
-    
-    return _colorWindowController;
 }
 
 @end

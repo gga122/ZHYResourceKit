@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ZHYBusinessViewController.h"
 
-@interface ZHYImageWindowController : NSWindowController
+@interface ZHYImageWindowController : NSWindowController <ZHYBusinessViewController>
 
 @property (nonatomic, strong) NSBundle *bundle;
 
