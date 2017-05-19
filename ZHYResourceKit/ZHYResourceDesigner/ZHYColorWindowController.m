@@ -53,7 +53,7 @@
 
 - (void)setColorWrapper:(ZHYColorWrapper *)colorWrapper {
     if (_colorWrapper != colorWrapper) {
-        _colorWrapper = [colorWrapper copy];
+        _colorWrapper = colorWrapper;
         
         self.colorWell.color = _colorWrapper.color;
         

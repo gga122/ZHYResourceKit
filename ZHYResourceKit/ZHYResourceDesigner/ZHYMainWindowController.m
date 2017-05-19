@@ -9,6 +9,7 @@
 #import "ZHYBundleLoader.h"
 #import "ZHYMainWindowController.h"
 
+#import "ZHYColorWindowController.h"
 #import "ZHYColorTableRowView.h"
 
 @interface ZHYMainWindowController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<NSMutableDictionary *> *> *resourceConfigurations;
 
 @property (weak) IBOutlet NSTextField *pathLabel;
+
+@property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
 
 @property (nonatomic, strong) NSArray<NSArray<ZHYResourceWrapper *> *> *resources;
 
@@ -45,7 +48,21 @@
 #pragma mark - Notifications
 
 - (IBAction)resourceContentViewDidDoubleClick:(id)sender {
+    NSOutlineView *outlineView = sender;
+    NSInteger selectedRow = outlineView.selectedRow;
     
+    id item = [outlineView itemAtRow:selectedRow];
+    if (!item) {
+        return;
+    }
+    
+    if ([item isKindOfClass:[ZHYColorWrapper class]]) {
+        [self.window beginSheet:self.colorWindowController.window completionHandler:^(NSModalResponse returnCode) {
+            
+        }];
+//        [self.colorWindowController.window makeKeyAndOrderFront:nil];
+        self.colorWindowController.colorWrapper = item;
+    }
 }
 
 #pragma mark - NSOutlineView DataSource
@@ -160,6 +177,13 @@
     }
     
     return _openPanel;
+}
+
+- (ZHYColorWindowController *)colorWindowController {
+    if (!_colorWindowController) {
+        _colorWindowController = [[ZHYColorWindowController alloc] initWithWindowNibName:@"ZHYColorWindowController"];
+    }
+    return _colorWindowController;
 }
 
 @end

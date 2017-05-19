@@ -77,9 +77,6 @@
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
-                                    <connections>
-                                        <action selector="ssss:" target="-2" id="Xbx-Bc-50L"/>
-                                    </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yw-7z-feP">
                                     <rect key="frame" x="64" y="16" width="278" height="60"/>
