@@ -6,13 +6,14 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
+#import "ZHYBundleLoader.h"
+#import "ZHYResourceWindowController.h"
+
 #import "ZHYMainWindowController.h"
 
 #import "ZHYImageWindowController.h"
 #import "ZHYFontWindowController.h"
-#import "ZHYColorWindowController.h"
-
-#import "ZHYResourceManager+Private.h"
+#import "ZHYColorViewController.h"
 
 @interface ZHYMainWindowController ()
 
@@ -20,7 +21,8 @@
 
 @property (nonatomic, strong) ZHYImageWindowController *imageWindowController;
 @property (nonatomic, strong) ZHYFontWindowController *fontWindowController;
-@property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
+
+@property (nonatomic, strong) ZHYResourceWindowController *colorWindowController;
 
 @property (nonatomic, strong) NSBundle *bundle;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<NSMutableDictionary *> *> *resourceConfigurations;
@@ -50,30 +52,15 @@
     if (response == NSFileHandlingPanelOKButton) {
         self.pathLabel.stringValue = self.openPanel.URL.absoluteString ? : @"";
         self.bundle = [NSBundle bundleWithURL:self.openPanel.URL];
-        
-        [[ZHYResourceManager defaultManager] loadBundle:self.bundle];
     }
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ZHYResourceStruct.descriptor" ofType:@"plist"];
-    if (!path) {
-        NSError *error = [NSError errorWithDomain:@"ZHYResourceKitForDesigner" code:26 userInfo:@{@"message": @"Invalid bundle structure"}];
-        [NSAlert alertWithError:error];
-        return;
-    }
-    
-    self.resourceConfigurations = [NSMutableDictionary dictionaryWithContentsOfFile:path];
 }
 
 - (IBAction)imageButtonDidClick:(id)sender {
-    self.imageWindowController.bundle = self.bundle;
     [self.imageWindowController.window makeKeyAndOrderFront:nil];
 }
 
 - (IBAction)colorButtonDidClick:(id)sender {
     [self.colorWindowController.window makeKeyAndOrderFront:nil];
-    
-    NSArray *attributes = [self.resourceConfigurations objectForKey:@"colorResource"];
-    self.colorWindowController.attributes = attributes;
 }
 
 - (IBAction)fontButtonDidClick:(id)sender {
@@ -87,21 +74,24 @@
         [self saveConfigurations];
     } else if (self.imageWindowController.windowLoaded && notify.object == self.imageWindowController.window) {
         [self saveConfigurations];
-    } else if (self.colorWindowController.windowLoaded && notify.object == self.colorWindowController.window) {
-        [self saveConfigurations];
     }
 }
 
 #pragma mark - Private Methods
 
 - (void)saveConfigurations {
-    if (self.bundle && self.resourceConfigurations) {
-        NSString *path = [self.bundle.resourcePath stringByAppendingPathComponent:@"ZHYResourceStruct.descriptor.plist"];
-        [self.resourceConfigurations writeToFile:path atomically:YES];
-    }
+    [[ZHYBundleLoader defaultLoader] synchonizePlist];
 }
 
 #pragma mark - Private Property
+
+- (void)setBundle:(NSBundle *)bundle {
+    if (_bundle != bundle) {
+        _bundle = bundle;
+        
+        [[ZHYBundleLoader defaultLoader] loadBundle:_bundle];
+    }
+}
 
 - (NSOpenPanel *)openPanel {
     if (!_openPanel) {
@@ -129,9 +119,10 @@
     return _fontWindowController;
 }
 
-- (ZHYColorWindowController *)colorWindowController {
+- (ZHYResourceWindowController *)colorWindowController {
     if (!_colorWindowController) {
-        _colorWindowController = [[ZHYColorWindowController alloc] initWithWindowNibName:@"ZHYColorWindowController"];
+        ZHYColorViewController *colorViewController = [[ZHYColorViewController alloc] init];
+        _colorWindowController = [[ZHYResourceWindowController alloc] initWithBusinessViewController:colorViewController];
     }
     
     return _colorWindowController;

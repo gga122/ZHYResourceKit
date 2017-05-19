@@ -1,13 +1,14 @@
 //
-//  ZHYColorWindowController.m
+//  ZHYColorViewController.m
 //  ZHYResourceKit
 //
 //  Created by MickyZhu on 10/5/2017.
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "NSColor+ZHYHex.h"
-#import "ZHYColorWindowController.h"
+#import "ZHYColorViewController.h"
+#import "ZHYBundleLoader.h"
+#import "ZHYColorWrapper.h"
 
 @interface ZHYColorView : NSView
 
@@ -34,7 +35,7 @@
 
 @end
 
-@interface ZHYColorWindowController () <NSTableViewDelegate, NSTableViewDataSource, NSControlTextEditingDelegate>
+@interface ZHYColorViewController () <NSTableViewDelegate, NSTableViewDataSource, NSControlTextEditingDelegate>
 
 @property (weak) IBOutlet NSTableView *colorTableView;
 
@@ -44,18 +45,18 @@
 
 @property (weak) IBOutlet NSColorWell *colorWell;
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *attribute;
+@property (nonatomic, strong) NSArray<ZHYColorWrapper *> *allColorWrapper;
+
+@property (nonatomic, strong) ZHYColorWrapper *currentColorWrapper;
 
 @end
 
-@implementation ZHYColorWindowController
+@implementation ZHYColorViewController
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
+- (void)awakeFromNib {
+    [super awakeFromNib];
     
-    if (self.attributes.count > 0) {
-        [self.colorTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
-    }
+    self.allColorWrapper = [ZHYBundleLoader defaultLoader].allColorWrappers;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.nameTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.colorTextField];
@@ -63,7 +64,7 @@
 }
 
 - (void)dealloc {
-    if (self.windowLoaded) {
+    if (self.viewLoaded) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
@@ -87,6 +88,8 @@
     [hex appendFormat:@"%02x%02x%02x", (int)red, (int)green, (int)blue];
     
     self.colorTextField.stringValue = [hex uppercaseString];
+    
+    
 }
 
 #pragma mark - Notifications
@@ -98,14 +101,14 @@
 #pragma mark - NSTableView Datasource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return self.attributes.count;
+    return self.allColorWrapper.count;
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
     static NSString * const textIdentifier = @"textIdentifier";
     static NSString * const colorIdentifier = @"colorIdentifier";
     
-    NSDictionary<NSString *, NSString *> *config = [self.attributes objectAtIndex:row];
+    ZHYColorWrapper *colorWrapper = [self.allColorWrapper objectAtIndex:row];
     
     if ([tableColumn.title isEqualToString:@"name"] || [tableColumn.title isEqualToString:@"detail"]) {
         NSTextField *textField = [tableView makeViewWithIdentifier:textIdentifier owner:self];
@@ -117,20 +120,14 @@
             textField.drawsBackground = NO;
         }
         
-        textField.stringValue = [config objectForKey:tableColumn.title] ? : @"";
+        textField.stringValue = (colorWrapper.name ? : @"");
         return textField;
     } else if ([tableColumn.title isEqualToString:@"color"]) {
         ZHYColorView *colorView = [tableView makeViewWithIdentifier:colorIdentifier owner:self];
         if (!colorView) {
             colorView = [[ZHYColorView alloc] initWithFrame:NSZeroRect];
         }
-        
-        NSString *hex = [config objectForKey:tableColumn.title];
-        NSColor *color = [NSColor colorWithHexARGB:hex];
-        if (!color) {
-            color = [NSColor whiteColor];
-        }
-        colorView.color = color;
+        colorView.color = colorWrapper.color;
         
         return colorView;
     }
@@ -147,30 +144,32 @@
     if (notification.object == self.colorTableView) {
         NSInteger selectedRow = self.colorTableView.selectedRow;
         
-        NSMutableDictionary<NSString *, NSString *> *config = [self.attributes objectAtIndex:selectedRow];
-        self.attribute = config;
-    }
-}
-
-#pragma mark - Public Property
-
-- (void)setAttributes:(NSArray<NSMutableDictionary<NSString *,NSString *> *> *)attributes {
-    if (_attributes != attributes) {
-        _attributes = attributes;
-        
-        [self.colorTableView reloadData];
+        ZHYColorWrapper *colorWrapper = [self.allColorWrapper objectAtIndex:selectedRow];
+        self.currentColorWrapper = colorWrapper;
     }
 }
 
 #pragma mark - Private Property
 
-- (void)setAttribute:(NSMutableDictionary<NSString *,NSString *> *)attribute {
-    if (_attribute != attribute) {
-        _attribute = attribute;
+- (void)setAllColorWrapper:(NSArray<ZHYColorWrapper *> *)allColorWrapper {
+    if (_allColorWrapper != allColorWrapper) {
+        _allColorWrapper = allColorWrapper;
         
-        self.nameTextField.stringValue = [_attribute objectForKey:@"name"] ? : @"";
-        self.colorTextField.stringValue = [_attribute objectForKey:@"color"] ? : @"";
-        self.detailTextField.stringValue = [_attribute objectForKey:@"detail"] ? : @"";
+        [self.colorTableView reloadData];
+    }
+}
+
+- (void)setCurrentColorWrapper:(ZHYColorWrapper *)currentColorWrapper {
+    if (_currentColorWrapper != currentColorWrapper) {
+        _currentColorWrapper = currentColorWrapper;
+        
+        ZHYColorInfo *info = _currentColorWrapper.resourceInfo;
+        
+        self.nameTextField.stringValue = (info.name ? : @"");
+        self.colorTextField.stringValue = (info.hex ? : @"");
+        self.colorTextField.stringValue = (info.detail ? : @"");
+        
+        self.colorWell.color = _currentColorWrapper.color;
     }
 }
 
