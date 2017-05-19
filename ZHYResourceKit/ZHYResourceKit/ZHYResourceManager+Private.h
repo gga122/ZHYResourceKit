@@ -9,6 +9,10 @@
 #import "ZHYResourceManager.h"
 #import "ZHYResourceCenter.h"
 
+@class ZHYColorWrapper;
+@class ZHYImageWrapper;
+@class ZHYFontWrapper;
+
 @interface ZHYResourceManager (Private)
 
 @property (nonatomic, strong, readonly) ZHYResourceCenter *currentCenter;

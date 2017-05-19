@@ -35,10 +35,11 @@ NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer
 
 - (nullable ZHYFont *)transformedValue:(nullable NSDictionary *)info {
     ZHYFont *font = [ZHYFont fontWithAttributes:info];
+    return font;
 }
 
 - (nullable NSDictionary *)reverseTransformedValue:(nullable ZHYFont *)font {
-    return nil;
+    return font.attributes;
 }
 
 @end

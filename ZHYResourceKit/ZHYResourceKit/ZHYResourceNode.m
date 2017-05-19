@@ -8,7 +8,6 @@
 
 #import "ZHYLogger.h"
 #import "ZHYResourceNode+Private.h"
-#import "ZHYResourceWrapper+Private.h"
 #import "ZHYResourceMap.h"
 
 @interface ZHYResourceNode ()
@@ -167,6 +166,11 @@
 #pragma mark - Public Property
 
 - (NSArray<ZHYResourceWrapper *> *)allResourceWrappers {
+    if (!self.didAwake) {   // lazy load resource infos
+        [self loadResources];
+        self.didAwake = YES;
+    }
+    
     if (self.resources.count == 0) {
         return nil;
     }

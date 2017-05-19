@@ -7,11 +7,11 @@
 //
 
 #import "ZHYLogger.h"
-#import "ZHYResourceWrapper+Private.h"
+#import "ZHYResourceWrapper.h"
 
 @interface ZHYResourceWrapper ()
 
-@property (nonatomic, strong) id<ZHYResourceInfo> resourceInfo;
+@property (nonatomic, copy) id<ZHYResourceInfo> resourceInfo;
 
 @end
 
