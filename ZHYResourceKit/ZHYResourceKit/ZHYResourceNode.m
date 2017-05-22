@@ -12,7 +12,6 @@
 
 @interface ZHYResourceNode ()
 
-@property (nonatomic, strong) NSMutableArray<ZHYResourceWrapper *> *resources;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceWrapper *> *resourcesMap;
 
 @property (nonatomic, assign) Class wrapperClass;
@@ -112,7 +111,6 @@
                 continue;
             }
             
-            [self.resources addObject:resourceWrapper];
             [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
         }
     }
@@ -126,7 +124,6 @@
     }
     
     ZHYResourceWrapper *resourceWrapper = [[self.wrapperClass alloc] initWithResourceInfo:resourceInfo];
-    [self.resources addObject:resourceWrapper];
     [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
     
     return YES;
@@ -138,16 +135,17 @@
     }
     
     ZHYResourceWrapper *resourceWrapper = [[self.wrapperClass alloc] initWithResourceInfo:resourceInfo];
-    [self.resources removeObject:resourceWrapper];
     [self.resourcesMap removeObjectForKey:resourceWrapper.name];
     
     return YES;
 }
 
 - (NSArray<NSDictionary<NSString *, id> *> *)archiveToPlist {
-    NSMutableArray *plist = [NSMutableArray arrayWithCapacity:self.resources.count];
+    NSArray<ZHYResourceWrapper *> *allResourceWrappers = self.allResourceWrappers;
     
-    for (ZHYResourceWrapper *aWrapper in self.resources) {
+    NSMutableArray *plist = [NSMutableArray arrayWithCapacity:allResourceWrappers.count];
+    
+    for (ZHYResourceWrapper *aWrapper in allResourceWrappers) {
         @autoreleasepool {
             id<ZHYResourceInfo> resourceInfo = aWrapper.resourceInfo;
             NSDictionary *infoPlist = [resourceInfo encodeToPlist];
@@ -171,21 +169,17 @@
         self.didAwake = YES;
     }
     
-    if (self.resources.count == 0) {
-        return nil;
-    }
-    
-    NSArray *allResourceWrappers = [NSArray arrayWithArray:self.resources];
-    return allResourceWrappers;
+    return self.resourcesMap.allValues;
 }
 
 - (NSArray *)allResources {
-    if (self.resources.count == 0) {
+    NSArray<ZHYResourceWrapper *> *allResourceWrappers = self.allResourceWrappers;
+    if (allResourceWrappers.count == 0) {
         return nil;
     }
     
-    NSMutableArray *allResources = [NSMutableArray arrayWithCapacity:self.resources.count];
-    for (ZHYResourceWrapper *aWrapper in self.resources) {
+    NSMutableArray *allResources = [NSMutableArray arrayWithCapacity:allResourceWrappers.count];
+    for (ZHYResourceWrapper *aWrapper in allResourceWrappers) {
         @autoreleasepool {
             id resource = aWrapper.resource;
             if (!resource) {
@@ -201,18 +195,6 @@
 }
 
 #pragma mark - Private Property
-
-- (NSMutableArray *)resources {
-    if (!_metaInfos) {
-        return nil;
-    }
-    
-    if (!_resources) {
-        _resources = [NSMutableArray array];
-    }
-    
-    return _resources;
-}
 
 - (NSMutableDictionary *)resourcesMap {
     if (!_metaInfos) {
