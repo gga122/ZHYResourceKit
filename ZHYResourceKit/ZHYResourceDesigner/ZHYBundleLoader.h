@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ZHYResourceKitDefines.h"
 #import "ZHYImageWrapper.h"
 #import "ZHYFontWrapper.h"
 #import "ZHYColorWrapper.h"

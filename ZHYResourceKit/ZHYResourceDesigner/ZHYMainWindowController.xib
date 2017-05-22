@@ -63,9 +63,6 @@
                                 <constraint firstAttribute="bottom" secondItem="3GA-w1-ONQ" secondAttribute="bottom" constant="10" id="y8g-5O-BOp"/>
                             </constraints>
                         </view>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="600" id="7wG-nF-Cq6"/>
-                        </constraints>
                     </box>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-is-fCs">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="236"/>

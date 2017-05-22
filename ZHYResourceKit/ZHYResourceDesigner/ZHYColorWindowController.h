@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) ZHYColorWrapper *colorWrapper;
 
+@property (nonatomic, copy, readonly) ZHYColorWrapper *currentColorWrapper;
+
 @end

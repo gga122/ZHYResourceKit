@@ -56,11 +56,16 @@
         return;
     }
     
+    __weak typeof(self) weakSelf = self;
+    
     if ([item isKindOfClass:[ZHYColorWrapper class]]) {
         [self.window beginSheet:self.colorWindowController.window completionHandler:^(NSModalResponse returnCode) {
-            
+            if (returnCode == NSModalResponseOK) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                
+                [strongSelf updateResourcesAndReload];
+            }
         }];
-//        [self.colorWindowController.window makeKeyAndOrderFront:nil];
         self.colorWindowController.colorWrapper = item;
     }
 }
@@ -119,6 +124,8 @@
             
             childView.colorWrapper = item;
             return childView;
+        } else if ([item isKindOfClass:[ZHYFontWrapper class]]) {
+            
         }
         return nil;
     }
