@@ -24,14 +24,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="900" height="480"/>
+            <rect key="contentRect" x="196" y="240" width="400" height="422"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="900" height="480"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="422"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box title="Attributes" translatesAutoresizingMaskIntoConstraints="NO" id="jnP-rC-g7Q">
-                        <rect key="frame" x="517" y="275" width="366" height="193"/>
+                        <rect key="frame" x="17" y="217" width="366" height="193"/>
                         <view key="contentView" id="dLl-6N-dKX">
                             <rect key="frame" x="2" y="2" width="362" height="176"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,7 @@
                                 </textField>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csb-qJ-2io">
                                     <rect key="frame" x="64" y="96" width="201" height="22"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Pnu-9Z-N5R">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="Pnu-9Z-N5R">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +76,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XYE-ph-6FI">
+                                <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XYE-ph-6FI">
                                     <rect key="frame" x="274" y="90" width="74" height="32"/>
                                     <buttonCell key="cell" type="push" title="panel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ALJ-A8-FFK">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -127,13 +127,13 @@
                         </constraints>
                     </box>
                     <box title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="j6j-RF-Wm6">
-                        <rect key="frame" x="517" y="8" width="366" height="259"/>
+                        <rect key="frame" x="17" y="77" width="366" height="132"/>
                         <view key="contentView" id="JpP-C0-keh">
-                            <rect key="frame" x="2" y="2" width="362" height="242"/>
+                            <rect key="frame" x="2" y="2" width="362" height="115"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR0-45-OAQ">
-                                    <rect key="frame" x="8" y="113" width="346" height="17"/>
+                                    <rect key="frame" x="8" y="49" width="346" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="这是一段测试的文本,For Test only.测试1，2，3，4，5，6，7，8，9，10" id="tRs-jy-KEB">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -151,20 +151,52 @@
                             </constraints>
                         </view>
                     </box>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MBf-MW-nUk">
+                        <rect key="frame" x="304" y="13" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Wbc-RO-Voo">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="okButtonDidClick:" target="-2" id="wNa-We-eVx"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BNU-2D-dOS">
+                        <rect key="frame" x="222" y="13" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mWM-l3-D4l">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancelButtonDidClick:" target="-2" id="4st-Gn-a9e"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jnP-rC-g7Q" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="12" id="20X-y3-O9N"/>
-                    <constraint firstAttribute="bottom" secondItem="j6j-RF-Wm6" secondAttribute="bottom" constant="12" id="EQj-y3-QC2"/>
+                    <constraint firstItem="MBf-MW-nUk" firstAttribute="centerY" secondItem="BNU-2D-dOS" secondAttribute="centerY" id="JsR-bm-xjU"/>
+                    <constraint firstItem="jnP-rC-g7Q" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="Mw4-oQ-OsD"/>
+                    <constraint firstItem="MBf-MW-nUk" firstAttribute="leading" secondItem="BNU-2D-dOS" secondAttribute="trailing" constant="12" id="OVv-fE-Wfp"/>
                     <constraint firstItem="j6j-RF-Wm6" firstAttribute="top" secondItem="jnP-rC-g7Q" secondAttribute="bottom" constant="12" id="P3M-n4-nqD"/>
                     <constraint firstItem="j6j-RF-Wm6" firstAttribute="leading" secondItem="jnP-rC-g7Q" secondAttribute="leading" id="Rm6-CH-ZOU"/>
+                    <constraint firstItem="MBf-MW-nUk" firstAttribute="trailing" secondItem="j6j-RF-Wm6" secondAttribute="trailing" id="Thb-c3-qwB"/>
+                    <constraint firstAttribute="bottom" secondItem="MBf-MW-nUk" secondAttribute="bottom" constant="20" id="aji-4h-D1s"/>
                     <constraint firstItem="j6j-RF-Wm6" firstAttribute="trailing" secondItem="jnP-rC-g7Q" secondAttribute="trailing" id="kYR-gR-u8T"/>
                     <constraint firstAttribute="trailing" secondItem="jnP-rC-g7Q" secondAttribute="trailing" constant="20" id="lT1-8D-dYn"/>
+                    <constraint firstItem="MBf-MW-nUk" firstAttribute="top" secondItem="j6j-RF-Wm6" secondAttribute="bottom" constant="40" id="vk7-BM-xpp"/>
+                    <constraint firstItem="MBf-MW-nUk" firstAttribute="width" secondItem="BNU-2D-dOS" secondAttribute="width" id="yZ3-2N-Pkj"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="117" y="117"/>
+            <point key="canvasLocation" x="117" y="146"/>
         </window>
     </objects>
 </document>

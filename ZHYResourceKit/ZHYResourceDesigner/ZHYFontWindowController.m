@@ -19,9 +19,6 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
 
 @property (weak) IBOutlet NSTextField *testTextLabel;
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, id> *currentFontConfiguration;
-@property (nonatomic, copy) NSFont *currentFont;
-
 @end
 
 @implementation ZHYFontWindowController
@@ -32,51 +29,34 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
 
 #pragma mark - Actions
 
+- (IBAction)okButtonDidClick:(id)sender {
+    if (self.window.isSheet) {
+        
+        [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseOK];
+    }
+}
+
+- (IBAction)cancelButtonDidClick:(id)sender {
+    if (self.window.isSheet) {
+        [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseCancel];
+    }
+}
+
 - (IBAction)fontPanelButtonDidClick:(id)sender {
     [[NSFontManager sharedFontManager] setTarget:self];
     [[NSFontManager sharedFontManager] orderFrontFontPanel:self];
 }
 
 - (void)changeFont:(id)sender {
-    NSFont *font = self.currentFont;
-    if (!font) {
-        font = [NSFont systemFontOfSize:12.0];
-    }
-    
-    self.currentFont = [sender convertFont:font];
+
 }
 
 #pragma mark - Public Property
 
-- (void)setFontConfigurations:(NSMutableArray<NSMutableDictionary<NSString *,id> *> *)fontConfigurations {
-    if (_fontConfigurations != fontConfigurations) {
-        _fontConfigurations = fontConfigurations;
-    }
-}
+
 
 #pragma mark - Private Property
 
-- (void)setCurrentFontConfiguration:(NSMutableDictionary<NSString *,id> *)currentFontConfiguration {
-    if (_currentFontConfiguration != currentFontConfiguration) {
-        _currentFontConfiguration = currentFontConfiguration;
-    }
-}
 
-- (void)setCurrentFont:(NSFont *)currentFont {
-    if (_currentFont != currentFont) {
-        _currentFont = [currentFont copy];
-        
-        if (_currentFont) {
-            NSString *fontInfo = [NSString stringWithFormat:@"%@ %.1f", _currentFont.fontName, _currentFont.pointSize];
-            self.fontTextField.stringValue = fontInfo;
-            
-            NSDictionary *attributes = @{NSFontAttributeName: _currentFont};
-            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:kZHYResouceTestText attributes:attributes];
-            self.testTextLabel.attributedStringValue = attributedText;
-        } else {
-            self.fontTextField.stringValue = @"";
-        }
-    }
-}
 
 @end

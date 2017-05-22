@@ -11,6 +11,4 @@
 
 @interface ZHYFontWindowController : NSWindowController
 
-@property (nonatomic, strong) NSMutableArray<NSMutableDictionary<NSString *, id> *> *fontConfigurations;
-
 @end
