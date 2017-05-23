@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSTextField *nameLabel;
 @property (nonatomic, strong) NSTextField *attributesLabel;
-@property (nonatomic, strong) NSTextField *effectLabel;
 @property (nonatomic, strong) NSTextField *detailLabel;
 
 @end
@@ -24,7 +23,6 @@
     if (self) {
         [self addSubview:self.nameLabel];
         [self addSubview:self.attributesLabel];
-        [self addSubview:self.effectLabel];
         [self addSubview:self.detailLabel];
         
         [self layoutSubViewsWithFrame:frameRect];
@@ -57,24 +55,12 @@
         self.attributesLabel.frame = attributesFrame;
         return;
     }
-    CGFloat attributesWidth = 120;
+    CGFloat attributesWidth = 160;
     NSRect attributesFrame = NSMakeRect(offsetX, 0, attributesWidth, totalHeight);
     offsetX += attributesWidth;
     totalWidth -= attributesWidth;
     self.attributesLabel.frame = attributesFrame;
-    
-    NSSize effectSize = self.effectLabel.attributedStringValue.size;
-    if (effectSize.width > totalWidth) {
-        NSRect effectFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
-        self.effectLabel.frame = effectFrame;
-        return;
-    }
-    CGFloat effectWidth = 60;
-    NSRect effectFrame = NSMakeRect(offsetX, 0, effectWidth, totalHeight);
-    offsetX += effectWidth;
-    totalWidth -= effectWidth;
-    self.effectLabel.frame = effectFrame;
-    
+        
     NSRect detailFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
     self.detailLabel.frame = detailFrame;
 }
@@ -89,10 +75,12 @@
     if (_fontWrapper != fontWrapper) {
         _fontWrapper = fontWrapper;
         
+        NSFont *font = _fontWrapper.font;
+        NSString *attributes = [NSString stringWithFormat:@"%@ %.1f", font.fontName, font.pointSize];
+        self.attributesLabel.stringValue = attributes;
+        
         ZHYFontInfo *info = _fontWrapper.resourceInfo;
         self.nameLabel.stringValue = (info.name ? : @"");
-        
-        
         self.detailLabel.stringValue = (info.detail ? : @"");
         
         [self layoutSubViewsWithFrame:self.frame];
@@ -121,18 +109,6 @@
     }
     
     return _attributesLabel;
-}
-
-- (NSTextField *)effectLabel {
-    if (!_effectLabel) {
-        _effectLabel = [[NSTextField alloc] initWithFrame:NSZeroRect];
-        _effectLabel.selectable = NO;
-        _effectLabel.editable =  NO;
-        _effectLabel.bordered = NO;
-        _effectLabel.drawsBackground = NO;
-    }
-    
-    return _effectLabel;
 }
 
 - (NSTextField *)detailLabel {

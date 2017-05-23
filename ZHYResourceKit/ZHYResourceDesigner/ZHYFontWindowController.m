@@ -35,7 +35,7 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];t
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)resetState {
