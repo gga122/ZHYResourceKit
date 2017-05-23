@@ -84,9 +84,9 @@
     if (_colorWrapper != colorWrapper) {
         _colorWrapper = colorWrapper;
     
-        self.colorWell.color = colorWrapper.color;
+        self.colorWell.color = _colorWrapper.color;
         
-        ZHYColorInfo *colorInfo = colorWrapper.resourceInfo;
+        ZHYColorInfo *colorInfo = _colorWrapper.resourceInfo;
         
         self.nameTextField.stringValue = (colorInfo.name ? : @"");
         self.colorTextField.stringValue = (colorInfo.hex ? : @"");

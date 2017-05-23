@@ -83,28 +83,28 @@
     
     NSSize hexSize = self.hexLabel.attributedStringValue.size;
     if (hexSize.width >= totalWidth) {
-        NSRect hexFrame = NSMakeRect(offsetX, 0, totalWidth, NSHeight(frame));
+        NSRect hexFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
         self.hexLabel.frame = hexFrame;
         return;
     }
     CGFloat hexWidth = 80;
-    NSRect hexFrame = NSMakeRect(offsetX, 0, hexWidth, NSHeight(frame));
+    NSRect hexFrame = NSMakeRect(offsetX, 0, hexWidth, totalHeight);
     offsetX += hexWidth;
     totalWidth -= hexWidth;
     self.hexLabel.frame = hexFrame;
     
     CGFloat colorWidth = 40;
     if (colorWidth >= totalWidth) {
-        NSRect colorFrame = NSMakeRect(offsetX, 0, totalWidth, NSHeight(frame));
+        NSRect colorFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
         self.colorView.frame = colorFrame;
         return;
     }
-    NSRect colorFrame = NSMakeRect(offsetX, 0, colorWidth, NSHeight(frame));
+    NSRect colorFrame = NSMakeRect(offsetX, 0, colorWidth, totalHeight);
     offsetX += colorWidth;
     totalWidth -= colorWidth;
     self.colorView.frame = colorFrame;
     
-    NSRect detailFrame = NSMakeRect(offsetX, 0, totalWidth, NSHeight(frame));
+    NSRect detailFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
     self.detailLabel.frame = detailFrame;
 }
 

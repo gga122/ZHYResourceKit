@@ -12,6 +12,9 @@
 #import "ZHYColorWindowController.h"
 #import "ZHYColorTableRowView.h"
 
+#import "ZHYFontWindowController.h"
+#import "ZHYFontTableRowView.h"
+
 @interface ZHYMainWindowController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (nonatomic, strong) NSOpenPanel *openPanel;
@@ -24,6 +27,8 @@
 @property (weak) IBOutlet NSTextField *pathLabel;
 
 @property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
+
+@property (nonatomic, strong) ZHYFontWindowController *fontWindowController;
 
 @property (nonatomic, strong) NSArray<NSArray<ZHYResourceWrapper *> *> *resources;
 
@@ -62,11 +67,16 @@
         [self.window beginSheet:self.colorWindowController.window completionHandler:^(NSModalResponse returnCode) {
             if (returnCode == NSModalResponseOK) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
-                
                 [strongSelf updateResourcesAndReload];
             }
         }];
         self.colorWindowController.colorWrapper = item;
+    } else if ([item isKindOfClass:[ZHYFontWrapper class]]) {
+        [self.window beginSheet:self.fontWindowController.window completionHandler:^(NSModalResponse returnCode) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf updateResourcesAndReload];
+        }];
+        self.fontWindowController.fontWrapper = item;
     }
 }
 
@@ -115,8 +125,9 @@
         
         return groupView;
     } else {
-        static NSString * const kZHYColorChildIdentifier = @"kZHYColorChildIdentifier";
         if ([item isKindOfClass:[ZHYColorWrapper class]]) {
+            static NSString * const kZHYColorChildIdentifier = @"kZHYColorChildIdentifier";
+            
             ZHYColorTableRowView *childView = [outlineView makeViewWithIdentifier:kZHYColorChildIdentifier owner:self];
             if (!childView) {
                 childView = [[ZHYColorTableRowView alloc] initWithFrame:NSZeroRect];
@@ -125,7 +136,16 @@
             childView.colorWrapper = item;
             return childView;
         } else if ([item isKindOfClass:[ZHYFontWrapper class]]) {
+            static NSString * const kZHYFontChildIdentifier = @"kZHYFontChildIdentifier";
             
+            ZHYFontTableRowView *childView = [outlineView makeViewWithIdentifier:kZHYFontChildIdentifier owner:self];
+            if (!childView) {
+                childView = [[ZHYFontTableRowView alloc] initWithFrame:NSZeroRect];
+            }
+            
+            childView.fontWrapper = item;
+            
+            return childView;
         }
         return nil;
     }
@@ -191,6 +211,13 @@
         _colorWindowController = [[ZHYColorWindowController alloc] initWithWindowNibName:@"ZHYColorWindowController"];
     }
     return _colorWindowController;
+}
+
+- (ZHYFontWindowController *)fontWindowController {
+    if (!_fontWindowController) {
+        _fontWindowController = [[ZHYFontWindowController alloc] initWithWindowNibName:@"ZHYFontWindowController"];
+    }
+    return _fontWindowController;
 }
 
 @end

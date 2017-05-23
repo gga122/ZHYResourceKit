@@ -7,8 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ZHYBusinessViewController.h"
+#import "ZHYFontWrapper.h"
 
 @interface ZHYFontWindowController : NSWindowController
+
+@property (nonatomic, strong) ZHYFontWrapper *fontWrapper;
+
+@property (nonatomic, copy, readonly) ZHYFontWrapper *currentFontWrapper;
 
 @end

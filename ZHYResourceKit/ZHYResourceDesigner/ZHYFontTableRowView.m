@@ -34,7 +34,49 @@
 }
 
 - (void)layoutSubViewsWithFrame:(NSRect)frame {
+    CGFloat totalWidth = NSWidth(frame);
+    CGFloat totalHeight = NSHeight(frame);
     
+    CGFloat offsetX = 0;
+    
+    NSSize nameSize = self.nameLabel.attributedStringValue.size;
+    if (nameSize.width >= totalWidth) {
+        NSRect nameFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
+        self.nameLabel.frame = nameFrame;
+        return;
+    }
+    CGFloat nameWidth = 60;
+    NSRect nameFrame = NSMakeRect(offsetX, 0, nameWidth, totalHeight);
+    offsetX += nameWidth;
+    totalWidth -= nameWidth;
+    self.nameLabel.frame = nameFrame;
+    
+    NSSize attributesSize = self.attributesLabel.attributedStringValue.size;
+    if (attributesSize.width >= totalWidth) {
+        NSRect attributesFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
+        self.attributesLabel.frame = attributesFrame;
+        return;
+    }
+    CGFloat attributesWidth = 120;
+    NSRect attributesFrame = NSMakeRect(offsetX, 0, attributesWidth, totalHeight);
+    offsetX += attributesWidth;
+    totalWidth -= attributesWidth;
+    self.attributesLabel.frame = attributesFrame;
+    
+    NSSize effectSize = self.effectLabel.attributedStringValue.size;
+    if (effectSize.width > totalWidth) {
+        NSRect effectFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
+        self.effectLabel.frame = effectFrame;
+        return;
+    }
+    CGFloat effectWidth = 60;
+    NSRect effectFrame = NSMakeRect(offsetX, 0, effectWidth, totalHeight);
+    offsetX += effectWidth;
+    totalWidth -= effectWidth;
+    self.effectLabel.frame = effectFrame;
+    
+    NSRect detailFrame = NSMakeRect(offsetX, 0, totalWidth, totalHeight);
+    self.detailLabel.frame = detailFrame;
 }
 
 - (void)setFrame:(NSRect)frame {

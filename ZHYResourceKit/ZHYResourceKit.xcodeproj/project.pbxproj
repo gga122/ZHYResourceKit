@@ -97,6 +97,9 @@
 		D2AF249A1ECAF3F900113B9C /* ZHYResourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */; };
 		D2AF249B1ECAF40300113B9C /* ZHYResourceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */; };
 		D2AF7EB01ED2C56400BA2F13 /* ZHYFontTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF7EAF1ED2C56400BA2F13 /* ZHYFontTableRowView.m */; };
+		D2AF7EB11ED2EBBB00BA2F13 /* ZHYFontWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */; };
+		D2AF7EB21ED2EBBC00BA2F13 /* ZHYFontWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */; };
+		D2AF7EB31ED2EBC400BA2F13 /* ZHYFontTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6DA1EC5B70200FB15CB /* ZHYFontTransformer.m */; };
 		D2CDA3731EBC71900085F997 /* ZHYResourceKitForMac.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3711EBC71900085F997 /* ZHYResourceKitForMac.h */; };
 		D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA37C1EBC72150085F997 /* ZHYResourceKitForiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2CDA3851EBC7B290085F997 /* ZHYResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CDA3831EBC7B290085F997 /* ZHYResourceManager.h */; };
@@ -727,6 +730,7 @@
 				D2AF24881EC991B300113B9C /* ZHYImageTransformer.m in Sources */,
 				D28F0A701EC2C2F2007B1408 /* main.m in Sources */,
 				D2AF24861EC9919B00113B9C /* ZHYResourceWrapper.m in Sources */,
+				D2AF7EB31ED2EBC400BA2F13 /* ZHYFontTransformer.m in Sources */,
 				D2AF249B1ECAF40300113B9C /* ZHYResourceMap.m in Sources */,
 				D28F0A6D1EC2C2F2007B1408 /* AppDelegate.m in Sources */,
 				D28F0AA81EC30854007B1408 /* ZHYLogger.m in Sources */,
@@ -739,6 +743,7 @@
 				D2AF248D1EC991C100113B9C /* ZHYResourceManager.m in Sources */,
 				D290E1671ECD7EDC00ABB9AD /* ZHYBundleLoader.m in Sources */,
 				D2AF7EB01ED2C56400BA2F13 /* ZHYFontTableRowView.m in Sources */,
+				D2AF7EB11ED2EBBB00BA2F13 /* ZHYFontWrapper.m in Sources */,
 				D2AF24831EC98D3100113B9C /* ZHYImageSearcher.m in Sources */,
 				D28F0AAD1EC3155B007B1408 /* ZHYImageWindowController.m in Sources */,
 				D2AF249A1ECAF3F900113B9C /* ZHYResourceNode.m in Sources */,
@@ -775,6 +780,7 @@
 				D2AF24991ECAF3F900113B9C /* ZHYResourceNode.m in Sources */,
 				D28F0A1E1EC1725B007B1408 /* UIColor+ZHYHex.m in Sources */,
 				D2AF247B1EC950A300113B9C /* ZHYImageTransformer.m in Sources */,
+				D2AF7EB21ED2EBBC00BA2F13 /* ZHYFontWrapper.m in Sources */,
 				D284C6DE1EC5B76400FB15CB /* ZHYFontTransformer.m in Sources */,
 				D284C6D21EC5A4F100FB15CB /* ZHYColorWrapper.m in Sources */,
 				D284C6CA1EC5959700FB15CB /* ZHYResourceWrapper.m in Sources */,
