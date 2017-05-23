@@ -29,6 +29,13 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.nameTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.detailTextField];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];t
 }
 
 - (void)resetState {

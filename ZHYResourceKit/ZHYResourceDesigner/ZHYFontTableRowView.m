@@ -93,7 +93,7 @@
         self.nameLabel.stringValue = (info.name ? : @"");
         
         
-        self.detailLabel.stringValue = (info.name ? : @"");
+        self.detailLabel.stringValue = (info.detail ? : @"");
         
         [self layoutSubViewsWithFrame:self.frame];
     }
