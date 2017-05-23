@@ -27,6 +27,14 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.nameTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.colorTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlTextDidChange:) name:NSControlTextDidChangeNotification object:self.detailTextField];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)resetStates {
@@ -34,6 +42,16 @@
     self.colorTextField.stringValue = @"";
     self.detailTextField.stringValue = @"";
     self.colorInfo = nil;
+}
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+    if (obj.object == self.nameTextField) {
+        self.colorInfo.name = self.nameTextField.stringValue;
+    } else if (obj.object == self.colorTextField) {
+        self.colorInfo.hex = self.colorTextField.stringValue;
+    } else if (obj.object == self.detailTextField) {
+        self.colorInfo.detail = self.detailTextField.stringValue;
+    }
 }
 
 - (IBAction)okButtonDidClick:(id)sender {
