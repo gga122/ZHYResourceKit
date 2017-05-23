@@ -76,7 +76,29 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
     }
     
     NSFont *font = [sender convertFont:oldFont];
+    [self updateFontDescription:font];
+    
     self.fontInfo.descriptor = font.attributes;
+}
+
+#pragma mark - Private Methods
+
+- (void)updateFontDescription:(NSFont *)font {
+    NSString *fontName = font.fontName;
+    CGFloat pointSize = font.pointSize;
+    
+    NSString *description = [NSString stringWithFormat:@"%@ %.1f", fontName, pointSize];
+    self.fontTextField.stringValue = description;
+}
+
+#pragma mark - NSControl Delegate
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+    if (obj.object == self.nameTextField) {
+        self.fontInfo.name = self.nameTextField.stringValue;
+    } else if (obj.object == self.detailTextField) {
+        self.fontInfo.detail = self.detailTextField.stringValue;
+    }
 }
 
 #pragma mark - Public Property
@@ -85,10 +107,11 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
     if (_fontWrapper != fontWrapper) {
         _fontWrapper = fontWrapper;
         
+        [self updateFontDescription:_fontWrapper.font];
+        
         ZHYFontInfo *fontInfo = _fontWrapper.resourceInfo;
         
         self.nameTextField.stringValue = (fontInfo.name ? : @"");
-        
         self.detailTextField.stringValue = (fontInfo.detail ? : @"");
         
         self.fontInfo = fontInfo;
@@ -102,6 +125,14 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
     }
     
     return fontWrapper;
+}
+
+- (ZHYFontInfo *)fontInfo {
+    if (!_fontInfo) {
+        _fontInfo = [[ZHYFontInfo alloc] initWithDescriptor:[NSDictionary dictionary] forName:@""];
+    }
+    
+    return _fontInfo;
 }
 
 @end

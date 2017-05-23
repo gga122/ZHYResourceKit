@@ -105,4 +105,12 @@
     return colorWrapper;
 }
 
+- (ZHYColorInfo *)colorInfo {
+    if (!_colorInfo) {
+        _colorInfo = [[ZHYColorInfo alloc] initWithColorHex:@"000000" forName:@""];
+    }
+    
+    return _colorInfo;
+}
+
 @end

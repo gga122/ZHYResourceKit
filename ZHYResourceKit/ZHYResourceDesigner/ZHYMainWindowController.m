@@ -15,6 +15,8 @@
 #import "ZHYFontWindowController.h"
 #import "ZHYFontTableRowView.h"
 
+#import "ZHYImageWindowController.h"
+
 @interface ZHYMainWindowController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (nonatomic, strong) NSOpenPanel *openPanel;
@@ -47,6 +49,40 @@
     if (response == NSFileHandlingPanelOKButton) {
         self.pathLabel.stringValue = self.openPanel.URL.absoluteString ? : @"";
         self.bundle = [NSBundle bundleWithURL:self.openPanel.URL];
+    }
+}
+
+- (IBAction)colorMenuItemDidClick:(id)sender {
+    if (!self.bundle) {
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self.window beginSheet:self.colorWindowController.window completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSModalResponseOK) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf updateResourcesAndReload];
+        }
+    }];
+}
+
+- (IBAction)fontMenuItemDidClick:(id)sender {
+    if (!self.bundle) {
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self.window beginSheet:self.fontWindowController.window completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSModalResponseOK) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf updateResourcesAndReload];
+        }
+    }];
+}
+
+- (IBAction)imageMenuItemDidClick:(id)sender {
+    if (!self.bundle) {
+        return;
     }
 }
 
@@ -144,9 +180,9 @@
             }
             
             childView.fontWrapper = item;
-            
             return childView;
-        }
+        } 
+        
         return nil;
     }
 }

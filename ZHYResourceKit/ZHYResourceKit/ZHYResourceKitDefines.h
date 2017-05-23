@@ -19,7 +19,7 @@ static NSString * const kZHYResourceStructDescriptorFileName = @"ZHYResourceStru
 
 /***** Resource Type Keys *****/
 static NSString * const kZHYResourceKeyTypeColor = @"zhy.resourceKit.resource.color";
-static NSString * const kZHYResourceKeyTypeFont = @"zhy.resoureKit.resource.font";
+static NSString * const kZHYResourceKeyTypeFont = @"zhy.resourceKit.resource.font";
 static NSString * const kZHYResourceKeyTypeImage = @"zhy.resourceKit.resource.image";
 
 /***** Color Plist Keys *****/

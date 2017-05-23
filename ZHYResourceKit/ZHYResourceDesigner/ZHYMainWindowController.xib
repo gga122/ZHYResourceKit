@@ -32,7 +32,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3GA-w1-ONQ">
-                                    <rect key="frame" x="509" y="3" width="84" height="32"/>
+                                    <rect key="frame" x="430" y="3" width="84" height="32"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="72" id="qja-zW-Zg7"/>
                                     </constraints>
@@ -45,22 +45,54 @@
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYM-Vu-GqZ">
-                                    <rect key="frame" x="13" y="13" width="474" height="17"/>
+                                    <rect key="frame" x="13" y="13" width="395" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="Zdz-dS-EHv">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <popUpButton horizontalHuggingPriority="749" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4iR-Cg-RjY">
+                                    <rect key="frame" x="518" y="7" width="77" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="Color" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ouh-El-n95" id="Nyp-Ns-Lmv">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="slo-Qx-HJQ">
+                                            <items>
+                                                <menuItem title="Color" state="on" id="Ouh-El-n95">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="colorMenuItemDidClick:" target="-2" id="t51-BC-EgE"/>
+                                                    </connections>
+                                                </menuItem>
+                                                <menuItem title="Font" id="MQn-wh-LgZ">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="fontMenuItemDidClick:" target="-2" id="T2Q-4W-Jkj"/>
+                                                    </connections>
+                                                </menuItem>
+                                                <menuItem title="Image" id="ZRM-ak-lrT">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="imageMenuItemDidClick:" target="-2" id="Ahe-7i-IhU"/>
+                                                    </connections>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="3GA-w1-ONQ" secondAttribute="trailing" constant="15" id="Aic-hX-FeM"/>
                                 <constraint firstItem="3GA-w1-ONQ" firstAttribute="centerY" secondItem="4gn-6I-4rF" secondAttribute="centerY" id="BGS-Br-Kz0"/>
                                 <constraint firstItem="3GA-w1-ONQ" firstAttribute="top" secondItem="4gn-6I-4rF" secondAttribute="top" constant="10" id="DpP-xA-5d1"/>
                                 <constraint firstItem="3GA-w1-ONQ" firstAttribute="baseline" secondItem="aYM-Vu-GqZ" secondAttribute="baseline" id="IUx-hB-nVI"/>
+                                <constraint firstItem="4iR-Cg-RjY" firstAttribute="width" secondItem="3GA-w1-ONQ" secondAttribute="width" id="j1u-Ax-uhf"/>
+                                <constraint firstItem="4iR-Cg-RjY" firstAttribute="leading" secondItem="3GA-w1-ONQ" secondAttribute="trailing" constant="12" id="qdf-IR-nfN"/>
                                 <constraint firstItem="3GA-w1-ONQ" firstAttribute="leading" secondItem="aYM-Vu-GqZ" secondAttribute="trailing" constant="30" id="sLw-oX-ZBX"/>
                                 <constraint firstItem="aYM-Vu-GqZ" firstAttribute="leading" secondItem="4gn-6I-4rF" secondAttribute="leading" constant="15" id="tuE-Mx-ZhH"/>
+                                <constraint firstItem="4iR-Cg-RjY" firstAttribute="centerY" secondItem="3GA-w1-ONQ" secondAttribute="centerY" id="xgZ-Nh-Oaf"/>
                                 <constraint firstAttribute="bottom" secondItem="3GA-w1-ONQ" secondAttribute="bottom" constant="10" id="y8g-5O-BOp"/>
+                                <constraint firstAttribute="trailing" secondItem="4iR-Cg-RjY" secondAttribute="trailing" constant="10" id="yMf-Ba-bce"/>
                             </constraints>
                         </view>
                     </box>
@@ -123,7 +155,7 @@
                     <constraint firstItem="5ik-4T-JM9" firstAttribute="leading" secondItem="8U6-pT-ceH" secondAttribute="leading" constant="20" id="yhj-Bk-F7o"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-1910" y="-360"/>
+            <point key="canvasLocation" x="-1743" y="-425"/>
         </window>
     </objects>
 </document>
