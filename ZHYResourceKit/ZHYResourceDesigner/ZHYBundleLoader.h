@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)defaultLoader;
 
 - (void)loadBundle:(nullable NSBundle *)bundle;
+@property (nonatomic, strong, readonly) NSBundle *bundle;
 
 - (BOOL)addResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classification;
 - (BOOL)removeResourceInfo:(id<ZHYResourceInfo>)resourceInfo inClassification:(NSString *)classification;

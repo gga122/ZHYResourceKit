@@ -44,8 +44,8 @@ NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transforme
 - (NSString *)absolutedPathForPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
-    if (!existed || isDirectory) {
-        return nil;
+    if (existed || !isDirectory) {
+        return path;
     }
     
     ZHYResourceCenter *currentCenter = [ZHYResourceManager defaultManager].currentCenter;
@@ -56,6 +56,11 @@ NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transforme
     }
     
     NSString *absolutedPath = [bundle.resourcePath stringByAppendingPathComponent:path];
+    existed = [[NSFileManager defaultManager] fileExistsAtPath:absolutedPath isDirectory:&isDirectory];
+    if (!existed || isDirectory) {
+        return nil;
+    }
+    
     return absolutedPath;
 }
 

@@ -112,6 +112,10 @@ static ZHYBundleLoader *s_globalBundleLoader = nil;
 
 #pragma mark - Public Property
 
+- (NSBundle *)bundle {
+    return [ZHYResourceManager defaultManager].bundle;
+}
+
 - (NSArray<ZHYColorWrapper *> *)allColorWrappers {
     return [ZHYResourceManager defaultManager].allColorWrappers;
 }

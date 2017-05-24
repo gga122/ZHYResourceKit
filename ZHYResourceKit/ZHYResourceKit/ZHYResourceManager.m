@@ -145,6 +145,10 @@ static ZHYResourceManager *s_globalManager;
     return self.currentCenter.bundle.bundleIdentifier;
 }
 
+- (NSBundle *)bundle {
+    return self.currentCenter.bundle;
+}
+
 #pragma mark - Private Methods (Bundle)
 
 - (void)loadBundle:(NSBundle *)bundle {

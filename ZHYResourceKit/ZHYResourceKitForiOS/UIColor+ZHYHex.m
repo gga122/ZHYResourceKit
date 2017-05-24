@@ -9,7 +9,7 @@
 #import "ZHYLogger.h"
 #import "UIColor+Hex.h"
 
-@implementation UIColor (。0)
+@implementation UIColor (ZHYHex)
 
 #pragma mark - Public Methods
 

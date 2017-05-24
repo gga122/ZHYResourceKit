@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) ZHYResourceCenter *currentCenter;
 
 - (void)loadBundle:(NSBundle *)bundle;
+@property (nonatomic, strong, readonly) NSBundle *bundle;
 
 @property (nonatomic, copy, readonly) NSArray<ZHYColorWrapper *> *allColorWrappers;
 @property (nonatomic, copy, readonly) NSArray<ZHYImageWrapper *> *allImageWrappers;

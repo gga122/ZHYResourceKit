@@ -11,9 +11,7 @@
 
 #import "ZHYColorListWindowController.h"
 #import "ZHYFontListWindowController.h"
-#import "ZHYFontWindowController.h"
-
-#import "ZHYImageWindowController.h"
+#import "ZHYImageListWindowController.h"
 
 @interface ZHYMainWindowController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
@@ -25,8 +23,7 @@
 
 @property (nonatomic, strong) ZHYColorListWindowController *colorListWindowController;
 @property (nonatomic, strong) ZHYFontListWindowController *fontListWindowController;
-
-@property (nonatomic, strong) ZHYFontWindowController *fontWindowController;
+@property (nonatomic, strong) ZHYImageListWindowController *imageListWindowController;
 
 @end
 
@@ -66,12 +63,8 @@
     if (!self.bundle) {
         return;
     }
-}
-
-#pragma mark - Private Methods
-
-- (void)saveConfigurations {
-    [[ZHYBundleLoader defaultLoader] synchonizePlist];
+    
+    [self.imageListWindowController.window makeKeyAndOrderFront:nil];
 }
 
 #pragma mark - Private Property
@@ -108,11 +101,11 @@
     return _fontListWindowController;
 }
 
-- (ZHYFontWindowController *)fontWindowController {
-    if (!_fontWindowController) {
-        _fontWindowController = [[ZHYFontWindowController alloc] initWithWindowNibName:@"ZHYFontWindowController"];
+- (ZHYImageListWindowController *)imageListWindowController {
+    if (!_imageListWindowController) {
+        _imageListWindowController = [[ZHYImageListWindowController alloc] initWithWindowNibName:@"ZHYImageListWindowController"];
     }
-    return _fontWindowController;
+    return _imageListWindowController;
 }
 
 @end
