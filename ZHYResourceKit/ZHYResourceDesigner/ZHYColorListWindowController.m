@@ -103,6 +103,7 @@
             textLabel.selectable = NO;
             textLabel.drawsBackground = NO;
             textLabel.bordered = NO;
+            textLabel.identifier = kZHYTextIdentifier;
         }
         
         ZHYColorInfo *info = colorWrapper.resourceInfo;

@@ -10,8 +10,7 @@
 #import "ZHYMainWindowController.h"
 
 #import "ZHYColorListWindowController.h"
-#import "ZHYColorWindowController.h"
-
+#import "ZHYFontListWindowController.h"
 #import "ZHYFontWindowController.h"
 #import "ZHYFontTableRowView.h"
 
@@ -26,7 +25,7 @@
 @property (weak) IBOutlet NSTextField *pathLabel;
 
 @property (nonatomic, strong) ZHYColorListWindowController *colorListWindowController;
-@property (nonatomic, strong) ZHYColorWindowController *colorWindowController;
+@property (nonatomic, strong) ZHYFontListWindowController *fontListWindowController;
 
 @property (nonatomic, strong) ZHYFontWindowController *fontWindowController;
 
@@ -61,6 +60,7 @@
         return;
     }
     
+    [self.fontListWindowController.window makeKeyAndOrderFront:nil];
 }
 
 - (IBAction)imageMenuItemDidClick:(id)sender {
@@ -102,11 +102,11 @@
     return _colorListWindowController;
 }
 
-- (ZHYColorWindowController *)colorWindowController {
-    if (!_colorWindowController) {
-        _colorWindowController = [[ZHYColorWindowController alloc] initWithWindowNibName:@"ZHYColorWindowController"];
+- (ZHYFontListWindowController *)fontListWindowController {
+    if (!_fontListWindowController) {
+        _fontListWindowController = [[ZHYFontListWindowController alloc] initWithWindowNibName:@"ZHYFontListWindowController"];
     }
-    return _colorWindowController;
+    return _fontListWindowController;
 }
 
 - (ZHYFontWindowController *)fontWindowController {
