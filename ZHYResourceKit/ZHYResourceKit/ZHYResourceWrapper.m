@@ -53,6 +53,13 @@
     return NO;
 }
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    ZHYResourceWrapper *wrapper = [[ZHYResourceWrapper allocWithZone:zone] initWithResourceInfo:self.resourceInfo];
+    return wrapper;
+}
+
 #pragma mark - Private Methods
 
 - (BOOL)isEqualToZHYResourceWrapper:(ZHYResourceWrapper *)wrapper {

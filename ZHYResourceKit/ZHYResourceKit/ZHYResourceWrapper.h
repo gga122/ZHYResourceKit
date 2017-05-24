@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface ZHYResourceWrapper : NSObject
+@interface ZHYResourceWrapper : NSObject <NSCopying>
 
 - (instancetype)initWithResourceInfo:(id<ZHYResourceInfo>)info NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;

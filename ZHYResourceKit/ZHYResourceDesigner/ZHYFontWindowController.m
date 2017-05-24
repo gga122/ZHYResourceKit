@@ -39,10 +39,7 @@ static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For 
 }
 
 - (void)resetState {
-    self.nameTextField.stringValue = @"";
-    self.fontTextField.stringValue = @"";
-    self.detailTextField.stringValue = @"";
-    self.fontInfo = nil;
+    self.fontWrapper = nil;
 }
 
 #pragma mark - Actions

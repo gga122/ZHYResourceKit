@@ -38,10 +38,7 @@
 }
 
 - (void)resetStates {
-    self.nameTextField.stringValue = @"";
-    self.colorTextField.stringValue = @"";
-    self.detailTextField.stringValue = @"";
-    self.colorInfo = nil;
+    self.colorWrapper = nil;
 }
 
 - (void)controlTextDidChange:(NSNotification *)obj {
@@ -102,7 +99,11 @@
     if (_colorWrapper != colorWrapper) {
         _colorWrapper = colorWrapper;
     
-        self.colorWell.color = _colorWrapper.color;
+        if (_colorWrapper) {
+            self.colorWell.color = _colorWrapper.color;
+        } else {
+            self.colorWell.color = [NSColor whiteColor];
+        }
         
         ZHYColorInfo *colorInfo = _colorWrapper.resourceInfo;
         
@@ -116,10 +117,12 @@
 
 - (ZHYColorWrapper *)currentColorWrapper {
     ZHYColorWrapper *colorWrapper = [[ZHYColorWrapper alloc] initWithResourceInfo:self.colorInfo];
-    if (!colorWrapper.color) {
+    @try {
+        [colorWrapper color];
+    } @catch (NSException *exception) {
         return nil;
     }
-
+    
     return colorWrapper;
 }
 

@@ -39,8 +39,10 @@
     __weak typeof(self) weakSelf = self;
     
     [self.window beginSheet:self.fontWindowController.window completionHandler:^(NSModalResponse returnCode) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf reload];
+        if (returnCode == NSModalResponseOK) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf reload];
+        }
     }];
 }
 
@@ -55,8 +57,10 @@
     __weak typeof(self) weakSelf = self;
     
     [self.window beginSheet:self.fontWindowController.window completionHandler:^(NSModalResponse returnCode) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf reload];
+        if (returnCode == NSModalResponseOK) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf reload];
+        }
     }];
     
     self.fontWindowController.fontWrapper = self.selectedFontWrapper;
