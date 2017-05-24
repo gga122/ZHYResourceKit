@@ -96,7 +96,6 @@
 		D2AF24991ECAF3F900113B9C /* ZHYResourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */; };
 		D2AF249A1ECAF3F900113B9C /* ZHYResourceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CDA3B51EBC85E40085F997 /* ZHYResourceNode.m */; };
 		D2AF249B1ECAF40300113B9C /* ZHYResourceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */; };
-		D2AF7EB01ED2C56400BA2F13 /* ZHYFontTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF7EAF1ED2C56400BA2F13 /* ZHYFontTableRowView.m */; };
 		D2AF7EB11ED2EBBB00BA2F13 /* ZHYFontWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */; };
 		D2AF7EB21ED2EBBC00BA2F13 /* ZHYFontWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F0A071EC161C1007B1408 /* ZHYFontWrapper.m */; };
 		D2AF7EB31ED2EBC400BA2F13 /* ZHYFontTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6DA1EC5B70200FB15CB /* ZHYFontTransformer.m */; };
@@ -195,8 +194,6 @@
 		D2AF247E1EC983D600113B9C /* ZHYImageSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYImageSearcher.m; sourceTree = "<group>"; };
 		D2AF248F1EC9AFED00113B9C /* ZHYResourceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceMap.h; sourceTree = "<group>"; };
 		D2AF24901EC9AFED00113B9C /* ZHYResourceMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceMap.m; sourceTree = "<group>"; };
-		D2AF7EAE1ED2C56400BA2F13 /* ZHYFontTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYFontTableRowView.h; sourceTree = "<group>"; };
-		D2AF7EAF1ED2C56400BA2F13 /* ZHYFontTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYFontTableRowView.m; sourceTree = "<group>"; };
 		D2BD157A1ED421EA009FADEA /* ZHYColorListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYColorListWindowController.h; sourceTree = "<group>"; };
 		D2BD157B1ED421EA009FADEA /* ZHYColorListWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYColorListWindowController.m; sourceTree = "<group>"; };
 		D2BD157C1ED421EA009FADEA /* ZHYColorListWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYColorListWindowController.xib; sourceTree = "<group>"; };
@@ -372,8 +369,6 @@
 				D28F0A921EC2F0C4007B1408 /* ZHYFontWindowController.h */,
 				D28F0A931EC2F0C4007B1408 /* ZHYFontWindowController.m */,
 				D28F0A941EC2F0C4007B1408 /* ZHYFontWindowController.xib */,
-				D2AF7EAE1ED2C56400BA2F13 /* ZHYFontTableRowView.h */,
-				D2AF7EAF1ED2C56400BA2F13 /* ZHYFontTableRowView.m */,
 				D2BD15821ED42C7E009FADEA /* ZHYFontListWindowController.h */,
 				D2BD15831ED42C7E009FADEA /* ZHYFontListWindowController.m */,
 				D2BD15841ED42C7E009FADEA /* ZHYFontListWindowController.xib */,
@@ -772,7 +767,6 @@
 				D2AF248D1EC991C100113B9C /* ZHYResourceManager.m in Sources */,
 				D2BD157D1ED421EA009FADEA /* ZHYColorListWindowController.m in Sources */,
 				D290E1671ECD7EDC00ABB9AD /* ZHYBundleLoader.m in Sources */,
-				D2AF7EB01ED2C56400BA2F13 /* ZHYFontTableRowView.m in Sources */,
 				D2AF7EB11ED2EBBB00BA2F13 /* ZHYFontWrapper.m in Sources */,
 				D2AF24831EC98D3100113B9C /* ZHYImageSearcher.m in Sources */,
 				D28F0AAD1EC3155B007B1408 /* ZHYImageWindowController.m in Sources */,

@@ -12,7 +12,6 @@
 #import "ZHYColorListWindowController.h"
 #import "ZHYFontListWindowController.h"
 #import "ZHYFontWindowController.h"
-#import "ZHYFontTableRowView.h"
 
 #import "ZHYImageWindowController.h"
 

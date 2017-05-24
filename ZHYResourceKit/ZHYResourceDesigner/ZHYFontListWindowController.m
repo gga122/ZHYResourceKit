@@ -18,6 +18,8 @@
 @property (weak) IBOutlet NSButton *removeButton;
 @property (weak) IBOutlet NSButton *editButton;
 
+@property (nonatomic, strong) ZHYFontWindowController *fontWindowController;
+
 @property (nonatomic, strong) NSArray<ZHYFontWrapper *> *fontWrappers;
 
 @property (nonatomic, strong) ZHYFontWrapper *selectedFontWrapper;
@@ -28,18 +30,42 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    self.fontWrappers = [ZHYBundleLoader defaultLoader].allFontWrappers;
+    [self.fontTableView reloadData];
 }
 
 - (IBAction)addFontButtonDidClick:(id)sender {
+    __weak typeof(self) weakSelf = self;
     
+    [self.window beginSheet:self.fontWindowController.window completionHandler:^(NSModalResponse returnCode) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf reload];
+    }];
 }
 
 - (IBAction)removeFontButtonDidClick:(id)sender {
-    
+    BOOL response = [[ZHYBundleLoader defaultLoader] removeResourceInfo:self.selectedFontWrapper.resourceInfo inClassification:kZHYResourceKeyTypeFont];
+    if (response) {
+        [self reload];
+    }
 }
 
 - (IBAction)editFontButtonDidClick:(id)sender {
+    __weak typeof(self) weakSelf = self;
     
+    [self.window beginSheet:self.fontWindowController.window completionHandler:^(NSModalResponse returnCode) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf reload];
+    }];
+    
+    self.fontWindowController.fontWrapper = self.selectedFontWrapper;
+}
+
+- (void)reload {
+    self.fontWrappers = [ZHYBundleLoader defaultLoader].allFontWrappers;
+    [self.fontTableView reloadData];
+    [[ZHYBundleLoader defaultLoader] synchonizePlist];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -74,6 +100,35 @@
     }
         
     return textLabel;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    [self updateSelectedRow];
+}
+
+- (void)updateSelectedRow {
+    NSInteger selectedIndex = self.fontTableView.selectedRow;
+    
+    ZHYFontWrapper *colorWrapper = nil;
+    if (selectedIndex < self.fontWrappers.count) {
+        colorWrapper = [self.fontWrappers objectAtIndex:selectedIndex];
+    }
+    
+    self.selectedFontWrapper = colorWrapper;
+}
+
+- (ZHYFontWindowController *)fontWindowController {
+    if (!_fontWindowController) {
+        _fontWindowController = [[ZHYFontWindowController alloc] initWithWindowNibName:@"ZHYFontWindowController"];
+    }
+    return _fontWindowController;
+}
+
+- (void)setSelectedFontWrapper:(ZHYFontWrapper *)selectedFontWrapper {
+    _selectedFontWrapper = selectedFontWrapper;
+    
+    self.editButton.enabled = (_selectedFontWrapper != nil);
+    self.removeButton.enabled = (_selectedFontWrapper != nil);
 }
 
 @end
