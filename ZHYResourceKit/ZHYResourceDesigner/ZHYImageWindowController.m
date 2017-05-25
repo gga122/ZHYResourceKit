@@ -11,24 +11,13 @@
 
 @interface ZHYImageWindowController ()
 
-@property (nonatomic, strong) ZHYImageSearcher *imageSearcher;
-
 @end
 
 @implementation ZHYImageWindowController
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    _metaInfos = self.imageSearcher.metaInfos;
 }
 
-- (void)setBundle:(NSBundle *)bundle {
-    if (_bundle != bundle) {
-        _bundle = bundle;
-        
-        _imageSearcher = [[ZHYImageSearcher alloc] initWithBundle:_bundle];
-    }
-}
 
 @end

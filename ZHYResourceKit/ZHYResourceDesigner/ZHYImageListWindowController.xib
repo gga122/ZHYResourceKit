@@ -141,12 +141,25 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M9k-JO-wjK">
+                        <rect key="frame" x="93" y="392" width="71" height="32"/>
+                        <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jEr-Nb-89g">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="imageEditButtonDidClick:" target="-2" id="QJd-F4-sPC"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="M9k-JO-wjK" firstAttribute="width" secondItem="GMW-HG-6SG" secondAttribute="width" id="6QA-wl-TPc"/>
                     <constraint firstItem="GMW-HG-6SG" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="7bj-zH-hT4"/>
                     <constraint firstAttribute="bottom" secondItem="1Nn-hx-hK7" secondAttribute="bottom" id="HVA-RS-yh9"/>
                     <constraint firstItem="1Nn-hx-hK7" firstAttribute="top" secondItem="GMW-HG-6SG" secondAttribute="bottom" constant="20" id="MWF-Jd-oUf"/>
                     <constraint firstItem="1Nn-hx-hK7" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="P7I-lj-7W6"/>
+                    <constraint firstItem="M9k-JO-wjK" firstAttribute="centerY" secondItem="GMW-HG-6SG" secondAttribute="centerY" id="SZ6-f9-m0h"/>
+                    <constraint firstItem="M9k-JO-wjK" firstAttribute="leading" secondItem="GMW-HG-6SG" secondAttribute="trailing" constant="20" id="cEY-pF-DdF"/>
                     <constraint firstItem="GMW-HG-6SG" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="eRI-kc-eGc"/>
                     <constraint firstAttribute="trailing" secondItem="1Nn-hx-hK7" secondAttribute="trailing" id="fz3-2e-vHx"/>
                 </constraints>
@@ -154,7 +167,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-67" y="24"/>
+            <point key="canvasLocation" x="571" y="-296"/>
         </window>
     </objects>
 </document>

@@ -30,6 +30,10 @@
     [self.imageTableView reloadData];
 }
 
+- (IBAction)imageEditButtonDidClick:(id)sender {
+    
+}
+
 - (IBAction)imageScanButtonDidClick:(id)sender {
     NSBundle *bundle = [ZHYBundleLoader defaultLoader].bundle;
     ZHYImageSearcher *searcher = [[ZHYImageSearcher alloc] initWithBundle:bundle];
