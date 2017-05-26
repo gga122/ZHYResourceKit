@@ -12,7 +12,7 @@
 
 static NSString * const kZHYResouceTestText = @"这是一段测试的文本,For Test only.测试1，2，3，4，5，6，7，8，9，10";
 
-@interface ZHYFontWindowController () <NSTableViewDelegate, NSTableViewDataSource>
+@interface ZHYFontWindowController ()
 
 @property (weak) IBOutlet NSTextField *nameTextField;
 @property (weak) IBOutlet NSTextField *fontTextField;

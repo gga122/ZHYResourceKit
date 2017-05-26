@@ -7,7 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ZHYImageWrapper.h"
 
 @interface ZHYImageWindowController : NSWindowController
+
+@property (nonatomic, strong) ZHYImageWrapper *imageWrapper;
+
+@property (nonatomic, copy, readonly) ZHYImageWrapper *currentImageWrapper;
 
 @end

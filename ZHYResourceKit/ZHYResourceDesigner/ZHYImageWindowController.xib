@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
@@ -12,12 +12,16 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ZHYImageWindowController">
             <connections>
+                <outlet property="detailTextField" destination="c18-5u-4jt" id="krC-bu-6bY"/>
+                <outlet property="imageView" destination="ItL-j9-DaY" id="Gh4-Ra-N99"/>
+                <outlet property="nameTextField" destination="p0N-iu-jog" id="pbP-xC-eC6"/>
+                <outlet property="pathTextField" destination="tBx-xc-B9a" id="lFI-ol-N0Q"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="393" height="520"/>
@@ -56,9 +60,9 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBx-xc-B9a">
-                                    <rect key="frame" x="64" y="100" width="196" height="22"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QyX-XX-MB7">
+                                <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBx-xc-B9a">
+                                    <rect key="frame" x="64" y="100" width="271" height="22"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QyX-XX-MB7">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -75,13 +79,6 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nFd-Mm-DBx">
-                                    <rect key="frame" x="264" y="94" width="77" height="32"/>
-                                    <buttonCell key="cell" type="push" title="Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eRE-Ee-vet">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2t-hg-5iG">
                                     <rect key="frame" x="18" y="61" width="38" height="17"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="detail" id="IDJ-pp-ilC">
@@ -92,7 +89,6 @@
                                 </textField>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="nFd-Mm-DBx" firstAttribute="leading" secondItem="tBx-xc-B9a" secondAttribute="trailing" constant="10" id="08x-yh-VPd"/>
                                 <constraint firstAttribute="bottom" secondItem="c18-5u-4jt" secondAttribute="bottom" constant="20" id="0Cf-ha-xXA"/>
                                 <constraint firstItem="p0N-iu-jog" firstAttribute="leading" secondItem="vBK-nl-R1l" secondAttribute="trailing" constant="10" id="0s7-cT-pFP"/>
                                 <constraint firstItem="B2t-hg-5iG" firstAttribute="leading" secondItem="vBK-nl-R1l" secondAttribute="leading" id="CVD-Ka-cjh"/>
@@ -100,9 +96,9 @@
                                 <constraint firstItem="tBx-xc-B9a" firstAttribute="top" secondItem="p0N-iu-jog" secondAttribute="bottom" constant="20" id="KoU-7c-O7y"/>
                                 <constraint firstItem="B2t-hg-5iG" firstAttribute="trailing" secondItem="vBK-nl-R1l" secondAttribute="trailing" id="MS6-w1-CRa"/>
                                 <constraint firstItem="c18-5u-4jt" firstAttribute="trailing" secondItem="p0N-iu-jog" secondAttribute="trailing" id="NR0-ve-S0S"/>
+                                <constraint firstItem="tBx-xc-B9a" firstAttribute="trailing" secondItem="p0N-iu-jog" secondAttribute="trailing" id="VPJ-6U-bUm"/>
                                 <constraint firstItem="tBx-xc-B9a" firstAttribute="baseline" secondItem="fha-wc-ETV" secondAttribute="baseline" id="X6i-dN-6m9"/>
                                 <constraint firstItem="c18-5u-4jt" firstAttribute="top" secondItem="tBx-xc-B9a" secondAttribute="bottom" constant="20" id="YOr-CH-XIU"/>
-                                <constraint firstItem="nFd-Mm-DBx" firstAttribute="trailing" secondItem="p0N-iu-jog" secondAttribute="trailing" id="avl-79-xdy"/>
                                 <constraint firstAttribute="trailing" secondItem="p0N-iu-jog" secondAttribute="trailing" constant="20" id="bCE-xK-zQc"/>
                                 <constraint firstItem="c18-5u-4jt" firstAttribute="leading" secondItem="p0N-iu-jog" secondAttribute="leading" id="bRJ-un-X8S"/>
                                 <constraint firstItem="p0N-iu-jog" firstAttribute="top" secondItem="7Ep-BD-uXB" secondAttribute="top" constant="16" id="gRv-ZT-y5r"/>
@@ -111,7 +107,6 @@
                                 <constraint firstItem="fha-wc-ETV" firstAttribute="leading" secondItem="vBK-nl-R1l" secondAttribute="leading" id="nJO-Sc-ClC"/>
                                 <constraint firstItem="tBx-xc-B9a" firstAttribute="leading" secondItem="p0N-iu-jog" secondAttribute="leading" id="oUE-Gp-YYT"/>
                                 <constraint firstItem="c18-5u-4jt" firstAttribute="firstBaseline" secondItem="B2t-hg-5iG" secondAttribute="baseline" id="r5P-ch-Qq2"/>
-                                <constraint firstItem="nFd-Mm-DBx" firstAttribute="centerY" secondItem="tBx-xc-B9a" secondAttribute="centerY" id="rO2-qE-QLC"/>
                             </constraints>
                         </view>
                     </box>
@@ -146,6 +141,9 @@
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="okButtonDidClick:" target="-2" id="xPb-b4-ZXA"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-wZ-yta">
                         <rect key="frame" x="217" y="13" width="82" height="32"/>
@@ -156,6 +154,9 @@ DQ
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="cancelButtonDidClick:" target="-2" id="HxS-QT-G4h"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -176,7 +177,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="174" y="-9"/>
+            <point key="canvasLocation" x="-30" y="-72"/>
         </window>
     </objects>
 </document>

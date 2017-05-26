@@ -15,9 +15,11 @@
 
 @property (weak) IBOutlet NSTableView *imageTableView;
 
+@property (nonatomic, strong) ZHYImageWindowController *imageWindowController;
+
 @property (nonatomic, strong) NSArray<ZHYImageWrapper *> *imageWrappers;
 
-@property (nonatomic, strong) ZHYImageInfo *selectedImageWrapper;
+@property (nonatomic, strong) ZHYImageWrapper *selectedImageWrapper;
 
 @end
 
@@ -31,7 +33,18 @@
 }
 
 - (IBAction)imageEditButtonDidClick:(id)sender {
+    if (!self.selectedImageWrapper) {
+        return;
+    }
     
+    __weak typeof(self) weakSelf = self;
+    [self.window beginSheet:self.imageWindowController.window completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSModalResponseOK) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf reload];
+        }
+    }];
+    self.imageWindowController.imageWrapper = self.selectedImageWrapper;
 }
 
 - (IBAction)imageScanButtonDidClick:(id)sender {
@@ -68,6 +81,21 @@
     return numberOfRows;
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSInteger selectedRow = self.imageTableView.selectedRow;
+    NSInteger selectedColumn = self.imageTableView.selectedColumn;
+    if (selectedRow < 0 || selectedColumn < 0) {
+        return;
+    }
+    
+    NSInteger index = selectedRow * self.imageTableView.tableColumns.count + selectedColumn;
+    if (index >= self.imageWrappers.count) {
+        return;
+    }
+    
+    self.selectedImageWrapper = [self.imageWrappers objectAtIndex:index];
+}
+
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
     static CGFloat const kZHYMaxRowHeight = 200;
     CGFloat tableViewHeight = NSHeight(tableView.frame);
@@ -93,6 +121,13 @@
     
     imageView.image = imageWrapper.image;
     return imageView;
+}
+
+- (ZHYImageWindowController *)imageWindowController {
+    if (!_imageWindowController) {
+        _imageWindowController = [[ZHYImageWindowController alloc] initWithWindowNibName:@"ZHYImageWindowController"];
+    }
+    return _imageWindowController;
 }
 
 @end
