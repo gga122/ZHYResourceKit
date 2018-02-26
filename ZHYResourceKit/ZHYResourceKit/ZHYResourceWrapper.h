@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) id content;
+@property (nonatomic, strong) id<NSCoding> content;
 
 @property (nonatomic, copy, nullable) NSString *detail;
 
