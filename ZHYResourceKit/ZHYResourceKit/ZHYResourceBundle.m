@@ -7,11 +7,17 @@
 //
 
 #import "ZHYResourceBundle.h"
+#import "ZHYResourceBundleDefines.h"
 #import "ZHYLogger.h"
+
+struct ZHYResourceBundleFlags {
+    
+};
 
 @interface ZHYResourceBundle ()
 
-@property (nonatomic, strong) NSMutableArray<NSString *> *resourceTypes;
+@property (nonatomic, strong) NSMutableDictionary<ZHYResourceBundleInfoKey, id> *resourceBundleInfo;
+@property (nonatomic, strong) NSMutableSet<NSString *> *resourceTypes;
 
 @end
 
@@ -33,5 +39,33 @@
     
     return self;
 }
+
+#pragma mark - Public Methods
+
+- (void)addResourceType:(NSString *)resourceType {
+    if (resourceType == nil) {
+        return;
+    }
+    
+    [self.resourceTypes addObject:resourceType];
+}
+
+- (void)removeResourceType:(NSString *)resourceType {
+    if (resourceType == nil) {
+        return;
+    }
+    
+    [self.resourceTypes removeObject:resourceType];
+}
+
+#pragma mark - Public Property
+
+- (NSArray<NSString *> *)allResourceTypes {
+    return self.resourceTypes.allObjects;
+}
+
+@end
+
+@implementation ZHYResourceBundle (Serializer)
 
 @end

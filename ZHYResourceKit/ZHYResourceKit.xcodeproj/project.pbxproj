@@ -356,9 +356,9 @@
 		D29C57F22043F6030015F0A9 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
+				D29C57F92043FAA70015F0A9 /* ZHYResourceBundleDefines.h */,
 				D29C57F32043F63A0015F0A9 /* ZHYResourceBundle.h */,
 				D29C57F42043F63A0015F0A9 /* ZHYResourceBundle.m */,
-				D29C57F92043FAA70015F0A9 /* ZHYResourceBundleDefines.h */,
 			);
 			name = Structure;
 			sourceTree = "<group>";

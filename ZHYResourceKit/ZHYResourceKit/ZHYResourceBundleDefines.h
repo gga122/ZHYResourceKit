@@ -12,7 +12,15 @@
 typedef NSString * ZHYResourceBundleInfoKey;
 
 static ZHYResourceBundleInfoKey const kZHYResourceBundleName = @"zhy.resourcekit.bundle.name";
+static ZHYResourceBundleInfoKey const kZHYResourceBundlePriority = @"zhy.resourcekit.bundle.priority";
 
-
+NSMutableDictionary<ZHYResourceBundleInfoKey, id> *createResourceBundleTempleteInfo(void) {
+    NSMutableDictionary<ZHYResourceBundleInfoKey, id> *templeteInfo = [NSMutableDictionary dictionary];
+    
+    [templeteInfo setObject:@"Default" forKey:kZHYResourceBundleName];
+    [templeteInfo setObject:@(0) forKey:kZHYResourceBundlePriority];
+    
+    return templeteInfo;
+}
 
 #endif /* ZHYResourceBundleDefines_h */

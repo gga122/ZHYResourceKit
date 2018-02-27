@@ -11,9 +11,10 @@
 /**
  `ZHYResourceBundle` represents a resource package which managed all related resources like image/font/color/audio and so on.
  */
-@interface ZHYResourceBundle : NSObject <NSCoding>
+@interface ZHYResourceBundle : NSObject
 
 - (instancetype)initWithBundleName:(NSString *)bundleName priority:(NSUInteger)priority NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *bundleName;
 @property (nonatomic, assign, readonly) NSUInteger priority;
@@ -21,5 +22,11 @@
 - (void)addResourceType:(NSString *)resourceType;
 - (void)removeResourceType:(NSString *)resourceType;
 @property (nonatomic, copy, readonly) NSArray<NSString *> *allResourceTypes;
+
+@end
+
+@interface ZHYResourceBundle (Serializer)
+
+// TODO: Serializer methods
 
 @end
