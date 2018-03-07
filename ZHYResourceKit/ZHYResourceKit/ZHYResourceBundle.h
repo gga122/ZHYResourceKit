@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHYResourceBundle (Serializer)
 
-// TODO: Serializer methods
+- (BOOL)writeToFile:(NSString *)filePath atomically:(BOOL)atomically;
 
 @end
 

@@ -114,6 +114,43 @@
 
 @end
 
+static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResourceBundleInfo.plist";
+
 @implementation ZHYResourceBundle (Serializer)
+
+#pragma mark - Public Methods
+
+- (BOOL)writeToFile:(NSString *)filePath atomically:(BOOL)atomically {
+    NSString *lastComponent = filePath.lastPathComponent;
+    if (![lastComponent.pathExtension isEqualToString:@"bundle"]) {
+        ZHYLogError(@"'%@' can not write to '%@' because of invalid last component.", self, filePath);
+        return NO;
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:filePath]) {
+        ZHYLogError(@"'%@' can not write to '%@' because of existed.", self, filePath);
+        return NO;
+    }
+    
+    NSError *error = nil;
+    if (![fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        ZHYLogError(@"'%@' create directory at '%@' failure. <error: %@>", self, filePath, error);
+        return NO;
+    }
+
+    NSString *infoFilePath = [filePath stringByAppendingPathComponent:kZHYResourceBundleSerializerKeyInfoFileName];
+    BOOL didWrite = [self.resourceBundleInfo writeToFile:infoFilePath atomically:YES];
+    if (!didWrite) {
+        ZHYLogError(@"'%@' write resource bundle info at '%@' failure.", self, infoFilePath);
+        return NO;
+    }
+    
+    /* write container data */
+    
+    return YES;
+}
+
+#pragma mark - Private Methods
 
 @end

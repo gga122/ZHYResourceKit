@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ZHYMainWindowController.h"
 
+#import "ZHYResourceBundle.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) NSWindowController *mainWindowController;
@@ -21,6 +23,14 @@
     _mainWindowController = [[ZHYMainWindowController alloc] initWithWindowNibName:@"ZHYMainWindowController"];
     
     [self.mainWindowController.window makeKeyAndOrderFront:nil];
+    
+    ZHYResourceBundle *bundle = [[ZHYResourceBundle alloc] initWithBundleName:@"testBundle" priority:100];
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    savePanel.allowedFileTypes = @[@"bundle"];
+    [savePanel runModal];
+    
+    NSString *filePath = savePanel.URL.path;
+    [bundle writeToFile:filePath atomically:YES];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
