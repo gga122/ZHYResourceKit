@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
+/**
+ If resource container found any resource wrapper existed, conflicted wrapper will not be `nil`.
+ It's good practice to implement these delegate methods, like helps you debug.
+ */
 - (void)resourceContainer:(ZHYResourceContainer *)container willAddWrapper:(ZHYResourceWrapper *)resourceWrapper conflictedWrapper:(ZHYResourceWrapper *)wrapper;
 - (void)resourceContainer:(ZHYResourceContainer *)container didAddWrapper:(ZHYResourceWrapper *)resourceWrapper conflictedWrapper:(ZHYResourceWrapper *)wrapper;
 
@@ -24,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ `ZHYResourceContainer` provided basic container for different resources.
+ You can NOT add/remove resource wrappers which resource type do not match.
+ */
 @interface ZHYResourceContainer : NSObject
 
 - (instancetype)initWithResourceType:(NSString *)resourceType;

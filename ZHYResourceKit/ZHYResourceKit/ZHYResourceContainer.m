@@ -80,7 +80,13 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
     
     id<ZHYResourceContainerDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(resourceContainer:willRemoveWrapper:)]) {
-        
+        [delegate resourceContainer:self willRemoveWrapper:conflictedWrapper];
+    }
+    
+    [self.wrappers removeObjectForKey:conflictedWrapper.name];
+    
+    if ([delegate respondsToSelector:@selector(resourceContainer:didRemoveWrapper:)]) {
+        [delegate resourceContainer:self didRemoveWrapper:conflictedWrapper];
     }
 }
 
