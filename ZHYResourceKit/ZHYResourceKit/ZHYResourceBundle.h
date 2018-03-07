@@ -8,21 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+@class ZHYResourceWrapper;
+
 /**
  `ZHYResourceBundle` represents a resource package which managed all related resources like image/font/color/audio and so on.
  */
 @interface ZHYResourceBundle : NSObject
 
 - (instancetype)initWithBundleName:(NSString *)bundleName priority:(NSUInteger)priority NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithBundlePath:(NSString *)bundlePath NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *bundleName;
 @property (nonatomic, assign, readonly) NSUInteger priority;
 
-- (void)addResourceType:(NSString *)resourceType;
-- (void)removeResourceType:(NSString *)resourceType;
+- (void)addResourceWrapper:(ZHYResourceWrapper *)resourceWrapper;
+- (void)removeResourceWrapper:(ZHYResourceWrapper *)resourceWrapper;
+
 @property (nonatomic, copy, readonly) NSArray<NSString *> *allResourceTypes;
+
+- (NSArray<ZHYResourceWrapper *> *)resourceWrappersForResourceType:(NSString *)resourceType;
 
 @end
 
@@ -31,3 +37,5 @@
 // TODO: Serializer methods
 
 @end
+
+NS_ASSUME_NONNULL_END
