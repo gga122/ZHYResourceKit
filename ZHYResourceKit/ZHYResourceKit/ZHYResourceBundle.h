@@ -14,6 +14,7 @@
 @interface ZHYResourceBundle : NSObject
 
 - (instancetype)initWithBundleName:(NSString *)bundleName priority:(NSUInteger)priority NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithBundlePath:(NSString *)bundlePath NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *bundleName;

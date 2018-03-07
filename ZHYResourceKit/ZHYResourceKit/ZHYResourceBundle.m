@@ -33,8 +33,10 @@ struct ZHYResourceBundleFlags {
     
     self = [super init];
     if (self) {
-        _bundleName = [bundleName copy];
-        _priority = priority;
+        _resourceBundleInfo = createResourceBundleTempleteInfo();
+        
+        [_resourceBundleInfo setObject:[bundleName copy] forKey:kZHYResourceBundleName];
+        [_resourceBundleInfo setObject:@(priority) forKey:kZHYResourceBundlePriority];
     }
     
     return self;
@@ -59,6 +61,15 @@ struct ZHYResourceBundleFlags {
 }
 
 #pragma mark - Public Property
+
+- (NSString *)bundleName {
+    return [self.resourceBundleInfo objectForKey:kZHYResourceBundleName];
+}
+
+- (NSUInteger)priority {
+    NSNumber *priority = [self.resourceBundleInfo objectForKey:kZHYResourceBundlePriority];
+    return [priority unsignedIntegerValue];
+}
 
 - (NSArray<NSString *> *)allResourceTypes {
     return self.resourceTypes.allObjects;

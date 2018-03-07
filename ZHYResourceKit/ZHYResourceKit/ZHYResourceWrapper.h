@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  For subclass overridden
  */
+@property (nonatomic, class, readonly) NSString *resourceType;
+
 @property (nonatomic, class, readonly, nullable) NSValueTransformer *transformer;
 
 @end

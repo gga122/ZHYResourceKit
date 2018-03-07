@@ -6,8 +6,9 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
-#import "ZHYLogger.h"
 #import "ZHYResourceWrapper.h"
+#import "ZHYLogger.h"
+#import "ZHYResourceKitDefines.h"
 
 @interface ZHYResourceWrapper ()
 
@@ -95,6 +96,10 @@
 
 - (NSString *)detail {
     return self.resourceInfo.detail;
+}
+
++ (NSString *)resourceType {
+    return kZHYResourceKeyTypeResource;
 }
 
 + (NSValueTransformer *)transformer {
