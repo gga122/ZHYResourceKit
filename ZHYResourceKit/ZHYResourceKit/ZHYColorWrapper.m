@@ -32,6 +32,10 @@
 
 @end
 
+static NSString * const kZHYColorInfoKeyCodingName = @"colorName";
+static NSString * const kZHYColorInfoKeyCodingRepresentation = @"colorRepresentation";
+static NSString * const kZHYColorInfoKeyCodingDetail = @"colorDetail";
+
 @implementation ZHYColorInfo
 
 #pragma mark - DESIGNATED INITIALIZER
@@ -45,7 +49,13 @@
     if (self) {
         _resourceName = [resourceName copy];
         
-        
+        CIColor *c = nil;
+#if TARGET_OS_IOS
+        c = [[CIColor alloc] initWithColor:color];
+#else
+        c = [[CIColor alloc] initWithColor:color];
+#endif
+        _representation = c.stringRepresentation;
     }
     
     return self;
@@ -101,7 +111,9 @@
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    
+    [aCoder encodeObject:self.resourceName forKey:kZHYColorInfoKeyCodingName];
+    [aCoder encodeObject:self.representation forKey:kZHYColorInfoKeyCodingRepresentation];
+    [aCoder encodeObject:self.resourceDetail forKey:kZHYColorInfoKeyCodingDetail];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {

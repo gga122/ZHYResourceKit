@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithResourceInfo:(id<ZHYResourceInfo>)info NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithResourceDescriptor:(id<ZHYResourceDescriptor>)descriptor NS_DESIGNATED_INITIALIZER;
-
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *name;

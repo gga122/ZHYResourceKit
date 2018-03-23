@@ -131,24 +131,18 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
     return self;
 }
 
-#pragma mark - ZHYResourceInfo Protocol
-
-- (id)content {
-    return self.descriptor;
-}
-
-- (void)setContent:(id)content {
-    if (![content isKindOfClass:[NSDictionary class]]) {
-        [NSException raise:NSInternalInconsistencyException format:@"Invalid content type. <content: %@>", content];
-    } else {
-        self.descriptor = content;
-    }
-}
-
 #pragma mark - ZHYResourceDescriptor
 
 - (id<NSCoding>)resourceContents {
     return self.descriptor;
+}
+
+- (void)setResourceContents:(id<NSCoding>)resourceContents {
+    if (![resourceContents isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    
+    self.descriptor = resourceContents;
 }
 
 + (NSString *)resourceType {

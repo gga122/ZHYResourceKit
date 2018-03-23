@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ZHYImageInfo : NSObject <ZHYResourceInfo>
+@interface ZHYImageInfo : NSObject <ZHYResourceDescriptor, ZHYResourceInfo>
 
 - (instancetype)initWithPath:(NSString *)path forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
