@@ -7,6 +7,7 @@
 //
 
 #import "ZHYFontTransformer.h"
+#import "ZHYFontWrapper.h"
 
 #if TARGET_OS_IOS
 #import "UIFont+ZHYAttributes.h"
@@ -15,9 +16,6 @@
 #endif
 
 NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer.font";
-
-static NSString * const kZHYFontInfoKeySize = @"fontSize";
-static NSString * const kZHYFontInfoKeyAttributes = @"fontAttributes";
 
 @implementation ZHYFontTransformer
 
@@ -42,8 +40,8 @@ static NSString * const kZHYFontInfoKeyAttributes = @"fontAttributes";
 #if TARGET_OS_IOS
     
 #else
-    CGFloat fontSize = [[info objectForKey:kZHYFontInfoKeySize] doubleValue];
-    NSDictionary *fontAttributes = [info objectForKey:kZHYFontInfoKeyAttributes];
+    CGFloat fontSize = [[info objectForKey:kZHYFontInfoDescriptorKeySize] doubleValue];
+    NSDictionary *fontAttributes = [info objectForKey:kZHYFontInfoDescriptorKeyAttributes];
     NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:fontAttributes];
     
     font = [NSFont fontWithDescriptor:fontDescriptor size:fontSize];
@@ -60,8 +58,8 @@ static NSString * const kZHYFontInfoKeyAttributes = @"fontAttributes";
     NSDictionary *fontAttributes = font.fontDescriptor.fontAttributes;
     CGFloat fontSize = font.pointSize;
     
-    d = @{kZHYFontInfoKeySize: @(fontSize),
-          kZHYFontInfoKeyAttributes: fontAttributes};
+    d = @{kZHYFontInfoDescriptorKeySize: @(fontSize),
+          kZHYFontInfoDescriptorKeyAttributes: fontAttributes};
 #endif
     return d;
 }

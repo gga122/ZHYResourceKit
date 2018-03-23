@@ -12,12 +12,6 @@
 
 @implementation ZHYFontWrapper
 
-#pragma mark - DESIGNATED INITIALIZER
-
-- (instancetype)initWithFont:(NSFont *)font name:(NSString *)name {
-    
-}
-
 #pragma mark - Overridden
 
 + (void)initialize {
@@ -38,9 +32,11 @@
 
 @end
 
+NSString * const kZHYFontInfoDescriptorKeySize = @"fontSize";
+NSString * const kZHYFontInfoDescriptorKeyAttributes = @"fontAttributes";
+
 static NSString * const kZHYFontInfoKeyCodingName = @"fontName";
 static NSString * const kZHYFontInfoKeyCodingFontDescriptor = @"fontDescriptor";
-static NSString * const kZHYFontInfoKeyCodingFontSize = @"fontSize";
 static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
 
 @interface ZHYFontInfo ()
@@ -77,6 +73,10 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
     if (self) {
         _name = [resourceName copy];
         
+        CGFloat fontSize = font.pointSize;
+        NSDictionary *fontAttributes = font.fontDescriptor.fontAttributes;
+        
+        _descriptor = @{kZHYFontInfoDescriptorKeySize: @(fontSize), kZHYFontInfoDescriptorKeyAttributes: fontAttributes};
     }
     
     return self;
@@ -131,28 +131,19 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:kZHYFontInfoKeyCodingName];
-    
-    CGFloat fontSize = self.font.pointSize;
-    [aCoder encodeDouble:fontSize forKey:kZHYFontInfoKeyCodingFontSize];
-    
-    NSDictionary *fontAttributes = self.font.fontDescriptor.fontAttributes;
-    [aCoder encodeObject:fontAttributes forKey:kZHYFontInfoKeyCodingFontDescriptor];
-    
+    [aCoder encodeObject:self.descriptor forKey:kZHYFontInfoKeyCodingFontDescriptor];
     [aCoder encodeObject:self.detail forKey:kZHYFontInfoKeyCodingDetail];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     NSString *name = [aDecoder decodeObjectForKey:kZHYFontInfoKeyCodingName];
-    
-    CGFloat fontSize = [aDecoder decodeDoubleForKey:kZHYFontInfoKeyCodingFontSize];
-    NSDictionary *fontAttributes = [aDecoder decodeObjectForKey:kZHYFontInfoKeyCodingFontDescriptor];
-    NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:fontAttributes];
-    NSFont *font = [NSFont fontWithDescriptor:fontDescriptor size:fontSize];
-    
+    NSDictionary *descriptor = [aDecoder decodeObjectForKey:kZHYFontInfoKeyCodingFontDescriptor];
     NSString *detail = [aDecoder decodeObjectForKey:kZHYFontInfoKeyCodingDetail];
     
-    self = [self initWithFont:font resourceName:name];
+    self = [super init];
     if (self) {
+        _name = name;
+        _descriptor = descriptor;
         _detail = detail;
     }
     
@@ -173,38 +164,8 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
     }
 }
 
-- (NSDictionary *)encodeToPlist {
-    if (!self.name || !self.descriptor) {
-        return nil;
-    }
-    
-    NSMutableDictionary<NSString *, id> *plist = [NSMutableDictionary dictionary];
-    
-    [plist setObject:self.name forKey:kZHYFontKeyName];
-    [plist setObject:self.descriptor forKey:kZHYFontKeyFont];
-    if (self.detail) {
-        [plist setObject:self.detail forKey:kZHYFontKeyDetail];
-    }
-    
-    return plist;
-}
-
-+ (instancetype)decodeFromPlist:(NSDictionary *)plist {
-    NSString *name = [plist objectForKey:kZHYFontKeyName];
-    if (!name) {
-        return nil;
-    }
-    
-    NSDictionary *descriptor = [plist objectForKey:kZHYFontKeyFont];
-    if (!descriptor) {
-        return nil;
-    }
-    
-    ZHYFontInfo *info = [[ZHYFontInfo alloc] initWithDescriptor:descriptor forName:name];
-    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
-    info.detail = detail;
-    
-    return info;
++ (NSString *)resourceType {
+    return kZHYResourceKeyTypeFont;
 }
 
 @end

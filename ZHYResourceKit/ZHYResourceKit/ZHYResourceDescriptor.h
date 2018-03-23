@@ -44,7 +44,7 @@ NS_INLINE BOOL isValidResourceDescriptor(id<ZHYResourceDescriptor> resourceDescr
         return NO;
     }
     
-    if (resourceDescriptor.name == nil) {
+    if (resourceDescriptor.resourceName == nil) {
         return NO;
     }
     
