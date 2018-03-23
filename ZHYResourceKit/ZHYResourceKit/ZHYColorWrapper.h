@@ -17,16 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ZHYColorInfo : NSObject <ZHYResourceInfo>
+@interface ZHYColorInfo : NSObject <ZHYResourceDescriptor>
 
-- (instancetype)initWithColor:(NSColor *)color name:(NSString *)name NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithColorHex:(NSString *)hex forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
-
+- (instancetype)initWithColor:(ZHYColor *)color resourceName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *resourceName;
 @property (nonatomic, copy) NSString *hex;
-@property (nonatomic, copy, nullable) NSString *detail;
+@property (nonatomic, copy, nullable) NSString *resourceDetail;
 
 @end
 

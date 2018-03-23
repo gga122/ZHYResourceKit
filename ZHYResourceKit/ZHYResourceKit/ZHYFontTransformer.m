@@ -20,7 +20,7 @@ NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer
 @implementation ZHYFontTransformer
 
 + (void)initialize {
-    if (self == [ZHYFontTransformer class]) {
+    if (self == [ZHYFontTransformer self]) {
         ZHYFontTransformer *transformer = [[ZHYFontTransformer alloc] init];
         [[self class] setValueTransformer:transformer forName:kZHYFontTransformer];
     }

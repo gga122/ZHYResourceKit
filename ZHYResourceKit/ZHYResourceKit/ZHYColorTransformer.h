@@ -20,7 +20,7 @@ FOUNDATION_EXTERN NSValueTransformerName const kZHYColorTransformer;
 
 @interface ZHYColorTransformer : NSValueTransformer
 
-- (nullable ZHYColor *)transformedValue:(nullable NSString *)hex;
+- (nullable ZHYColor *)transformedValue:(nullable NSString *)colorRepresetation;
 - (nullable NSString *)reverseTransformedValue:(nullable ZHYColor *)color;
 
 @end

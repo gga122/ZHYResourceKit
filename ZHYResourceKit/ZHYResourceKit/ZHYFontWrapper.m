@@ -39,30 +39,9 @@ static NSString * const kZHYFontInfoKeyCodingName = @"fontName";
 static NSString * const kZHYFontInfoKeyCodingFontDescriptor = @"fontDescriptor";
 static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
 
-@interface ZHYFontInfo ()
-
-@property (nonatomic, copy, readonly) NSDictionary *fontDescriptor;
-
-@end
-
 @implementation ZHYFontInfo
 
 #pragma mark - DESIGNATED INITIALIZER
-
-- (instancetype)initWithDescriptor:(NSDictionary *)descriptor forName:(NSString *)name {
-    BOOL isGuard = (!descriptor || !name);
-    if (isGuard) {
-        return nil;
-    }
-    
-    self = [super init];
-    if (self) {
-        _name = [name copy];
-        _descriptor = [descriptor copy];
-    }
-    
-    return self;
-}
 
 - (instancetype)initWithFont:(NSFont *)font resourceName:(NSString *)resourceName {
     if (font == nil || resourceName == nil) {
@@ -71,7 +50,7 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
     
     self = [super init];
     if (self) {
-        _name = [resourceName copy];
+        _resourceName = [resourceName copy];
         
         CGFloat fontSize = font.pointSize;
         NSDictionary *fontAttributes = font.fontDescriptor.fontAttributes;
@@ -121,8 +100,10 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ZHYFontInfo *info = [[ZHYFontInfo allocWithZone:zone] initWithDescriptor:self.descriptor forName:self.name];
-    info.detail = self.detail;
+    ZHYFontInfo *info = [[ZHYFontInfo allocWithZone:zone] init];
+    info->_name = [_name copy];
+    info->_descriptor = [_descriptor copy];
+    info->_detail = [_detail copy];
     
     return info;
 }
@@ -162,6 +143,12 @@ static NSString * const kZHYFontInfoKeyCodingDetail = @"fontDetail";
     } else {
         self.descriptor = content;
     }
+}
+
+#pragma mark - ZHYResourceDescriptor
+
+- (id<NSCoding>)resourceContents {
+    return self.descriptor;
 }
 
 + (NSString *)resourceType {

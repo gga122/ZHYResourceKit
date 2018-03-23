@@ -19,7 +19,7 @@ NSValueTransformerName const kZHYColorTransformer = @"zhy.resourceKit.transforme
 @implementation ZHYColorTransformer
 
 + (void)initialize {
-    if (self == [ZHYColorTransformer class]) {
+    if (self == [ZHYColorTransformer self]) {
         ZHYColorTransformer *transformer = [[ZHYColorTransformer alloc] init];
         [NSValueTransformer setValueTransformer:transformer forName:kZHYColorTransformer];
     }
@@ -33,12 +33,39 @@ NSValueTransformerName const kZHYColorTransformer = @"zhy.resourceKit.transforme
     return YES;
 }
 
-- (ZHYColor *)transformedValue:(NSString *)hex {
-    return [ZHYColor colorWithHexARGB:hex];
+- (nullable ZHYColor *)transformedValue:(nullable NSString *)colorRepresetation {
+    if (colorRepresetation == nil) {
+        return nil;
+    }
+    
+    CIColor *c = [CIColor colorWithString:colorRepresetation];
+    if (c == nil) {
+        return nil;
+    }
+    
+    ZHYColor *color = nil;
+#if TARGET_OS_IOS
+    color = [[ZHYColor alloc] initWithCIColor:c];
+#else
+    color = [ZHYColor colorWithCIColor:c];
+#endif
+    
+    return color;
 }
 
 - (NSString *)reverseTransformedValue:(ZHYColor *)color {
-    return color.hexARGB;
+    if (color == nil) {
+        return nil;
+    }
+    
+    CIColor *c = nil;
+#if TARGET_OS_IOS
+    c = [[CIColor alloc] initWithColor:color];
+#else
+    c = [[CIColor alloc] initWithColor:color];
+#endif
+    
+    return c.stringRepresentation;
 }
 
 @end

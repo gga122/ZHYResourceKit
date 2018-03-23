@@ -36,16 +36,16 @@
 
 #pragma mark - DESIGNATED INITIALIZER
 
-- (instancetype)initWithColorHex:(NSString *)hex forName:(NSString *)name {
-    BOOL isGuard = (!hex || !name);
-    if (isGuard) {
+- (instancetype)initWithColor:(ZHYColor *)color resourceName:(NSString *)resourceName {
+    if (color == nil || resourceName == nil) {
         return nil;
     }
-
+    
     self = [super init];
     if (self) {
-        _name = [name copy];
-        _hex = [hex copy];
+        _resourceName = [resourceName copy];
+        
+        
     }
     
     return self;
@@ -56,10 +56,10 @@
 - (NSString *)description {
     NSMutableString *desc = [NSMutableString stringWithString:[super description]];
     
-    [desc appendFormat:@"<name: %@>", _name];
+    [desc appendFormat:@"<name: %@>", _resourceName];
     [desc appendFormat:@"<hex: %@>", _hex];
-    if (_detail) {
-        [desc appendFormat:@"<detail: %@>", _detail];
+    if (_resourceDetail) {
+        [desc appendFormat:@"<detail: %@>", _resourceDetail];
     }
     
     return desc;
