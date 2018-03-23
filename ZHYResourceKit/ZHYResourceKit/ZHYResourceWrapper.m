@@ -10,9 +10,10 @@
 #import "ZHYLogger.h"
 #import "ZHYResourceKitDefines.h"
 
+static NSString * const kZHYResourceWrapperKeyCodingDescriptor = @"descriptor";
+
 @interface ZHYResourceWrapper ()
 
-@property (nonatomic, copy) id<ZHYResourceDescriptor> resourceDescriptor;
 @property (nonatomic, copy) id<ZHYResourceInfo> resourceInfo;
 
 @end
@@ -52,7 +53,7 @@
     
     self = [super init];
     if (self) {
-        _resourceDescriptor = descriptor; // TODO: support copy
+        _resourceDescriptor = descriptor;
     }
     
     return self;
@@ -78,22 +79,22 @@
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [NSException raise:NSInternalInconsistencyException format:@"Subclass MUST implement this method."];
+    [aCoder encodeObject:self.resourceDescriptor forKey:kZHYResourceWrapperKeyCodingDescriptor];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    [NSException raise:NSInternalInconsistencyException format:@"Subclass MUST implement this method."];
-    return nil;
+    id<ZHYResourceDescriptor> descriptor = [aDecoder decodeObjectForKey:kZHYResourceWrapperKeyCodingDescriptor];
+    return [self initWithResourceDescriptor:descriptor];
 }
 
 #pragma mark - Private Methods
 
 - (BOOL)isEqualToZHYResourceWrapper:(ZHYResourceWrapper *)wrapper {
-    if (![self.name isEqualToString:wrapper.name]) {
+    if (![self.resourceName isEqualToString:wrapper.resourceName]) {
         return NO;
     }
     
-    if (![self.resourceInfo isEqual:wrapper]) {
+    if (![self.resourceDescriptor isEqual:wrapper.resourceDescriptor]) {
         return NO;
     }
     
@@ -102,8 +103,8 @@
 
 #pragma mark - Public Property
 
-- (NSString *)name {
-    return self.resourceInfo.name;
+- (NSString *)resourceName {
+    return self.resourceDescriptor.resourceName;
 }
 
 - (id)resource {    
@@ -119,8 +120,8 @@
     return r;
 }
 
-- (NSString *)detail {
-    return self.resourceInfo.detail;
+- (NSString *)resourceDetail {
+    return self.resourceDescriptor.resourceDetail;
 }
 
 + (NSString *)resourceType {
@@ -129,12 +130,6 @@
 
 + (NSValueTransformer *)transformer {
     return nil;
-}
-
-#pragma mark - Private Property
-
-- (id<ZHYResourceInfo>)resourceInfo {
-    return [_resourceInfo copy];
 }
 
 @end

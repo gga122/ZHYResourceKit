@@ -34,9 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithResourceDescriptor:(id<ZHYResourceDescriptor>)descriptor NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, strong, readonly) id<ZHYResourceDescriptor> resourceDescriptor;
+
+@property (nonatomic, copy, readonly) NSString *resourceName;
 @property (nonatomic, copy, readonly, nullable) id resource;
-@property (nonatomic, copy, readonly, nullable) NSString *detail;
+@property (nonatomic, copy, readonly, nullable) NSString *resourceDetail;
 
 /**
  For subclass overridden

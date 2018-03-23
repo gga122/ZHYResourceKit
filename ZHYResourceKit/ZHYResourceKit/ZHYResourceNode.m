@@ -106,12 +106,12 @@
                 continue;
             }
             
-            if ([self.resourcesMap objectForKey:resourceWrapper.name]) {
-                ZHYLogError(@"Found duplicate resource. <name: %@>", resourceWrapper.name);
+            if ([self.resourcesMap objectForKey:resourceWrapper.resourceName]) {
+                ZHYLogError(@"Found duplicate resource. <name: %@>", resourceWrapper.resourceName);
                 continue;
             }
             
-            [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
+            [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.resourceName];
         }
     }
 }
@@ -124,7 +124,7 @@
     }
     
     ZHYResourceWrapper *resourceWrapper = [[self.wrapperClass alloc] initWithResourceInfo:resourceInfo];
-    [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.name];
+    [self.resourcesMap setObject:resourceWrapper forKey:resourceWrapper.resourceName];
     
     return YES;
 }
@@ -135,7 +135,7 @@
     }
     
     ZHYResourceWrapper *resourceWrapper = [[self.wrapperClass alloc] initWithResourceInfo:resourceInfo];
-    [self.resourcesMap removeObjectForKey:resourceWrapper.name];
+    [self.resourcesMap removeObjectForKey:resourceWrapper.resourceName];
     
     return YES;
 }
