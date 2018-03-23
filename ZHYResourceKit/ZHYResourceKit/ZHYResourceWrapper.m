@@ -75,6 +75,17 @@
     return wrapper;
 }
 
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [NSException raise:NSInternalInconsistencyException format:@"Subclass MUST implement this method."];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    [NSException raise:NSInternalInconsistencyException format:@"Subclass MUST implement this method."];
+    return nil;
+}
+
 #pragma mark - Private Methods
 
 - (BOOL)isEqualToZHYResourceWrapper:(ZHYResourceWrapper *)wrapper {

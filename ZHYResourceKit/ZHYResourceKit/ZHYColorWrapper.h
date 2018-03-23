@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy) NSString *resourceName;
-@property (nonatomic, copy) NSString *hex;
+@property (nonatomic, copy) NSString *representation;
 @property (nonatomic, copy, nullable) NSString *resourceDetail;
 
 @end

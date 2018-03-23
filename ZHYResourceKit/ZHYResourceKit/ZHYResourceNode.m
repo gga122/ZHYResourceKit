@@ -144,20 +144,7 @@
     NSArray<ZHYResourceWrapper *> *allResourceWrappers = self.allResourceWrappers;
     
     NSMutableArray *plist = [NSMutableArray arrayWithCapacity:allResourceWrappers.count];
-    
-    for (ZHYResourceWrapper *aWrapper in allResourceWrappers) {
-        @autoreleasepool {
-            id<ZHYResourceInfo> resourceInfo = aWrapper.resourceInfo;
-            NSDictionary *infoPlist = [resourceInfo encodeToPlist];
-            
-            if (!infoPlist) {
-                continue;
-            }
-            
-            [plist addObject:infoPlist];
-        }
-    }
-    
+        
     return plist;
 }
 

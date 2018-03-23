@@ -57,7 +57,7 @@
     NSMutableString *desc = [NSMutableString stringWithString:[super description]];
     
     [desc appendFormat:@"<name: %@>", _resourceName];
-    [desc appendFormat:@"<hex: %@>", _hex];
+    [desc appendFormat:@"<hex: %@>", _re];
     if (_resourceDetail) {
         [desc appendFormat:@"<detail: %@>", _resourceDetail];
     }
@@ -76,11 +76,11 @@
 #pragma mark - Private Methods
 
 - (BOOL)isEqualToZHYColorInfo:(ZHYColorInfo *)colorInfo {
-    if (![self.name isEqualToString:colorInfo.name]) {
+    if (![self.resourceName isEqualToString:colorInfo.resourceName]) {
         return NO;
     }
     
-    if ([self.hex isEqualToString:colorInfo.hex]) {
+    if (![self.representation isEqualToString:colorInfo.representation]) {
         return NO;
     }
     
@@ -90,58 +90,32 @@
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ZHYColorInfo *info = [[ZHYColorInfo allocWithZone:zone] initWithColorHex:self.hex forName:self.name];
-    info.detail = self.detail;
+    ZHYColorInfo *info = [[ZHYColorInfo allocWithZone:zone] init];
+    info->_resourceName = [_resourceName copy];
+    info->_representation = [_representation copy];
+    info->_resourceDetail = [_resourceDetail copy];
     
     return info;
 }
 
-#pragma mark - ZHYResourceInfo Protocol
+#pragma mark - NSCoding
 
-- (id)content {
-    return self.hex;
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    
 }
 
-- (void)setContent:(id)content {
-    if (![content isKindOfClass:[NSString class]]) {
-        [NSException raise:NSInternalInconsistencyException format:@"Invalid content type. <content: %@>", content];
-    } else {
-        self.hex = content;
-    }
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return nil;
 }
 
-- (NSDictionary *)encodeToPlist {
-    if (!self.name || !self.hex) {
-        return nil;
-    }
-    
-    NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithCapacity:3];
-    
-    [plist setObject:self.name forKey:kZHYColorKeyName];
-    [plist setObject:self.hex forKey:kZHYColorKeyColorHex];
-    if (self.detail) {
-        [plist setObject:self.detail forKey:kZHYColorKeyDetail];
-    }
-    
-    return plist;
+#pragma mark - ZHYResourceDescriptor
+
+- (id<NSCoding>)resourceContents {
+    return self.representation;
 }
 
-+ (instancetype)decodeFromPlist:(NSDictionary *)plist {
-    NSString *name = [plist objectForKey:kZHYColorKeyName];
-    if (!name) {
-        return nil;
-    }
-    
-    NSString *hex = [plist objectForKey:kZHYColorKeyColorHex];
-    if (!hex) {
-        return nil;
-    }
-    
-    ZHYColorInfo *info = [[ZHYColorInfo alloc] initWithColorHex:hex forName:name];
-    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
-    info.detail = detail;
-    
-    return info;
++ (NSString *)resourceType {
+    return kZHYResourceKeyTypeColor;
 }
 
 @end

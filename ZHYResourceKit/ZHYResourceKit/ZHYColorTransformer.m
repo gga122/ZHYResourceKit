@@ -6,6 +6,8 @@
 //  Copyright © 2017 John Henry. All rights reserved.
 //
 
+#import <CoreImage/CoreImage.h>
+
 #import "ZHYColorTransformer.h"
 
 #if TARGET_OS_IOS
