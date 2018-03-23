@@ -19,7 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHYColorInfo : NSObject <ZHYResourceInfo>
 
+- (instancetype)initWithColor:(NSColor *)color name:(NSString *)name NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithColorHex:(NSString *)hex forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy) NSString *name;

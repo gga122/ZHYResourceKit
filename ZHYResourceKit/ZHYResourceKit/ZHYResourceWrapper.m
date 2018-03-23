@@ -12,8 +12,8 @@
 
 @interface ZHYResourceWrapper ()
 
-@property (nonatomic, copy) id<ZHYResourceInfo> resourceInfo;
 @property (nonatomic, copy) id<ZHYResourceDescriptor> resourceDescriptor;
+@property (nonatomic, copy) id<ZHYResourceInfo> resourceInfo;
 
 @end
 

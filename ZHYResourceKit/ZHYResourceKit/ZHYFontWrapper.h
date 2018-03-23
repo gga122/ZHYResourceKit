@@ -17,14 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ZHYFontInfo : NSObject <ZHYResourceInfo>
+@interface ZHYFontInfo : NSObject <ZHYResourceInfo, ZHYResourceDescriptor>
 
-- (instancetype)initWithDescriptor:(NSDictionary *)descriptor forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFont:(NSFont *)font resourceName:(NSString *)resourceName NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSDictionary *descriptor;
+@property (nonatomic, copy) NSFont *font;
 @property (nonatomic, copy) NSString *detail;
+
+@property (nonatomic, copy) NSDictionary *descriptor;
+- (instancetype)initWithDescriptor:(NSDictionary *)descriptor forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 @end
 

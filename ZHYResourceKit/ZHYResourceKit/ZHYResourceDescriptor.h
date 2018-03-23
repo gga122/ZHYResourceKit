@@ -14,21 +14,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *resourceName;
 
 /* For describe the contents about resource, this could be the true data about resource, etc 'string'.
    It also could be the reference data about resource, like path about resource. */
-@property (nonatomic, strong) id<NSCoding> contents;
+@property (nonatomic, strong) id<NSCoding> resourceContents;
 
 /**
  For detail description about the resource, I recommend developers do not ignore this.
  */
-@property (nonatomic, copy, nullable) NSString *detail;
+@property (nonatomic, copy, nullable) NSString *resourceDetail;
 
 /**
  For describe which kind of resource, you can define your own resource type or use defined by this framework.
  */
-@property (nonatomic, class, readonly) NSString *type;
+@property (nonatomic, class, readonly) NSString *resourceType;
 
 @optional
 
