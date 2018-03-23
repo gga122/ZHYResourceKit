@@ -13,6 +13,7 @@
 @interface ZHYResourceWrapper ()
 
 @property (nonatomic, copy) id<ZHYResourceInfo> resourceInfo;
+@property (nonatomic, copy) id<ZHYResourceDescriptor> resourceDescriptor;
 
 @end
 
@@ -39,6 +40,19 @@
     self = [super init];
     if (self) {
         _resourceInfo = [info copy];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithResourceDescriptor:(id<ZHYResourceDescriptor>)descriptor {
+    if (!isValidResourceDescriptor(descriptor)) {
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _resourceDescriptor = descriptor; // TODO: support copy
     }
     
     return self;

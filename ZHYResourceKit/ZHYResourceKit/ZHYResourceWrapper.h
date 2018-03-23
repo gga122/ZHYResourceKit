@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ZHYResourceKitForMac/ZHYResourceDescriptor.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,9 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface ZHYResourceWrapper : NSObject <NSCopying>
+@interface ZHYResourceWrapper : NSObject <NSCopying, NSCoding>
 
 - (instancetype)initWithResourceInfo:(id<ZHYResourceInfo>)info NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithResourceDescriptor:(id<ZHYResourceDescriptor>)descriptor NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) id<ZHYResourceInfo> resourceInfo;
