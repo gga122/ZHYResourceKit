@@ -15,6 +15,12 @@
 		D266DC6E20464FE5009CB1AE /* ZHYResourceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = D266DC6C20464FE5009CB1AE /* ZHYResourceContainer.m */; };
 		D266DC6F20464FF4009CB1AE /* ZHYResourceContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = D266DC6B20464FE5009CB1AE /* ZHYResourceContainer.h */; };
 		D266DC7020464FF6009CB1AE /* ZHYResourceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = D266DC6C20464FE5009CB1AE /* ZHYResourceContainer.m */; };
+		D272B8E02064DF2200528647 /* ZHYResourceTable.h in Headers */ = {isa = PBXBuildFile; fileRef = D272B8DE2064DF2200528647 /* ZHYResourceTable.h */; };
+		D272B8E12064DF2200528647 /* ZHYResourceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D272B8DF2064DF2200528647 /* ZHYResourceTable.m */; };
+		D272B8E22064DF4000528647 /* ZHYResourceTable.h in Headers */ = {isa = PBXBuildFile; fileRef = D272B8DE2064DF2200528647 /* ZHYResourceTable.h */; };
+		D272B8E32064DF4200528647 /* ZHYResourceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D272B8DF2064DF2200528647 /* ZHYResourceTable.m */; };
+		D272B8E52064E20C00528647 /* ZHYResourceDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = D272B8E42064E20C00528647 /* ZHYResourceDescriptor.h */; };
+		D272B8E62064E25A00528647 /* ZHYResourceDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = D272B8E42064E20C00528647 /* ZHYResourceDescriptor.h */; };
 		D284C6C71EC5956D00FB15CB /* ZHYResourceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */; };
 		D284C6C81EC5956D00FB15CB /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
 		D284C6CA1EC5959700FB15CB /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
@@ -164,6 +170,9 @@
 		D204F1B41ECC3B1900D470ED /* UIFont+ZHYAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ZHYAttributes.m"; sourceTree = "<group>"; };
 		D266DC6B20464FE5009CB1AE /* ZHYResourceContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceContainer.h; sourceTree = "<group>"; };
 		D266DC6C20464FE5009CB1AE /* ZHYResourceContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceContainer.m; sourceTree = "<group>"; };
+		D272B8DE2064DF2200528647 /* ZHYResourceTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceTable.h; sourceTree = "<group>"; };
+		D272B8DF2064DF2200528647 /* ZHYResourceTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceTable.m; sourceTree = "<group>"; };
+		D272B8E42064E20C00528647 /* ZHYResourceDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYResourceDescriptor.h; sourceTree = "<group>"; };
 		D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceWrapper.h; sourceTree = "<group>"; };
 		D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceWrapper.m; sourceTree = "<group>"; };
 		D284C6CC1EC5A2D300FB15CB /* ZHYColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYColorTransformer.h; sourceTree = "<group>"; };
@@ -299,6 +308,7 @@
 		D272B8DD2064DE1500528647 /* ResourceWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				D272B8E42064E20C00528647 /* ZHYResourceDescriptor.h */,
 				D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */,
 				D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */,
 				D28F0A221EC174A2007B1408 /* FontWrapper */,
@@ -400,6 +410,8 @@
 				D29C57F42043F63A0015F0A9 /* ZHYResourceBundle.m */,
 				D266DC6B20464FE5009CB1AE /* ZHYResourceContainer.h */,
 				D266DC6C20464FE5009CB1AE /* ZHYResourceContainer.m */,
+				D272B8DE2064DF2200528647 /* ZHYResourceTable.h */,
+				D272B8DF2064DF2200528647 /* ZHYResourceTable.m */,
 			);
 			name = Structure;
 			sourceTree = "<group>";
@@ -574,6 +586,8 @@
 				D266DC6D20464FE5009CB1AE /* ZHYResourceContainer.h in Headers */,
 				D2AF24911EC9AFED00113B9C /* ZHYResourceMap.h in Headers */,
 				D2AF24791EC94F6F00113B9C /* ZHYImageTransformer.h in Headers */,
+				D272B8E02064DF2200528647 /* ZHYResourceTable.h in Headers */,
+				D272B8E52064E20C00528647 /* ZHYResourceDescriptor.h in Headers */,
 				D28F0A191EC16B77007B1408 /* NSColor+ZHYHex.h in Headers */,
 				D28F0A551EC1B255007B1408 /* ZHYImageWrapper.h in Headers */,
 				D2909BC3204FE84300C8546D /* ZHYResourceKitErrors.h in Headers */,
@@ -598,6 +612,8 @@
 				D2BD15791ED3DF5D009FADEA /* ZHYFontWrapper.h in Headers */,
 				D284C6D01EC5A34E00FB15CB /* ZHYColorTransformer.h in Headers */,
 				D2AF24951ECAF3E400113B9C /* ZHYResourceManager+Private.h in Headers */,
+				D272B8E22064DF4000528647 /* ZHYResourceTable.h in Headers */,
+				D272B8E62064E25A00528647 /* ZHYResourceDescriptor.h in Headers */,
 				D2AF24981ECAF3F500113B9C /* ZHYResourceNode.h in Headers */,
 				D2AF248E1EC991C500113B9C /* ZHYResourceManager.h in Headers */,
 				D2CDA37E1EBC72150085F997 /* ZHYResourceKitForiOS.h in Headers */,
@@ -864,6 +880,7 @@
 				D2CDA3B71EBC85E40085F997 /* ZHYResourceNode.m in Sources */,
 				D2CDA3861EBC7B290085F997 /* ZHYResourceManager.m in Sources */,
 				D28F0A1A1EC16B77007B1408 /* NSColor+ZHYHex.m in Sources */,
+				D272B8E12064DF2200528647 /* ZHYResourceTable.m in Sources */,
 				D28F0A091EC161C1007B1408 /* ZHYFontWrapper.m in Sources */,
 				D28F0A0D1EC16421007B1408 /* ZHYColorWrapper.m in Sources */,
 				D2AF247A1EC94F6F00113B9C /* ZHYImageTransformer.m in Sources */,
@@ -891,6 +908,7 @@
 				D284C6D21EC5A4F100FB15CB /* ZHYColorWrapper.m in Sources */,
 				D266DC7020464FF6009CB1AE /* ZHYResourceContainer.m in Sources */,
 				D284C6CA1EC5959700FB15CB /* ZHYResourceWrapper.m in Sources */,
+				D272B8E32064DF4200528647 /* ZHYResourceTable.m in Sources */,
 				D2AF24961ECAF3EC00113B9C /* ZHYResourceCenter.m in Sources */,
 				D284C6D11EC5A35000FB15CB /* ZHYColorTransformer.m in Sources */,
 				D2AF24821EC983FC00113B9C /* ZHYImageSearcher.m in Sources */,
