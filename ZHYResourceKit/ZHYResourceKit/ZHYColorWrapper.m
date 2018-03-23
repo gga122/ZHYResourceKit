@@ -57,7 +57,7 @@
     NSMutableString *desc = [NSMutableString stringWithString:[super description]];
     
     [desc appendFormat:@"<name: %@>", _resourceName];
-    [desc appendFormat:@"<hex: %@>", _re];
+    [desc appendFormat:@"<hex: %@>", _representation];
     if (_resourceDetail) {
         [desc appendFormat:@"<detail: %@>", _resourceDetail];
     }
