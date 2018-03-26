@@ -14,6 +14,7 @@
 #define ZHY_DESCRIPTOR_PLIST_LEVEL(x, y)           // Do nothing, just mark key level, 'x' is current level, 'y' is total level
 
 static NSString * const kZHYResourceDefaultBundleKey = @"default";
+static NSString * const kZHYResourceFilePathExtension = @"zyr";
 
 static NSString * const kZHYResourceStructDescriptorFileName = @"ZHYResourceStruct.descriptor.plist";
 

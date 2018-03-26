@@ -50,7 +50,7 @@
         return;
     }
     
-    NSString *resourceType = [[resourceWrapper class] resourceType];
+    NSString *resourceType = resourceWrapper.resourceType;
     ZHYResourceContainer *container = [self containerForResourceType:resourceType];
     if (container == nil) {
         container = [[ZHYResourceContainer alloc] initWithResourceType:resourceType];
@@ -139,6 +139,7 @@ static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResou
         return NO;
     }
 
+    /* write bundle infos */
     NSString *infoFilePath = [filePath stringByAppendingPathComponent:kZHYResourceBundleSerializerKeyInfoFileName];
     BOOL didWrite = [self.resourceBundleInfo writeToFile:infoFilePath atomically:YES];
     if (!didWrite) {
@@ -146,11 +147,35 @@ static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResou
         return NO;
     }
     
-    /* write container data */
+    /* write containers contents */
+    NSArray<NSString *> *allKeys = self.resourceContainers.allKeys;
+    for (NSString *aKey in allKeys) {
+        @autoreleasepool {
+            NSString *subPath = [filePath stringByAppendingPathComponent:aKey];
+            if (![fileManager fileExistsAtPath:subPath]) {
+                if (![fileManager createDirectoryAtPath:subPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+                    ZHYLogError(@"'%@' create directory for '%@' at '%@' failure. <error: %@>", self, aKey, subPath, error);
+                    return NO;
+                }
+            }
+            
+            ZHYResourceContainer *container = [self.resourceContainers objectForKey:aKey];
+            NSArray<ZHYResourceWrapper *> *allResourceWrappers = container.allResourceWrappers;
+            for (ZHYResourceWrapper *aResourceWrapper in allResourceWrappers) {
+                @autoreleasepool {
+                    NSString *resourcePath = [subPath stringByAppendingPathComponent:aResourceWrapper.resourceName];
+                    resourcePath = [resourcePath stringByAppendingPathExtension:kZHYResourceFilePathExtension];
+                    if (![NSKeyedArchiver archiveRootObject:aResourceWrapper toFile:resourcePath]) {
+                        ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, aResourceWrapper, resourcePath);
+                        return NO;
+                    }
+                }
+            }
+        }
+    }
+    
     
     return YES;
 }
-
-#pragma mark - Private Methods
 
 @end

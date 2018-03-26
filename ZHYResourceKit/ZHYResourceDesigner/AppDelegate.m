@@ -7,24 +7,25 @@
 //
 
 #import "AppDelegate.h"
-#import "ZHYMainWindowController.h"
 
 #import "ZHYResourceBundle.h"
+#import "ZHYColorWrapper.h"
+#import "ZHYFontWrapper.h"
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) NSWindowController *mainWindowController;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    _mainWindowController = [[ZHYMainWindowController alloc] initWithWindowNibName:@"ZHYMainWindowController"];
-    
-    [self.mainWindowController.window makeKeyAndOrderFront:nil];
-    
     ZHYResourceBundle *bundle = [[ZHYResourceBundle alloc] initWithBundleName:@"testBundle" priority:100];
+    
+    ZHYColorInfo *colorInfo = [[ZHYColorInfo alloc] initWithColor:[NSColor blueColor] resourceName:@"blue"];
+    ZHYColorWrapper *r1 = [[ZHYColorWrapper alloc] initWithResourceDescriptor:colorInfo];
+    [bundle addResourceWrapper:r1];
+        
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     savePanel.allowedFileTypes = @[@"bundle"];
     [savePanel runModal];

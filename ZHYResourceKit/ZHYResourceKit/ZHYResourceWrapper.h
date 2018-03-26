@@ -39,11 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *resourceName;
 @property (nonatomic, copy, readonly, nullable) id resource;
 @property (nonatomic, copy, readonly, nullable) NSString *resourceDetail;
+@property (nonatomic, copy, readonly) NSString *resourceType;
 
 /**
  For subclass overridden
  */
-@property (nonatomic, class, readonly) NSString *resourceType;
 @property (nonatomic, class, readonly, nullable) NSValueTransformer *transformer;
 
 @end

@@ -124,8 +124,8 @@ static NSString * const kZHYResourceWrapperKeyCodingDescriptor = @"descriptor";
     return self.resourceDescriptor.resourceDetail;
 }
 
-+ (NSString *)resourceType {
-    return kZHYResourceKeyTypeResource;
+- (NSString *)resourceType {
+    return [[self.resourceDescriptor class] resourceType];
 }
 
 + (NSValueTransformer *)transformer {

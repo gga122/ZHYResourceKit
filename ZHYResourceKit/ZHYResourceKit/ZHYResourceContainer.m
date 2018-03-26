@@ -41,6 +41,7 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
     self = [super init];
     if (self) {
         _resourceType = [resourceType copy];
+        _wrappers = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -93,7 +94,7 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
 #pragma mark - Private Methods
 
 - (BOOL)canAcceptResourceWrapper:(nonnull ZHYResourceWrapper *)wrapper {
-    NSString *resourceType = [[wrapper class] resourceType];
+    NSString *resourceType = wrapper.resourceType;
     return [self.resourceType isEqualToString:resourceType];
 }
 
