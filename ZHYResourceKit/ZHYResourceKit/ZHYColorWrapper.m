@@ -15,7 +15,7 @@
 #pragma mark - Overridden
 
 + (void)initialize {
-    if (self == [ZHYColorWrapper class]) {
+    if (self == [ZHYColorWrapper self]) {
         [ZHYColorTransformer class];
     }
 }
@@ -142,6 +142,10 @@ static NSString * const kZHYColorInfoKeyCodingDetail = @"colorDetail";
 
 - (id<NSCoding>)resourceContents {
     return self.representation;
+}
+
+- (void)setResourceContents:(id<NSCoding>)resourceContents {
+    
 }
 
 + (NSString *)resourceType {

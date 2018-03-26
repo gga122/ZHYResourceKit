@@ -145,3 +145,20 @@
 }
 
 @end
+
+@implementation ZHYImageRepresentationInfo
+
+- (instancetype)initWithImagePath:(NSString *)path {
+    if (path == nil) {
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _imagePath = [path copy];
+    }
+    
+    return self;
+}
+
+@end

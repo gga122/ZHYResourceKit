@@ -28,4 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ZHYImageRepresentationInfo : NSObject
+
+- (instancetype)initWithImagePath:(NSString *)path;
+
+@property (nonatomic, copy) NSString *imagePath;
+
+@end
+
 NS_ASSUME_NONNULL_END

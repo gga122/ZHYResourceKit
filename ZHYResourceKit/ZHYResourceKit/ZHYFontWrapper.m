@@ -166,6 +166,10 @@ NS_INLINE NSDictionary *safeCopyFontInfoDescriptor(NSDictionary<NSString *, id> 
     return self.descriptor;
 }
 
+- (void)setResourceContents:(id<NSCoding>)resourceContents {
+    
+}
+
 + (NSString *)resourceType {
     return kZHYResourceKeyTypeFont;
 }
