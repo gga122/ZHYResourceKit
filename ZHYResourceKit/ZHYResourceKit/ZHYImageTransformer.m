@@ -8,14 +8,13 @@
 
 #import "ZHYLogger.h"
 #import "ZHYImageTransformer.h"
-#import "ZHYResourceManager+Private.h"
 
 NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transformer.image";
 
 @implementation ZHYImageTransformer
 
 + (void)initialize {
-    if (self == [ZHYImageTransformer class]) {
+    if (self == [ZHYImageTransformer self]) {
         ZHYImageTransformer *transformer = [[ZHYImageTransformer alloc] init];
         [[self class] setValueTransformer:transformer forName:kZHYImageTransformer];
     }
@@ -42,26 +41,27 @@ NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transforme
 }
 
 - (NSString *)absolutedPathForPath:(NSString *)path {
-    BOOL isDirectory = NO;
-    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
-    if (existed || !isDirectory) {
-        return path;
-    }
+    return nil;
+//    BOOL isDirectory = NO;
+//    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
+//    if (existed || !isDirectory) {
+//        return path;
+//    }
     
-    ZHYResourceCenter *currentCenter = [ZHYResourceManager defaultManager].currentCenter;
-    NSBundle *bundle = currentCenter.bundle;
-    if (!bundle) {
-        ZHYLogError(@"Invalid resource center, bundle is nil. <center: %@>", currentCenter);
-        return nil;
-    }
-    
-    NSString *absolutedPath = [bundle.resourcePath stringByAppendingPathComponent:path];
-    existed = [[NSFileManager defaultManager] fileExistsAtPath:absolutedPath isDirectory:&isDirectory];
-    if (!existed || isDirectory) {
-        return nil;
-    }
-    
-    return absolutedPath;
+//    ZHYResourceCenter *currentCenter = [ZHYResourceManager defaultManager].currentCenter;
+//    NSBundle *bundle = currentCenter.bundle;
+//    if (!bundle) {
+//        ZHYLogError(@"Invalid resource center, bundle is nil. <center: %@>", currentCenter);
+//        return nil;
+//    }
+//
+//    NSString *absolutedPath = [bundle.resourcePath stringByAppendingPathComponent:path];
+//    existed = [[NSFileManager defaultManager] fileExistsAtPath:absolutedPath isDirectory:&isDirectory];
+//    if (!existed || isDirectory) {
+//        return nil;
+//    }
+//
+//    return absolutedPath;
 }
 
 @end

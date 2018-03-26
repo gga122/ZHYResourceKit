@@ -15,7 +15,7 @@
 #pragma mark - Overridden
 
 + (void)initialize {
-    if (self == [ZHYImageWrapper class]) {
+    if (self == [ZHYImageWrapper self]) {
         [ZHYImageTransformer class];
     }
 }

@@ -11,26 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ZHYResourceInfo <NSObject, NSCopying>
-
-@required
-
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) id<NSCoding> content;
-
-@property (nonatomic, copy, nullable) NSString *detail;
-
-- (instancetype)copy;
-
-- (NSDictionary *)encodeToPlist;
-+ (instancetype)decodeFromPlist:(NSDictionary *)plist;
-
-@end
-
-
 @interface ZHYResourceWrapper : NSObject <NSCopying, NSCoding>
 
-- (instancetype)initWithResourceInfo:(id<ZHYResourceInfo>)info NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithResourceDescriptor:(id<ZHYResourceDescriptor>)descriptor NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
