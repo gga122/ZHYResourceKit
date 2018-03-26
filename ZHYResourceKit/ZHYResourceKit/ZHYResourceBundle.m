@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSMutableDictionary<ZHYResourceBundleInfoKey, id> *resourceBundleInfo;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceContainer *> *resourceContainers;
 
+- (instancetype)initWithBundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
+
 @end
 
 @implementation ZHYResourceBundle
@@ -37,6 +39,30 @@
         [_resourceBundleInfo setObject:@(priority) forKey:kZHYResourceBundlePriority];
         
         _resourceContainers = [NSMutableDictionary dictionary];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithBundle:(NSBundle *)bundle {
+    if (bundle == nil) {
+        ZHYLogError(@"'%@' can not init with nil bundle.", [self class]);
+        return nil;
+    }
+    
+    NSString *resourceBundleInfoPath = [bundle.bundlePath stringByAppendingPathComponent:kZHYResourceBundleSerializerKeyInfoFileName];
+    NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:resourceBundleInfoPath];
+    NSError *error = nil;
+    if (!isValidResourceBundleInfo(info, &error)) {
+        ZHYLogError(@"'%@' can not init because of invalid resource bundle info '%@' at '%@'. <error: %@>", [self class], info, resourceBundleInfoPath, error);
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _resourceBundleInfo = info;
+        
+        // TODO: load resources
     }
     
     return self;
@@ -114,8 +140,6 @@
 
 @end
 
-static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResourceBundleInfo.plist";
-
 @implementation ZHYResourceBundle (Serializer)
 
 #pragma mark - Public Methods
@@ -177,5 +201,14 @@ static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResou
     
     return YES;
 }
+
++ (instancetype)resourceBundleWithBundle:(NSBundle *)bundle {
+    ZHYResourceBundle *resourceBundle = [[ZHYResourceBundle alloc] initWithBundle:bundle];
+    return resourceBundle;
+}
+
+#pragma mark - Private Methods
+
+
 
 @end

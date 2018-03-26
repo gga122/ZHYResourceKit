@@ -25,7 +25,11 @@
     ZHYColorInfo *colorInfo = [[ZHYColorInfo alloc] initWithColor:[NSColor blueColor] resourceName:@"blue"];
     ZHYColorWrapper *r1 = [[ZHYColorWrapper alloc] initWithResourceDescriptor:colorInfo];
     [bundle addResourceWrapper:r1];
-        
+    
+    ZHYFontInfo *fontInfo = [[ZHYFontInfo alloc] initWithFont:[NSFont systemFontOfSize:14.0] resourceName:@"systemFont"];
+    ZHYFontWrapper *r2 = [[ZHYFontWrapper alloc] initWithResourceDescriptor:fontInfo];
+    [bundle addResourceWrapper:r2];
+    
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     savePanel.allowedFileTypes = @[@"bundle"];
     [savePanel runModal];
