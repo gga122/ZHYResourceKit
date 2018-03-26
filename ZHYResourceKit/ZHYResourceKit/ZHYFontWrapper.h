@@ -33,4 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXTERN NSString * const kZHYFontInfoDescriptorKeySize;
 FOUNDATION_EXTERN NSString * const kZHYFontInfoDescriptorKeyAttributes;
 
+FOUNDATION_EXTERN BOOL isValidFontInfoDescriptor(NSDictionary<NSString *, id> *fontInfoDescriptor);
+
 NS_ASSUME_NONNULL_END

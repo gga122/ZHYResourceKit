@@ -58,7 +58,7 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
         [delegate resourceContainer:self willAddWrapper:resourceWrapper conflictedWrapper:conflictedWrapper];
     }
     
-    [self.wrappers setObject:resourceWrapper forKey:resourceWrapper.name];
+    [self.wrappers setObject:resourceWrapper forKey:resourceWrapper.resourceName];
     
     if ([delegate respondsToSelector:@selector(resourceContainer:didAddWrapper:conflictedWrapper:)]) {
         [delegate resourceContainer:self didAddWrapper:resourceWrapper conflictedWrapper:conflictedWrapper];
@@ -83,7 +83,7 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
         [delegate resourceContainer:self willRemoveWrapper:conflictedWrapper];
     }
     
-    [self.wrappers removeObjectForKey:conflictedWrapper.name];
+    [self.wrappers removeObjectForKey:conflictedWrapper.resourceName];
     
     if ([delegate respondsToSelector:@selector(resourceContainer:didRemoveWrapper:)]) {
         [delegate resourceContainer:self didRemoveWrapper:conflictedWrapper];
@@ -98,7 +98,7 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
 }
 
 - (nullable ZHYResourceWrapper *)conflictedResourceWrapper:(nonnull ZHYResourceWrapper *)wrapper dequeue:(BOOL)dequeue {
-    NSString *key = wrapper.name;
+    NSString *key = wrapper.resourceName;
     ZHYResourceWrapper *conflictedWrapper = [self.wrappers objectForKey:key];
     if (dequeue && conflictedWrapper != nil) {
         [self.wrappers removeObjectForKey:key];

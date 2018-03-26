@@ -36,6 +36,12 @@ static NSString * const kZHYColorInfoKeyCodingName = @"colorName";
 static NSString * const kZHYColorInfoKeyCodingRepresentation = @"colorRepresentation";
 static NSString * const kZHYColorInfoKeyCodingDetail = @"colorDetail";
 
+@interface ZHYColorInfo ()
+
+- (instancetype)initWithColorRepresentation:(NSString *)colorRepresentation resourceName:(NSString *)resourceName NS_DESIGNATED_INITIALIZER;
+
+@end
+
 @implementation ZHYColorInfo
 
 #pragma mark - DESIGNATED INITIALIZER
@@ -56,6 +62,20 @@ static NSString * const kZHYColorInfoKeyCodingDetail = @"colorDetail";
         c = [[CIColor alloc] initWithColor:color];
 #endif
         _representation = c.stringRepresentation;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithColorRepresentation:(NSString *)colorRepresentation resourceName:(NSString *)resourceName {
+    if (colorRepresentation == nil || resourceName == nil) {
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _representation = [colorRepresentation copy];
+        _resourceName = [resourceName copy];
     }
     
     return self;
@@ -100,9 +120,7 @@ static NSString * const kZHYColorInfoKeyCodingDetail = @"colorDetail";
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ZHYColorInfo *info = [[ZHYColorInfo allocWithZone:zone] init];
-    info->_resourceName = [_resourceName copy];
-    info->_representation = [_representation copy];
+    ZHYColorInfo *info = [[ZHYColorInfo allocWithZone:zone] initWithColorRepresentation:_representation resourceName:_resourceName];
     info->_resourceDetail = [_resourceDetail copy];
     
     return info;
