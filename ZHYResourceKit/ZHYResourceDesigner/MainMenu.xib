@@ -60,6 +60,28 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="File" id="exC-iO-ifX" userLabel="File">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="File" id="11E-kc-aTe">
+                        <items>
+                            <menuItem title="New" keyEquivalent="n" id="XHj-t1-oM7">
+                                <connections>
+                                    <action selector="menuItemNewDidClick:" target="myb-iV-xm1" id="1UU-4R-tvS"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Open" keyEquivalent="o" id="hhY-eS-2y1">
+                                <connections>
+                                    <action selector="menuItemOpenDidClick:" target="myb-iV-xm1" id="ufU-mD-0Ww"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Close" keyEquivalent="w" id="s6f-Gq-E5H">
+                                <connections>
+                                    <action selector="menuItemCloseDidClick:" target="myb-iV-xm1" id="GwS-Yr-WgT"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
             </items>
             <point key="canvasLocation" x="-73" y="-244"/>
         </menu>

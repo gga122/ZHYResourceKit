@@ -26,6 +26,7 @@ static NSString * const kZHYResourceBundleMagicValue = @"D473E2BB-79EC-43C9-919A
 NSMutableDictionary<ZHYResourceBundleInfoKey, id> *createResourceBundleTempleteInfo(void) {
     NSMutableDictionary<ZHYResourceBundleInfoKey, id> *templeteInfo = [NSMutableDictionary dictionary];
     
+    [templeteInfo setObject:kZHYResourceBundleMagicValue forKey:kZHYResourceBundleMagic];
     [templeteInfo setObject:@"Default" forKey:kZHYResourceBundleName];
     [templeteInfo setObject:@(0) forKey:kZHYResourceBundlePriority];
     

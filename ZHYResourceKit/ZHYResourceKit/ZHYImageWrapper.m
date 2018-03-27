@@ -26,11 +26,17 @@
     return self.resource;
 }
 
+- (ZHYImage *)imageForScale:(CGFloat)scale {
+    return nil;
+}
+
 + (NSValueTransformer *)transformer {
     return [NSValueTransformer valueTransformerForName:kZHYImageTransformer];
 }
 
 @end
+
+
 
 @interface ZHYImageInfo ()
 
@@ -122,6 +128,23 @@
     }
     
     return YES;
+}
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    
+    
+    self = [super init];
+    if (self) {
+        
+    }
+    
+    return self;
 }
 
 #pragma mark - NSCopying
