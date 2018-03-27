@@ -8,6 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ZHYResourceBundle;
+
+
 @interface ZHYBundleWindowController : NSWindowController
+
+- (instancetype)initWithResourceBundle:(ZHYResourceBundle *)resourceBundle;
+
+@property (nonatomic, strong, readonly) ZHYResourceBundle *resourceBundle;
 
 @end

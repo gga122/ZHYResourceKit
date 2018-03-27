@@ -9,39 +9,27 @@
 #import "AppDelegate.h"
 
 #import "ZHYResourceBundle.h"
-#import "ZHYColorWrapper.h"
-#import "ZHYFontWrapper.h"
+#import "ZHYBundleWindowController.h"
+
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ZHYResourceBundle *currentBundle;
+@property (nonatomic, strong) ZHYBundleWindowController *bundleWindowController;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-//    ZHYResourceBundle *bundle = [[ZHYResourceBundle alloc] initWithBundleName:@"testBundle" priority:100];
-//
-//    ZHYColorInfo *colorInfo = [[ZHYColorInfo alloc] initWithColor:[NSColor blueColor] resourceName:@"blue"];
-//    ZHYColorWrapper *r1 = [[ZHYColorWrapper alloc] initWithResourceDescriptor:colorInfo];
-//    [bundle addResourceWrapper:r1];
-//
-//    ZHYFontInfo *fontInfo = [[ZHYFontInfo alloc] initWithFont:[NSFont systemFontOfSize:14.0] resourceName:@"systemFont"];
-//    ZHYFontWrapper *r2 = [[ZHYFontWrapper alloc] initWithResourceDescriptor:fontInfo];
-//    [bundle addResourceWrapper:r2];
-//
-//    NSSavePanel *savePanel = [NSSavePanel savePanel];
-//    savePanel.allowedFileTypes = @[@"bundle"];
-//    [savePanel runModal];
-//
-//    NSString *filePath = savePanel.URL.path;
-//    [bundle writeToFile:filePath atomically:YES];
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     
 }
+
+#pragma mark - Action
 
 - (IBAction)menuItemNewDidClick:(id)sender {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
@@ -65,6 +53,13 @@
         ZHYResourceBundle *resourceBundle = [ZHYResourceBundle resourceBundleWithBundle:bundle];
         
         self.currentBundle = resourceBundle;
+        
+        [self.bundleWindowController close];
+        
+        ZHYBundleWindowController *bundleWindowController = [[ZHYBundleWindowController alloc] initWithResourceBundle:resourceBundle];
+        [bundleWindowController.window makeKeyAndOrderFront:nil];
+        
+        self.bundleWindowController = bundleWindowController;
     }
 }
 
