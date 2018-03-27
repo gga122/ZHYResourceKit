@@ -9,7 +9,7 @@
 #import "ZHYLogger.h"
 #import "ZHYImageTransformer.h"
 
-NSValueTransformerName const kZHYImageTransformer = @"zhy.resourceKit.transformer.image";
+NSValueTransformerName const kZHYImageTransformer = @"zhy.resourcekit.transformer.image";
 
 @implementation ZHYImageTransformer
 

@@ -15,7 +15,7 @@
 #import "NSFont+ZHYAttributes.h"
 #endif
 
-NSValueTransformerName const kZHYFontTransformer = @"zhy.resourceKit.transformer.font";
+NSValueTransformerName const kZHYFontTransformer = @"zhy.resourcekit.transformer.font";
 
 @implementation ZHYFontTransformer
 

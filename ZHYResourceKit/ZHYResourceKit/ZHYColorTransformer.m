@@ -16,7 +16,7 @@
 #import "NSColor+ZHYHex.h"
 #endif
 
-NSValueTransformerName const kZHYColorTransformer = @"zhy.resourceKit.transformer.color";
+NSValueTransformerName const kZHYColorTransformer = @"zhy.resourcekit.transformer.color";
 
 @implementation ZHYColorTransformer
 

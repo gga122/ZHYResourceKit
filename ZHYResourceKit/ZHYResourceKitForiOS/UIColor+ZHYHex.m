@@ -7,7 +7,7 @@
 //
 
 #import "ZHYLogger.h"
-#import "UIColor+Hex.h"
+#import "UIColor+ZHYHex.h"
 
 @implementation UIColor (ZHYHex)
 

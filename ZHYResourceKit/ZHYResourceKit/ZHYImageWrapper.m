@@ -32,20 +32,43 @@
 
 @end
 
+@interface ZHYImageInfo ()
+
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *representations;
+
+- (instancetype)initWithRepresentations:(NSDictionary<NSNumber *, NSString *> *)representation resourceName:(NSString *)resourceName NS_DESIGNATED_INITIALIZER;
+
+@end
+
 @implementation ZHYImageInfo
 
 #pragma mark - DESIGNATED INITIALIZER
 
-- (instancetype)initWithPath:(NSString *)path forName:(NSString *)name {
-    BOOL isGuard = (!path || !name);
-    if (isGuard) {
+- (instancetype)initWithImagePath:(NSString *)imagePath forResourceName:(NSString *)resourceName {
+    if (imagePath == nil || resourceName == nil) {
         return nil;
     }
     
     self = [super init];
     if (self) {
-        _path = [path copy];
-        _name = [name copy];
+        _resourceName = [resourceName copy];
+        _representations = [NSMutableDictionary dictionaryWithCapacity:3];
+        
+        [_representations setObject:[imagePath copy] forKey:resourceName];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithRepresentations:(NSDictionary<NSNumber *, NSString *> *)representation resourceName:(NSString *)resourceName {
+    if (representation == nil || resourceName == nil) {
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _resourceName = [resourceName copy];
+        _representations = [NSMutableDictionary dictionaryWithDictionary:representation];
     }
     
     return self;
@@ -56,10 +79,10 @@
 - (NSString *)description {
     NSMutableString *desc = [NSMutableString stringWithString:[super description]];
     
-    [desc appendFormat:@"<name: %@>", _name];
-    [desc appendFormat:@"<path: %@>", _path];
-    if (_detail) {
-        [desc appendFormat:@"<detail: %@>", _detail];
+    [desc appendFormat:@"<name: %@>", _resourceName];
+    [desc appendFormat:@"<paths: %@>", _representations];
+    if (_resourceDetail) {
+        [desc appendFormat:@"<detail: %@>", _resourceDetail];
     }
     
     return desc;
@@ -73,14 +96,28 @@
     return NO;
 }
 
+#pragma mark - Public Methods
+
+- (NSString *)imagePathForScale:(CGFloat)scale {
+    return [self.representations objectForKey:@(scale)];
+}
+
+- (void)setImagePath:(NSString *)path forScale:(CGFloat)scale {
+    [self.representations setObject:[path copy] forKey:@(scale)];
+}
+
+- (void)removeImagePathForScale:(CGFloat)scale {
+    [self.representations removeObjectForKey:@(scale)];
+}
+
 #pragma mark - Private Methods
 
 - (BOOL)isEqualToZHYImageInfo:(ZHYImageInfo *)imageInfo {
-    if (![self.name isEqualToString:imageInfo.name]) {
+    if (![imageInfo.resourceName isEqualToString:_resourceName]) {
         return NO;
     }
     
-    if (![self.path isEqualToString:imageInfo.path]) {
+    if (![imageInfo.imagePaths isEqualToDictionary:_representations]) {
         return NO;
     }
     
@@ -90,75 +127,26 @@
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ZHYImageInfo *info = [[ZHYImageInfo allocWithZone:zone] initWithPath:self.path forName:self.name];
-    info.detail = self.detail;
+    ZHYImageInfo *info = [[ZHYImageInfo allocWithZone:zone] initWithRepresentations:_representations resourceName:_resourceName];
+    info->_resourceDetail = [_resourceDetail copy];
     
     return info;
 }
 
-#pragma mark - ZHYResourceInfo Protocol
+#pragma mark - ZHYResourceDescriptor
 
-- (id)content {
-    return self.path;
+- (id<NSCoding>)resourceContents {
+    return self.imagePaths;
 }
 
-- (void)setContent:(id)content {
-    if (![content isKindOfClass:[NSString class]]) {
-        [NSException raise:NSInternalInconsistencyException format:@"Invalid content type. <content: %@>", content];
-    } else {
-        self.path = content;
-    }
++ (NSString *)resourceType {
+    return kZHYResourceKeyTypeImage;
 }
 
-- (NSDictionary *)encodeToPlist {
-    if (!self.path || !self.name) {
-        return nil;
-    }
-    
-    NSMutableDictionary<NSString *, NSString *> *plist = [NSMutableDictionary dictionary];
-    
-    [plist setObject:self.name forKey:kZHYImageKeyName];
-    [plist setObject:self.path forKey:kZHYImageKeyPath];
-    if (self.detail) {
-        [plist setObject:self.detail forKey:kZHYImageKeyDetail];
-    }
-    
-    return plist;
-}
+#pragma mark - Private Property
 
-+ (instancetype)decodeFromPlist:(NSDictionary *)plist {
-    NSString *name = [plist objectForKey:kZHYImageKeyName];
-    if (!name) {
-        return nil;
-    }
-    
-    NSString *path = [plist objectForKey:kZHYImageKeyPath];
-    if (!path) {
-        return nil;
-    }
-    
-    ZHYImageInfo *info = [[ZHYImageInfo alloc] initWithPath:path forName:name];
-    NSString *detail = [plist objectForKey:kZHYColorKeyDetail];
-    info.detail = detail;
-    
-    return info;
-}
-
-@end
-
-@implementation ZHYImageRepresentationInfo
-
-- (instancetype)initWithImagePath:(NSString *)path {
-    if (path == nil) {
-        return nil;
-    }
-    
-    self = [super init];
-    if (self) {
-        _imagePath = [path copy];
-    }
-    
-    return self;
+- (NSDictionary *)imagePaths {
+    return [self.representations copy];
 }
 
 @end

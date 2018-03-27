@@ -15,24 +15,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) ZHYImage *image;
 
+- (ZHYImage *)imageForScale:(CGFloat)scale;
+
 @end
 
 @interface ZHYImageInfo : NSObject <ZHYResourceDescriptor>
 
-- (instancetype)initWithPath:(NSString *)path forName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithImagePath:(NSString *)path forResourceName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *path;
-@property (nonatomic, copy, nullable) NSString *detail;
+- (nullable NSString *)imagePathForScale:(CGFloat)scale;
 
-@end
+- (void)setImagePath:(NSString *)path forScale:(CGFloat)scale;
+- (void)removeImagePathForScale:(CGFloat)scale;
 
-@interface ZHYImageRepresentationInfo : NSObject
-
-- (instancetype)initWithImagePath:(NSString *)path;
-
-@property (nonatomic, copy) NSString *imagePath;
+@property (nonatomic, copy) NSString *resourceName;
+@property (nonatomic, copy, readonly) NSDictionary *imagePaths;
+@property (nonatomic, copy, nullable) NSString *resourceDetail;
 
 @end
 
