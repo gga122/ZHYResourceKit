@@ -7,12 +7,18 @@
 //
 
 #import "ZHYBundleWindowController.h"
+#import "ZHYBundleInfoViewController.h"
+#import "ZHYLogger.h"
 
 static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToolbarItemIdentifier";
 
 @interface ZHYBundleWindowController () <NSToolbarDelegate>
 
+@property (weak) IBOutlet NSBox *contentBox;
+
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSToolbarItem *> *toolbarItems;
+
+@property (nonatomic, strong) ZHYBundleInfoViewController *bundleInfoViewController;
 
 @end
 
@@ -42,7 +48,6 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
     
     [self.toolbarItems setObject:infoItem forKey:kZHYBundleInfoToolbarItemIdentifier];
     
-    
     toolbar.delegate = self;
     
     self.window.toolbar = toolbar;
@@ -50,14 +55,46 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    [self.window.toolbar setSelectedItemIdentifier:@"Info"];
 }
 
 - (void)toolbarItemDidClick:(id)sender {
+    if (![sender isKindOfClass:[NSToolbarItem class]]) {
+        ZHYLogError(@"'%@' can not handle '%@' for '%@'.", self, _cmd, sender);
+        return;
+    }
     
+    if ([self.window.toolbar.selectedItemIdentifier isEqualToString:kZHYBundleInfoToolbarItemIdentifier]) {
+        self.contentBox.contentView = self.bundleInfoViewController.view;
+    }
+    // TODO: Do something after selected
 }
 
 - (nullable NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSToolbarItemIdentifier)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag {
     return [self.toolbarItems objectForKey:itemIdentifier];
+}
+
+- (NSArray<NSToolbarItemIdentifier> *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
+    return self.toolbarItems.allKeys;
+}
+
+- (NSArray<NSToolbarItemIdentifier> *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
+    return self.toolbarItems.allKeys;
+}
+
+- (NSArray<NSToolbarItemIdentifier> *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
+    return self.toolbarItems.allKeys;
+}
+
+#pragma mark - Private Property
+
+- (ZHYBundleInfoViewController *)bundleInfoViewController {
+    if (_bundleInfoViewController == nil) {
+        _bundleInfoViewController = [[ZHYBundleInfoViewController alloc] init];
+    }
+    
+    return _bundleInfoViewController;
 }
 
 @end

@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ZHYBundleWindowController">
             <connections>
+                <outlet property="contentBox" destination="jwk-eJ-tL9" id="o6M-WX-qt4"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -21,6 +23,21 @@
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jwk-eJ-tL9">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <view key="contentView" id="RR8-3t-ZDh">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                    </box>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jwk-eJ-tL9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="DwC-Ct-DAM"/>
+                    <constraint firstAttribute="trailing" secondItem="jwk-eJ-tL9" secondAttribute="trailing" id="Inv-rb-BS3"/>
+                    <constraint firstAttribute="bottom" secondItem="jwk-eJ-tL9" secondAttribute="bottom" id="Stu-cj-9f0"/>
+                    <constraint firstItem="jwk-eJ-tL9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="VZ4-1p-g3T"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
