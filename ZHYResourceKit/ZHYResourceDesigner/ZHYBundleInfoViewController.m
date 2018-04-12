@@ -7,6 +7,7 @@
 //
 
 #import "ZHYBundleInfoViewController.h"
+#import "ZHYResourceBundleDefines.h"
 
 @interface ZHYBundleInfoViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource>
 
@@ -94,6 +95,7 @@
             valueTextField.identifier = kTextFieldIdentifier;
         }
         
+        valueTextField.editable = canEditResourceBundleInfoValue(item);
         valueTextField.stringValue = [self.contents objectForKey:item];
         return valueTextField;
     } else if ([tableColumn.identifier isEqualToString:@"type"]) {
@@ -114,6 +116,7 @@
             keyTextField.identifier = @"key";
         }
         
+        keyTextField.editable = canEditResourceBundleInfoKey(item);
         keyTextField.stringValue = item;
         return keyTextField;
     }

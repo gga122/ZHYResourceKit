@@ -23,7 +23,7 @@ static ZHYResourceBundleInfoKey const kZHYResourceBundlePriority = @"zhy.resourc
 
 static NSString * const kZHYResourceBundleMagicValue = @"D473E2BB-79EC-43C9-919A-59A78BC32F24";
 
-NSMutableDictionary<ZHYResourceBundleInfoKey, id> *createResourceBundleTempleteInfo(void) {
+static NSMutableDictionary<ZHYResourceBundleInfoKey, id> *createResourceBundleTempleteInfo(void) {
     NSMutableDictionary<ZHYResourceBundleInfoKey, id> *templeteInfo = [NSMutableDictionary dictionary];
     
     [templeteInfo setObject:kZHYResourceBundleMagicValue forKey:kZHYResourceBundleMagic];
@@ -41,12 +41,18 @@ static BOOL isValidResourceBundleInfo(NSMutableDictionary<ZHYResourceBundleInfoK
     }
     
     id magic = [info objectForKey:kZHYResourceBundleMagic];
-    if (![magic isKindOfClass:[NSString class]]) {
-        ZHY_RESOURCE_KIT_ERROR(*error, kZHYResourceKitErrorDomain, ZHYResourceKitErrorCodeInvalidBundleInfo, nil);
+    if (magic == nil || ![magic isKindOfClass:[NSString class]]) {
+        ZHY_RESOURCE_KIT_ERROR(*error, kZHYResourceKitErrorDomain, ZHYResourceKitErrorCodeInvalidBundleInfo, @{kZHYResourceKitErrorBundleInfoKey: kZHYResourceBundleMagic});
         return NO;
     }
     
-    // TODO: other values
+    id name = [info objectForKey:kZHYResourceBundleName];
+    if (name == nil || ![name isKindOfClass:[NSString class]]) {
+        ZHY_RESOURCE_KIT_ERROR(*error, kZHYResourceKitErrorDomain, ZHYResourceKitErrorCodeInvalidBundleInfo, @{kZHYResourceKitErrorBundleInfoKey: kZHYResourceBundleName});
+        return NO;
+    }
+    
+    // other values
     
     return YES;
 }

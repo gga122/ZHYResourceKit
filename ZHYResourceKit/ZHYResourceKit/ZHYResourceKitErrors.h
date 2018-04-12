@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, ZHYResourceKitErrorCode) {
     ZHYResourceKitErrorCodeNone                                 = 0,
     
     ZHYResourceKitErrorCodeInvalidBundleInfo                    = kZHYResourceKitErrorBundleInfoMask | 1,
-    
+        
 };
 
 
