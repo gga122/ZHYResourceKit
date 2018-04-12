@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,20 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKD-10-gkR">
+                <scrollView autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKD-10-gkR">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                     <clipView key="contentView" id="X5U-02-YAn">
-                        <rect key="frame" x="1" y="23" width="478" height="248"/>
+                        <rect key="frame" x="1" y="0.0" width="478" height="271"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" rowSizeStyle="automatic" headerView="Vun-La-HCI" viewBased="YES" indentationPerLevel="16" outlineTableColumn="lEz-Fm-anF" id="VhR-Us-Slx">
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Vun-La-HCI" viewBased="YES" indentationPerLevel="10" outlineTableColumn="lEz-Fm-anF" id="VhR-Us-Slx">
                                 <rect key="frame" x="0.0" y="0.0" width="545" height="248"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <size key="intercellSpacing" width="3" height="2"/>
+                                <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="" editable="NO" width="116" minWidth="40" maxWidth="1000" id="lEz-Fm-anF">
+                                    <tableColumn identifier="key" editable="NO" width="116" minWidth="40" maxWidth="1000" id="lEz-Fm-anF">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Key">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -43,8 +43,15 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <connections>
+                                            <binding destination="DvJ-WL-jfP" name="value" keyPath="values" id="iAl-Ay-Old">
+                                                <dictionary key="options">
+                                                    <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
                                     </tableColumn>
-                                    <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="nJ1-yM-7N9">
+                                    <tableColumn identifier="type" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="nJ1-yM-7N9">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Type">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -57,7 +64,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="" editable="NO" width="356" minWidth="40" maxWidth="1000" id="fe8-8y-XqZ">
+                                    <tableColumn identifier="value" editable="NO" width="356" minWidth="40" maxWidth="1000" id="fe8-8y-XqZ">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Value">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -78,11 +85,11 @@
                             </outlineView>
                         </subviews>
                     </clipView>
-                    <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.97014925373134331" horizontal="YES" id="Pxf-X7-U0F">
+                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Pxf-X7-U0F">
                         <rect key="frame" x="1" y="255" width="478" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="esX-dn-05u">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="esX-dn-05u">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -98,7 +105,8 @@
                 <constraint firstItem="nKD-10-gkR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="M7m-W6-Sao"/>
                 <constraint firstAttribute="bottom" secondItem="nKD-10-gkR" secondAttribute="bottom" id="xbP-64-JyE"/>
             </constraints>
-            <point key="canvasLocation" x="-589" y="78"/>
+            <point key="canvasLocation" x="-818" y="-22"/>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="DvJ-WL-jfP"/>
     </objects>
 </document>

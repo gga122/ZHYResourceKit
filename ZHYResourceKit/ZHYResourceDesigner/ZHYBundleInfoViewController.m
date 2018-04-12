@@ -37,30 +37,38 @@
 #pragma mark - OutlineView Delegate & DataSource
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
-    return NO;
+    if (item == nil) {
+        return NO;
+    }
+    
+    return ([item isKindOfClass:[NSArray class]] || [item isKindOfClass:[NSDictionary class]]);
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
     if (item == nil) {
-        return self.contents.count;
+        return 1;
     } else {
-        return 0;
+        if ([item isKindOfClass:[NSArray class]] || [item isKindOfClass:[NSDictionary class]]) {
+            return [item count];
+        }
+        
+        return 1;
     }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    if (item == nil) {
+        return NO;
+    }
+    
     return ([item isKindOfClass:[NSArray class]] || [item isKindOfClass:[NSDictionary class]]);
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
     if (item == nil) {
-        NSArray<NSString *> *allKeys = self.contents.allKeys;
-        allKeys = [allKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-        
-        NSString *key = [allKeys objectAtIndex:index];
-        return [item objectForKey:key];
+        return self.contents.allKeys;
     } else {
-        return nil;
+        return [item objectAtIndex:index];
     }
 }
 
@@ -72,24 +80,37 @@
     static NSString * const kTextFieldIdentifier = @"textField";
     static NSString * const kPopUpButtonIdentifier = @"popUpButton";
     
-    NSView *view = nil;
     if ([tableColumn.identifier isEqualToString:@"value"]) {
-        view = [outlineView makeViewWithIdentifier:kTextFieldIdentifier owner:self];
-        if (view == nil) {
-            view = [[NSTextField alloc] initWithFrame:NSZeroRect];
-            view.identifier = kTextFieldIdentifier;
+        NSTextField *valueTextField = [outlineView makeViewWithIdentifier:kTextFieldIdentifier owner:self];
+        if (valueTextField == nil) {
+            valueTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
+            valueTextField.bordered = NO;
+            valueTextField.identifier = kTextFieldIdentifier;
         }
-    } else if ([tableColumn.identifier isEqualToString:@"type"]) {
-        view = [outlineView makeViewWithIdentifier:kPopUpButtonIdentifier owner:self];
-        if (view == nil) {
-            view = [[NSPopUpButton alloc] initWithFrame:NSZeroRect];
-            view.identifier = kPopUpButtonIdentifier;
-        }
-    } else if ([tableColumn.identifier isEqualToString:@"key"]) {
         
+        return valueTextField;
+    } else if ([tableColumn.identifier isEqualToString:@"type"]) {
+        NSPopUpButton *typePopupButton = [outlineView makeViewWithIdentifier:kPopUpButtonIdentifier owner:self];
+        if (typePopupButton == nil) {
+            typePopupButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect];
+            typePopupButton.bezelStyle = NSBezelStyleRoundRect;
+            typePopupButton.identifier = kPopUpButtonIdentifier;
+        }
+        
+        return typePopupButton;
+    } else if ([tableColumn.identifier isEqualToString:@"key"]) {
+        NSTextField *keyTextField = [outlineView makeViewWithIdentifier:@"key" owner:self];
+        if (keyTextField == nil) {
+            keyTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
+            keyTextField.bordered = NO;
+            keyTextField.identifier = @"key";
+        }
+        
+        keyTextField.stringValue = item;
+        return keyTextField;
     }
     
-    return view;
+    return nil;
 }
 
 @end
