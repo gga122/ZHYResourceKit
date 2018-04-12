@@ -10,4 +10,6 @@
 
 @interface ZHYBundleInfoViewController : NSViewController
 
+- (instancetype)initWithContents:(NSDictionary *)contents;
+
 @end

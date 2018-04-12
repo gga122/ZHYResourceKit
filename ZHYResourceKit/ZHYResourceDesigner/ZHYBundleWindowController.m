@@ -8,6 +8,7 @@
 
 #import "ZHYBundleWindowController.h"
 #import "ZHYBundleInfoViewController.h"
+#import "ZHYResourceBundle.h"
 #import "ZHYLogger.h"
 
 static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToolbarItemIdentifier";
@@ -91,7 +92,7 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
 
 - (ZHYBundleInfoViewController *)bundleInfoViewController {
     if (_bundleInfoViewController == nil) {
-        _bundleInfoViewController = [[ZHYBundleInfoViewController alloc] init];
+        _bundleInfoViewController = [[ZHYBundleInfoViewController alloc] initWithContents:self.resourceBundle.bundleInfos];
     }
     
     return _bundleInfoViewController;

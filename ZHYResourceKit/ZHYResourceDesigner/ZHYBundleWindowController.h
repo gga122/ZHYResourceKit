@@ -10,7 +10,6 @@
 
 @class ZHYResourceBundle;
 
-
 @interface ZHYBundleWindowController : NSWindowController
 
 - (instancetype)initWithResourceBundle:(ZHYResourceBundle *)resourceBundle;

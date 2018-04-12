@@ -138,6 +138,10 @@
     return self.resourceContainers.allKeys;
 }
 
+- (NSDictionary<NSString *,id> *)bundleInfos {
+    return [NSDictionary dictionaryWithDictionary:self.resourceBundleInfo];
+}
+
 @end
 
 @implementation ZHYResourceBundle (Serializer)

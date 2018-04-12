@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<ZHYResourceWrapper *> *)resourceWrappersForResourceType:(NSString *)resourceType;
 
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *bundleInfos;
+
 @end
 
 @interface ZHYResourceBundle (Serializer)
