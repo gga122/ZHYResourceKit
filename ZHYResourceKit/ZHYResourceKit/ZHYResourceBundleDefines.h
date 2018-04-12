@@ -17,7 +17,7 @@ typedef NSString * ZHYResourceBundleInfoKey;
 /* profile name of resource bundle */
 static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResourceBundleInfo.plist";
 
-static ZHYResourceBundleInfoKey const kZHYResourceBundleMagic = @"zhy.resource.bundle.magic";
+static ZHYResourceBundleInfoKey const kZHYResourceBundleMagic = @"zhy.resourcekit.bundle.magic";
 static ZHYResourceBundleInfoKey const kZHYResourceBundleName = @"zhy.resourcekit.bundle.name";
 static ZHYResourceBundleInfoKey const kZHYResourceBundlePriority = @"zhy.resourcekit.bundle.priority";
 
@@ -35,7 +35,7 @@ NSMutableDictionary<ZHYResourceBundleInfoKey, id> *createResourceBundleTempleteI
 
 
 
-BOOL isValidResourceBundleInfo(NSMutableDictionary<ZHYResourceBundleInfoKey, id> *info, NSError **error) {
+static BOOL isValidResourceBundleInfo(NSMutableDictionary<ZHYResourceBundleInfoKey, id> *info, NSError **error) {
     if (info == nil || info.count == 0) {
         return NO;
     }
@@ -47,6 +47,30 @@ BOOL isValidResourceBundleInfo(NSMutableDictionary<ZHYResourceBundleInfoKey, id>
     }
     
     // TODO: other values
+    
+    return YES;
+}
+
+static BOOL canEditResourceBundleInfoKey(ZHYResourceBundleInfoKey key) {
+    if ([key isEqualToString:kZHYResourceBundleMagic]) {
+        return NO;
+    }
+    
+    if ([key isEqualToString:kZHYResourceBundleName]) {
+        return NO;
+    }
+    
+    if ([key isEqualToString:kZHYResourceBundlePriority]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+static BOOL canEditResourceBundleInfoValue(ZHYResourceBundleInfoKey key) {
+    if ([key isEqualToString:kZHYResourceBundleMagic]) {
+        return NO;
+    }
     
     return YES;
 }

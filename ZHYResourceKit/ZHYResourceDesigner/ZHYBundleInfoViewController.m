@@ -73,7 +73,13 @@
 }
 
 - (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(id)item {
-    return [[NSTableRowView alloc] initWithFrame:NSZeroRect];
+    NSTableRowView *rowView = [outlineView makeViewWithIdentifier:@"rowView" owner:self];
+    if (rowView == nil) {
+        rowView = [[NSTableRowView alloc] initWithFrame:NSZeroRect];
+        rowView.identifier = @"rowView";
+    }
+    
+    return rowView;
 }
 
 - (nullable NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(nullable NSTableColumn *)tableColumn item:(id)item {   
@@ -88,6 +94,7 @@
             valueTextField.identifier = kTextFieldIdentifier;
         }
         
+        valueTextField.stringValue = [self.contents objectForKey:item];
         return valueTextField;
     } else if ([tableColumn.identifier isEqualToString:@"type"]) {
         NSPopUpButton *typePopupButton = [outlineView makeViewWithIdentifier:kPopUpButtonIdentifier owner:self];
@@ -95,6 +102,7 @@
             typePopupButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect];
             typePopupButton.bezelStyle = NSBezelStyleRoundRect;
             typePopupButton.identifier = kPopUpButtonIdentifier;
+            typePopupButton.bordered = NO;
         }
         
         return typePopupButton;
