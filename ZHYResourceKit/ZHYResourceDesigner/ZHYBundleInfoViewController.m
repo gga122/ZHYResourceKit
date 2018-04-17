@@ -7,9 +7,10 @@
 //
 
 #import "ZHYBundleInfoViewController.h"
+#import "ZHYBundleInfoCellView.h"
 #import "ZHYResourceBundleDefines.h"
 
-@interface ZHYBundleInfoViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource>
+@interface ZHYBundleInfoViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource, NSMenuDelegate>
 
 @property (weak) IBOutlet NSOutlineView *bundleInfoOutlineView;
 @property (nonatomic, strong) NSMutableDictionary *contents;
@@ -37,6 +38,10 @@
 
 #pragma mark - OutlineView Delegate & DataSource
 
+- (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(nonnull id)item {
+    return 30;
+}
+
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
     if (item == nil) {
         return NO;
@@ -61,7 +66,7 @@
     if (item == nil) {
         return NO;
     }
-    
+
     return ([item isKindOfClass:[NSArray class]] || [item isKindOfClass:[NSDictionary class]]);
 }
 
@@ -102,6 +107,7 @@
         NSPopUpButton *typePopupButton = [outlineView makeViewWithIdentifier:kPopUpButtonIdentifier owner:self];
         if (typePopupButton == nil) {
             typePopupButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect];
+            
             typePopupButton.bezelStyle = NSBezelStyleRoundRect;
             typePopupButton.identifier = kPopUpButtonIdentifier;
             typePopupButton.bordered = NO;
@@ -109,16 +115,23 @@
         
         return typePopupButton;
     } else if ([tableColumn.identifier isEqualToString:@"key"]) {
-        NSTextField *keyTextField = [outlineView makeViewWithIdentifier:@"key" owner:self];
-        if (keyTextField == nil) {
-            keyTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
-            keyTextField.bordered = NO;
-            keyTextField.identifier = @"key";
+        ZHYBundleInfoCellView *cellView = [outlineView makeViewWithIdentifier:@"key" owner:self];
+        if (cellView == nil) {
+            cellView = [[ZHYBundleInfoCellView alloc] initWithFrame:NSZeroRect];
         }
         
-        keyTextField.editable = canEditResourceBundleInfoKey(item);
-        keyTextField.stringValue = item;
-        return keyTextField;
+        cellView.objectValue = item;
+        return cellView;
+//        NSTextField *keyTextField = [outlineView makeViewWithIdentifier:@"key" owner:self];
+//        if (keyTextField == nil) {
+//            keyTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
+//            keyTextField.bordered = NO;
+//            keyTextField.identifier = @"key";
+//        }
+//
+//        keyTextField.editable = canEditResourceBundleInfoKey(item);
+//        keyTextField.stringValue = item;
+//        return keyTextField;
     }
     
     return nil;

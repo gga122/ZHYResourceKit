@@ -8,8 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ZHYBundleInfoViewController : NSViewController
 
 - (instancetype)initWithContents:(NSDictionary *)contents;
 
 @end
+
+NS_ASSUME_NONNULL_END
