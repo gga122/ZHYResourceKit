@@ -8,10 +8,12 @@
 
 #import "ZHYBundleWindowController.h"
 #import "ZHYBundleInfoViewController.h"
+#import "ZHYFontViewController.h"
 #import "ZHYResourceBundle.h"
 #import "ZHYLogger.h"
 
 static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToolbarItemIdentifier";
+static NSString * const kZHYFontToolbarItemIdentifier = @"ZHYFontToolbarItemIdentifier";
 
 @interface ZHYBundleWindowController () <NSToolbarDelegate>
 
@@ -20,6 +22,7 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSToolbarItem *> *toolbarItems;
 
 @property (nonatomic, strong) ZHYBundleInfoViewController *bundleInfoViewController;
+@property (nonatomic, strong) ZHYFontViewController *fontViewController;
 
 @end
 
@@ -46,8 +49,14 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
     infoItem.paletteLabel = @"Info";
     infoItem.target = self;
     infoItem.action = @selector(toolbarItemDidClick:);
-    
     [self.toolbarItems setObject:infoItem forKey:kZHYBundleInfoToolbarItemIdentifier];
+    
+    NSToolbarItem *fontItem = [[NSToolbarItem alloc] initWithItemIdentifier:kZHYFontToolbarItemIdentifier];
+    fontItem.label = @"Font";
+    fontItem.paletteLabel = @"Font";
+    fontItem.target = self;
+    fontItem.action = @selector(toolbarItemDidClick:);
+    [self.toolbarItems setObject:fontItem forKey:kZHYFontToolbarItemIdentifier];
     
     toolbar.delegate = self;
     
@@ -68,6 +77,8 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
     
     if ([self.window.toolbar.selectedItemIdentifier isEqualToString:kZHYBundleInfoToolbarItemIdentifier]) {
         self.contentBox.contentView = self.bundleInfoViewController.view;
+    } else if ([self.window.toolbar.selectedItemIdentifier isEqualToString:kZHYFontToolbarItemIdentifier]) {
+        self.contentBox.contentView = self.fontViewController.view;
     }
     // TODO: Do something after selected
 }
@@ -96,6 +107,14 @@ static NSString * const kZHYBundleInfoToolbarItemIdentifier = @"ZHYBundleInfoToo
     }
     
     return _bundleInfoViewController;
+}
+
+- (ZHYFontViewController *)fontViewController {
+    if (_fontViewController == nil) {
+        _fontViewController = [[ZHYFontViewController alloc] init];
+    }
+    
+    return _fontViewController;
 }
 
 @end
