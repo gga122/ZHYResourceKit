@@ -70,6 +70,10 @@ static NSArray *s_globalRowIdentifiers = nil;
                 nameTextField.bordered = NO;
             }
             
+            if (self.fontWrapper != nil) {
+                nameTextField.stringValue = self.fontWrapper.resourceName;
+            }
+            
             view = nameTextField;
         } else {
             
@@ -79,6 +83,14 @@ static NSArray *s_globalRowIdentifiers = nil;
     } else {
         [NSException raise:NSInternalInconsistencyException format:@"'%@' did not implement column '%@'.", tableView, tableColumn];
         return nil;
+    }
+}
+
+- (void)setFontWrapper:(ZHYFontWrapper *)fontWrapper {
+    if (_fontWrapper != fontWrapper) {
+        _fontWrapper = fontWrapper;
+        
+        [self.fontDetailTableView reloadData];
     }
 }
 
