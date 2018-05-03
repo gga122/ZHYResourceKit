@@ -84,7 +84,12 @@
             }
             
             for (NSString *aDirectoryName in directoryNames) {
-                // TODO: Load from file path
+                ZHYResourceContainer *container = [ZHYResourceContainer containerWithContentPath:aDirectoryName];
+                if (container == nil) {
+                    continue;
+                }
+                
+                [_resourceContainers setObject:container forKey:container.resourceType];
             }
         }
     }

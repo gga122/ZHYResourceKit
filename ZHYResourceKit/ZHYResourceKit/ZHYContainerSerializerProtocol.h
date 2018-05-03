@@ -13,6 +13,6 @@
 @required
 
 - (BOOL)writeToContentPath:(NSString *)contentPath;
-+ (instancetype)containerWithContentPath:(NSString *)contentPath;
++ (nullable instancetype)containerWithContentPath:(NSString *)contentPath;
 
 @end

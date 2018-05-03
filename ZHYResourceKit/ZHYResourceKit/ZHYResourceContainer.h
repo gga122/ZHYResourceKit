@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHYResourceContainer : NSObject
 
 - (instancetype)initWithResourceType:(NSString *)resourceType;
+- (instancetype)init NS_UNAVAILABLE;
 
 @property (nonatomic, copy, readonly) NSString *resourceType;
 
@@ -51,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHYResourceContainer (Serializer) <ZHYContainerSerializerProtocol>
 
 - (BOOL)writeToContentPath:(NSString *)contentPath;
-+ (instancetype)containerWithContentPath:(NSString *)contentPath;
++ (nullable instancetype)containerWithContentPath:(NSString *)contentPath;
 
 @end
 

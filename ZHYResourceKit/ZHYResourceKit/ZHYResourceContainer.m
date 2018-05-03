@@ -43,8 +43,9 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     
     self = [super init];
     if (self) {
-        _resourceType = [resourceType copy];
         _wrappers = [NSMutableDictionary dictionary];
+        
+        _resourceType = [resourceType copy];
     }
     
     return self;
@@ -174,6 +175,83 @@ static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
     }
     
     return YES;
+}
+
+- (instancetype)initWithInfos:(NSDictionary<NSString *, id> *)infos {
+    id versionValue = [infos objectForKey:kZHYResourceContainerInfoKeyVersion];
+    if (versionValue == nil || ![versionValue isKindOfClass:[NSNumber class]]) {
+        return nil;
+    }
+    NSInteger version = [versionValue integerValue];
+    if (version > kZHYResourceContainerInfoValueVersion) {
+        [NSException raise:NSInternalInconsistencyException format:@"'Current accept max version is '%zd', your version is '%zd'. Please update.", kZHYResourceContainerInfoValueVersion, version];
+        return nil;
+    }
+    
+    id resourceTypeValue = [infos objectForKey:kZHYResourceContainerInfoKeyType];
+    if (resourceTypeValue == nil || ![resourceTypeValue isKindOfClass:[NSString class]]) {
+        [NSException raise:NSInternalInconsistencyException format:@"Invalid resource type '%@' in '%@'.", resourceTypeValue, infos];
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        _wrappers = [NSMutableDictionary dictionary];
+        _resourceType = resourceTypeValue;
+    }
+    
+    return self;
+}
+
++ (instancetype)containerWithContentPath:(NSString *)contentPath {
+    if (contentPath == nil) {
+        ZHYLogError(@"'%@' can not load from `nil` path.", self, contentPath);
+        return nil;
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *infosFilePath = [contentPath stringByAppendingPathComponent:kZHYResourceContainerInfoFileName];
+    if (![fileManager fileExistsAtPath:infosFilePath]) {
+        ZHYLogError(@"'%@' can not load from '%@' because of nonexistent path.", self, infosFilePath);
+        return nil;
+    }
+    
+    NSDictionary<NSString *, id> *infos = [NSDictionary dictionaryWithContentsOfFile:infosFilePath];
+    if (infos == nil) {
+        ZHYLogError(@"'%@' can not load from '%@'.", self, infosFilePath);
+        return nil;
+    }
+    
+    ZHYResourceContainer *container = [[ZHYResourceContainer alloc] initWithInfos:infos];
+    if (container) {
+        NSError *error = nil;
+        NSArray<NSString *> *contents = [fileManager contentsOfDirectoryAtPath:contentPath error:&error];
+        if (contents == nil) {
+            ZHYLogError(@"'%@' can not get contents at '%@'. <error: %@>", self, contentPath, error);
+            return nil;
+        }
+        
+        NSMutableArray<NSString *> *resourceNames = [NSMutableArray arrayWithCapacity:contents.count];
+        for (NSString *aContentName in contents) {
+            if ([aContentName.pathExtension isEqualToString:kZHYResourceFilePathExtension]) {
+                [resourceNames addObject:aContentName];
+            }
+        }
+        
+        for (NSString *aResourceName in resourceNames) {
+            @autoreleasepool {
+                NSString *resourcePath = [contentPath stringByAppendingPathComponent:aResourceName];
+                id object = [NSKeyedUnarchiver unarchiveObjectWithFile:resourcePath];
+                if (object != nil && [object isKindOfClass:[ZHYResourceWrapper class]]) {
+                    [container addResourceWrapper:object];
+                } else {
+                    ZHYLogError(@"'%@' can not unarchive resource at '%@'.", self, resourcePath);
+                }
+            }
+        }
+    }
+    
+    return container;
 }
 
 @end

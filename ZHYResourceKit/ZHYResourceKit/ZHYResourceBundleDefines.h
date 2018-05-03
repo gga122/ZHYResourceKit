@@ -53,7 +53,7 @@ static BOOL isValidResourceBundleInfo(NSMutableDictionary<ZHYResourceBundleInfoK
         return NO;
     }
     
-    // other values
+    // MARK: other values
     
     return YES;
 }
