@@ -38,7 +38,7 @@
         ZHYResourceBundle *bundle = [[ZHYResourceBundle alloc] initWithBundleName:@"defaultBundle" priority:0];
         
         NSString *filePath = savePanel.URL.path;
-        [bundle writeToFile:filePath atomically:YES];
+        [bundle writeToContentPath:filePath];
         
         self.currentBundle = bundle;
     }

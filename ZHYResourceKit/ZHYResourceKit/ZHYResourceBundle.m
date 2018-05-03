@@ -177,27 +177,27 @@
 
 #pragma mark - Public Methods
 
-- (BOOL)writeToFile:(NSString *)filePath atomically:(BOOL)atomically {
-    NSString *lastComponent = filePath.lastPathComponent;
+- (BOOL)writeToContentPath:(NSString *)contentPath {
+    NSString *lastComponent = contentPath.lastPathComponent;
     if (![lastComponent.pathExtension isEqualToString:@"bundle"]) {
-        ZHYLogError(@"'%@' can not write to '%@' because of invalid last component.", self, filePath);
+        ZHYLogError(@"'%@' can not write to '%@' because of invalid last component.", self, contentPath);
         return NO;
     }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:filePath]) {
-        ZHYLogError(@"'%@' can not write to '%@' because of existed.", self, filePath);
+    if ([fileManager fileExistsAtPath:contentPath]) {
+        ZHYLogError(@"'%@' can not write to '%@' because of existed.", self, contentPath);
         return NO;
     }
     
     NSError *error = nil;
-    if (![fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:&error]) {
-        ZHYLogError(@"'%@' create directory at '%@' failure. <error: %@>", self, filePath, error);
+    if (![fileManager createDirectoryAtPath:contentPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        ZHYLogError(@"'%@' create directory at '%@' failure. <error: %@>", self, contentPath, error);
         return NO;
     }
-
+    
     /* write bundle infos */
-    NSString *infoFilePath = [filePath stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
+    NSString *infoFilePath = [contentPath stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
     BOOL didWrite = [self.resourceBundleInfo writeToFile:infoFilePath atomically:YES];
     if (!didWrite) {
         ZHYLogError(@"'%@' write resource bundle info at '%@' failure.", self, infoFilePath);
@@ -205,39 +205,23 @@
     }
     
     /* write containers contents */
-    NSString *resourceDirectoryPath = [filePath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
-    NSArray<NSString *> *allKeys = self.resourceContainers.allKeys;
-    for (NSString *aKey in allKeys) {
-        @autoreleasepool {
-            NSString *subPath = [resourceDirectoryPath stringByAppendingPathComponent:aKey];
-            if (![fileManager fileExistsAtPath:subPath]) {
-                if (![fileManager createDirectoryAtPath:subPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-                    ZHYLogError(@"'%@' create directory for '%@' at '%@' failure. <error: %@>", self, aKey, subPath, error);
-                    return NO;
-                }
-            }
-            
-            ZHYResourceContainer *container = [self.resourceContainers objectForKey:aKey];
-            NSArray<ZHYResourceWrapper *> *allResourceWrappers = container.allResourceWrappers;
-            for (ZHYResourceWrapper *aResourceWrapper in allResourceWrappers) {
-                @autoreleasepool {
-                    NSString *resourcePath = [subPath stringByAppendingPathComponent:aResourceWrapper.resourceName];
-                    resourcePath = [resourcePath stringByAppendingPathExtension:kZHYResourceFilePathExtension];
-                    if (![NSKeyedArchiver archiveRootObject:aResourceWrapper toFile:resourcePath]) {
-                        ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, aResourceWrapper, resourcePath);
-                        return NO;
-                    }
-                }
-            }
-        }
+    NSString *resourceDirectoryPath = [contentPath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
+    NSArray<ZHYResourceContainer *> *allContainers = self.resourceContainers.allValues;
+    for (ZHYResourceContainer *aContainer in allContainers) {
+        NSString *containerPath = [resourceDirectoryPath stringByAppendingPathComponent:aContainer.resourceType];
+        [aContainer writeToContentPath:containerPath];
     }
-        
+    
     return YES;
 }
 
-+ (instancetype)resourceBundleWithBundle:(NSBundle *)bundle {
-    ZHYResourceBundle *resourceBundle = [[ZHYResourceBundle alloc] initWithPath:bundle.bundlePath];
++ (instancetype)containerWithContentPath:(NSString *)contentPath {
+    ZHYResourceBundle *resourceBundle = [[ZHYResourceBundle alloc] initWithPath:contentPath];
     return resourceBundle;
+}
+
++ (instancetype)resourceBundleWithBundle:(NSBundle *)bundle {
+    return [self containerWithContentPath:bundle.bundlePath];
 }
 
 #pragma mark - Private Methods
