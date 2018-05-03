@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZHYContainerSerializerProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ZHYResourceBundle (Serializer)
+@interface ZHYResourceBundle (Serializer) <ZHYContainerSerializerProtocol>
 
 - (BOOL)writeToFile:(NSString *)filePath atomically:(BOOL)atomically;
 + (instancetype)resourceBundleWithBundle:(NSBundle *)bundle;

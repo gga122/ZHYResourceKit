@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableDictionary<ZHYResourceBundleInfoKey, id> *resourceBundleInfo;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceContainer *> *resourceContainers;
 
-- (instancetype)initWithBundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -45,13 +45,13 @@
 }
 
 /* Private designated initializer */
-- (instancetype)initWithBundle:(NSBundle *)bundle {
-    if (bundle == nil) {
-        ZHYLogError(@"'%@' can not init with nil bundle.", [self class]);
+- (instancetype)initWithPath:(NSString *)path {
+    if (path == nil) {
+        ZHYLogError(@"'%@' can not init with nil path.", [self class]);
         return nil;
     }
     
-    NSString *resourceBundleInfoPath = [bundle.bundlePath stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
+    NSString *resourceBundleInfoPath = [path stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
     NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:resourceBundleInfoPath];
     NSError *error = nil;
     if (!isValidResourceBundleInfo(info, &error)) {
@@ -65,7 +65,7 @@
         _resourceBundleInfo = info;
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *resourceDirectory = [bundle.bundlePath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
+        NSString *resourceDirectory = [path stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
         NSError *error = nil;
         NSArray<NSString *> *contents = [fileManager contentsOfDirectoryAtPath:resourceDirectory error:&error];
         if (contents == nil) {
@@ -236,7 +236,7 @@
 }
 
 + (instancetype)resourceBundleWithBundle:(NSBundle *)bundle {
-    ZHYResourceBundle *resourceBundle = [[ZHYResourceBundle alloc] initWithBundle:bundle];
+    ZHYResourceBundle *resourceBundle = [[ZHYResourceBundle alloc] initWithPath:bundle.bundlePath];
     return resourceBundle;
 }
 
