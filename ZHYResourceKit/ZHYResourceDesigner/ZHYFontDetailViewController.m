@@ -68,6 +68,7 @@ static NSArray *s_globalRowIdentifiers = nil;
             if (view == nil) {
                 nameTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
                 nameTextField.bordered = NO;
+                nameTextField.identifier = identifier;
             }
             
             if (self.fontWrapper != nil) {
@@ -76,7 +77,15 @@ static NSArray *s_globalRowIdentifiers = nil;
             
             view = nameTextField;
         } else {
+            NSButton *fontButton = nil;
+            if (view == nil) {
+                fontButton = [[NSButton alloc] initWithFrame:NSZeroRect];
+                fontButton.action = @selector(fontButtonDidClick:);
+                fontButton.target = self;
+                fontButton.identifier = identifier;
+            }
             
+            view = fontButton;
         }
         
         return view;
@@ -84,6 +93,12 @@ static NSArray *s_globalRowIdentifiers = nil;
         [NSException raise:NSInternalInconsistencyException format:@"'%@' did not implement column '%@'.", tableView, tableColumn];
         return nil;
     }
+}
+
+- (void)fontButtonDidClick:(id)sender {
+    NSFontPanel *fontPanel = [NSFontPanel sharedFontPanel];
+    
+    [fontPanel orderFront:nil];
 }
 
 - (void)setFontWrapper:(ZHYFontWrapper *)fontWrapper {

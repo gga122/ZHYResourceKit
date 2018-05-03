@@ -8,6 +8,7 @@
 
 #import "ZHYResourceContainer.h"
 #import "ZHYResourceWrapper.h"
+#import "ZHYResourceKitDefines.h"
 #import "ZHYLogger.h"
 
 /* Resource Wrapper Valid Check Macro */
@@ -22,6 +23,8 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
     ZHYLogWarning(@"'%@' can not add '%@' because of resource type not matched.", self, resourceWrapper);\
     return;\
 }\
+
+static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
 
 @interface ZHYResourceContainer ()
 
@@ -112,6 +115,65 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
 
 - (NSArray<ZHYResourceWrapper *> *)allResourceWrappers {
     return self.wrappers.allValues;
+}
+
+@end
+
+/***** Info Keys *****/
+static NSString * const kZHYResourceContainerInfoKeyType = @"resourceType";
+static NSString * const kZHYResourceContainerInfoKeyVersion = @"version";
+
+/* Info Values */
+static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
+
+@implementation ZHYResourceContainer (Serializer)
+
+- (BOOL)writeToContentPath:(NSString *)contentPath {
+    if (contentPath == nil) {
+        ZHYLogError(@"'%@' can not write to `nil` path.", self);
+        return NO;
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDirectory = NO;
+    BOOL existed = [fileManager fileExistsAtPath:contentPath isDirectory:&isDirectory];
+    
+    if (existed && !isDirectory) {
+        ZHYLogError(@"'%@' can not write to '%@' because of content path is an file.", self, contentPath);
+        return NO;
+    }
+    
+    if (!existed) {
+        NSError *error = nil;
+        if (![fileManager createDirectoryAtPath:contentPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+            ZHYLogError(@"'%@' create directory at '%@' failure. <error: %@>", error);
+            return NO;
+        }
+    }
+    
+    NSMutableDictionary<NSString *, id> *infos = [NSMutableDictionary dictionaryWithCapacity:2];
+    [infos setObject:@(kZHYResourceContainerInfoValueVersion) forKey:kZHYResourceContainerInfoKeyVersion];
+    [infos setObject:self.resourceType forKey:kZHYResourceContainerInfoKeyType];
+    
+    NSString *infosFilePath = [contentPath stringByAppendingString:kZHYResourceContainerInfoFileName];
+    if (![infos writeToFile:infosFilePath atomically:YES]) {
+        ZHYLogError(@"'%@' write infos file failure.", self);
+        return NO;
+    }
+    
+    NSArray<ZHYResourceWrapper *> *allResourceWrappers = self.wrappers.allValues;
+    for (ZHYResourceWrapper *aResourceWrapper in allResourceWrappers) {
+        @autoreleasepool {
+            NSString *resourcePath = [contentPath stringByAppendingPathComponent:aResourceWrapper.resourceName];
+            resourcePath = [resourcePath stringByAppendingPathExtension:kZHYResourceFilePathExtension];
+            if (![NSKeyedArchiver archiveRootObject:aResourceWrapper toFile:resourcePath]) {
+                ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, aResourceWrapper, resourcePath);
+                return NO;
+            }
+        }
+    }
+    
+    return YES;
 }
 
 @end

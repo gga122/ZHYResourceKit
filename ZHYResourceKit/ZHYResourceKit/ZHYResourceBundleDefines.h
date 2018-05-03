@@ -15,7 +15,8 @@
 typedef NSString * ZHYResourceBundleInfoKey;
 
 /* profile name of resource bundle */
-static NSString * const kZHYResourceBundleSerializerKeyInfoFileName = @"ZHYResourceBundleInfo.plist";
+static NSString * const kZHYResourceBundleInfoFileName = @"ZHYResourceBundleInfo.plist";
+static NSString * const kZHYResourceBundleResourceDirectoryName = @"ZHYResources";
 
 static ZHYResourceBundleInfoKey const kZHYResourceBundleMagic = @"zhy.resourcekit.bundle.magic";
 static ZHYResourceBundleInfoKey const kZHYResourceBundleName = @"zhy.resourcekit.bundle.name";

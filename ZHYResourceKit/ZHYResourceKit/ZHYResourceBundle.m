@@ -12,7 +12,7 @@
 #import "ZHYResourceBundleDefines.h"
 #import "ZHYLogger.h"
 
-@interface ZHYResourceBundle ()
+@interface ZHYResourceBundle () <ZHYResourceContainerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary<ZHYResourceBundleInfoKey, id> *resourceBundleInfo;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceContainer *> *resourceContainers;
@@ -44,13 +44,14 @@
     return self;
 }
 
+/* Private designated initializer */
 - (instancetype)initWithBundle:(NSBundle *)bundle {
     if (bundle == nil) {
         ZHYLogError(@"'%@' can not init with nil bundle.", [self class]);
         return nil;
     }
     
-    NSString *resourceBundleInfoPath = [bundle.bundlePath stringByAppendingPathComponent:kZHYResourceBundleSerializerKeyInfoFileName];
+    NSString *resourceBundleInfoPath = [bundle.bundlePath stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
     NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:resourceBundleInfoPath];
     NSError *error = nil;
     if (!isValidResourceBundleInfo(info, &error)) {
@@ -60,9 +61,32 @@
     
     self = [super init];
     if (self) {
+        _resourceContainers = [NSMutableDictionary dictionary];
         _resourceBundleInfo = info;
         
-        // TODO: load resources
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *resourceDirectory = [bundle.bundlePath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
+        NSError *error = nil;
+        NSArray<NSString *> *contents = [fileManager contentsOfDirectoryAtPath:resourceDirectory error:&error];
+        if (contents == nil) {
+            ZHYLogError(@"Can not find contents of directory at '%@'. <error: %@>", resourceDirectory, error);
+        } else {
+            NSMutableArray<NSString *> *directoryNames = [NSMutableArray arrayWithCapacity:contents.count];
+            
+            for (NSString *aContentName in contents) {
+                @autoreleasepool {
+                    NSString *contentPath = [resourceDirectory stringByAppendingPathComponent:aContentName];
+                    BOOL isDirectory = NO;
+                    if ([fileManager fileExistsAtPath:contentPath isDirectory:&isDirectory] && isDirectory) {
+                        [directoryNames addObject:aContentName];
+                    }
+                }
+            }
+            
+            for (NSString *aDirectoryName in directoryNames) {
+                // TODO: Load from file path
+            }
+        }
     }
     
     return self;
@@ -168,7 +192,7 @@
     }
 
     /* write bundle infos */
-    NSString *infoFilePath = [filePath stringByAppendingPathComponent:kZHYResourceBundleSerializerKeyInfoFileName];
+    NSString *infoFilePath = [filePath stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
     BOOL didWrite = [self.resourceBundleInfo writeToFile:infoFilePath atomically:YES];
     if (!didWrite) {
         ZHYLogError(@"'%@' write resource bundle info at '%@' failure.", self, infoFilePath);
@@ -176,10 +200,11 @@
     }
     
     /* write containers contents */
+    NSString *resourceDirectoryPath = [filePath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
     NSArray<NSString *> *allKeys = self.resourceContainers.allKeys;
     for (NSString *aKey in allKeys) {
         @autoreleasepool {
-            NSString *subPath = [filePath stringByAppendingPathComponent:aKey];
+            NSString *subPath = [resourceDirectoryPath stringByAppendingPathComponent:aKey];
             if (![fileManager fileExistsAtPath:subPath]) {
                 if (![fileManager createDirectoryAtPath:subPath withIntermediateDirectories:YES attributes:nil error:&error]) {
                     ZHYLogError(@"'%@' create directory for '%@' at '%@' failure. <error: %@>", self, aKey, subPath, error);
@@ -201,8 +226,7 @@
             }
         }
     }
-    
-    
+        
     return YES;
 }
 
@@ -212,5 +236,6 @@
 }
 
 #pragma mark - Private Methods
+
 
 @end

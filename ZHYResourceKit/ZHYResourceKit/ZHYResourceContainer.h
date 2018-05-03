@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZHYContainerSerializerProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,6 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<ZHYResourceContainerDelegate> delegate;
 
 @property (nonatomic, copy, readonly) NSArray<ZHYResourceWrapper *> *allResourceWrappers;
+
+@end
+
+@interface ZHYResourceContainer (Serializer) <ZHYContainerSerializerProtocol>
+
+- (BOOL)writeToContentPath:(NSString *)contentPath;
++ (instancetype)containerWithContentPath:(NSString *)contentPath;
 
 @end
 

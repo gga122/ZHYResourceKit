@@ -29,6 +29,8 @@
 		D2755C3A20996DC200372AB3 /* ZHYFontViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2755C3820996DC200372AB3 /* ZHYFontViewController.xib */; };
 		D2755C502099B13300372AB3 /* ZHYFontDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2755C4E2099B13300372AB3 /* ZHYFontDetailViewController.m */; };
 		D2755C512099B13300372AB3 /* ZHYFontDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2755C4F2099B13300372AB3 /* ZHYFontDetailViewController.xib */; };
+		D2755C65209AC14500372AB3 /* ZHYContainerSerializerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D2755C64209AC13700372AB3 /* ZHYContainerSerializerProtocol.h */; };
+		D2755C66209AC14600372AB3 /* ZHYContainerSerializerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D2755C64209AC13700372AB3 /* ZHYContainerSerializerProtocol.h */; };
 		D284C6C71EC5956D00FB15CB /* ZHYResourceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */; };
 		D284C6C81EC5956D00FB15CB /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
 		D284C6CA1EC5959700FB15CB /* ZHYResourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */; };
@@ -116,6 +118,7 @@
 		D2755C4D2099B13300372AB3 /* ZHYFontDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYFontDetailViewController.h; sourceTree = "<group>"; };
 		D2755C4E2099B13300372AB3 /* ZHYFontDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHYFontDetailViewController.m; sourceTree = "<group>"; };
 		D2755C4F2099B13300372AB3 /* ZHYFontDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHYFontDetailViewController.xib; sourceTree = "<group>"; };
+		D2755C64209AC13700372AB3 /* ZHYContainerSerializerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHYContainerSerializerProtocol.h; sourceTree = "<group>"; };
 		D284C6C51EC5956D00FB15CB /* ZHYResourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYResourceWrapper.h; sourceTree = "<group>"; };
 		D284C6C61EC5956D00FB15CB /* ZHYResourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYResourceWrapper.m; sourceTree = "<group>"; };
 		D284C6CC1EC5A2D300FB15CB /* ZHYColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYColorTransformer.h; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 				D266DC6C20464FE5009CB1AE /* ZHYResourceContainer.m */,
 				D272B8DE2064DF2200528647 /* ZHYResourceTable.h */,
 				D272B8DF2064DF2200528647 /* ZHYResourceTable.m */,
+				D2755C64209AC13700372AB3 /* ZHYContainerSerializerProtocol.h */,
 			);
 			name = Structure;
 			sourceTree = "<group>";
@@ -355,6 +359,7 @@
 			files = (
 				D2A005ED1EC066A4000A272C /* ZHYResourceKitDefines.h in Headers */,
 				D29C57F52043F63A0015F0A9 /* ZHYResourceBundle.h in Headers */,
+				D2755C65209AC14500372AB3 /* ZHYContainerSerializerProtocol.h in Headers */,
 				D29C57FA2043FAB00015F0A9 /* ZHYResourceBundleDefines.h in Headers */,
 				D28F0A0C1EC16421007B1408 /* ZHYColorWrapper.h in Headers */,
 				D204F1B11ECC393900D470ED /* NSFont+ZHYAttributes.h in Headers */,
@@ -380,6 +385,7 @@
 			files = (
 				D266DC6F20464FF4009CB1AE /* ZHYResourceContainer.h in Headers */,
 				D2AF247C1EC950C100113B9C /* ZHYImageTransformer.h in Headers */,
+				D2755C66209AC14600372AB3 /* ZHYContainerSerializerProtocol.h in Headers */,
 				D28F0A531EC1B206007B1408 /* ZHYImageWrapper.h in Headers */,
 				D284C6CB1EC5959A00FB15CB /* ZHYResourceWrapper.h in Headers */,
 				D2909BC4204FE84300C8546D /* ZHYResourceKitErrors.h in Headers */,
@@ -461,7 +467,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ZHY;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "John Henry";
 				TargetAttributes = {
 					D28F0A681EC2C2F2007B1408 = {
@@ -638,6 +644,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -645,6 +652,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -696,6 +704,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -703,6 +712,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
