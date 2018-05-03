@@ -65,6 +65,13 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     
     [self.wrappers setObject:resourceWrapper forKey:resourceWrapper.resourceName];
     
+    NSString *resourcePath = [self filePathForWrapper:resourceWrapper];
+    if (resourcePath != nil) {
+        if (![NSKeyedArchiver archiveRootObject:resourceWrapper toFile:resourcePath]) {
+            ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, resourceWrapper, resourcePath);
+        }
+    }
+    
     if ([delegate respondsToSelector:@selector(resourceContainer:didAddWrapper:conflictedWrapper:)]) {
         [delegate resourceContainer:self didAddWrapper:resourceWrapper conflictedWrapper:conflictedWrapper];
     }
@@ -90,14 +97,11 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     
     [self.wrappers removeObjectForKey:conflictedWrapper.resourceName];
     
-    id<ZHYResourceContainerDataSource> dataSource = self.dataSource;
-    if ([dataSource respondsToSelector:@selector(contentPathOfContainer:)]) {
-        NSString *contentPath = [dataSource contentPathOfContainer:self];
-        if (contentPath != nil) {
-            NSString *resourcePath = [contentPath stringByAppendingPathComponent:conflictedWrapper.resourceName];
-            resourcePath = [resourcePath stringByAppendingPathExtension:kZHYResourceFilePathExtension];
-            
-            
+    NSString *resourcePath = [self filePathForWrapper:conflictedWrapper];
+    if (resourcePath != nil) {
+        NSError *error = nil;
+        if (![[NSFileManager defaultManager] removeItemAtPath:resourcePath error:&error]) {
+            ZHYLogError(@"'%@' can not delete resource file at '%@'. <error: %@>", self, resourcePath, error);
         }
     }
     
@@ -106,9 +110,26 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     }
 }
 
-
-
 #pragma mark - Private Methods
+
+- (nullable NSString *)filePathForWrapper:(ZHYResourceWrapper *)wrapper {
+    id<ZHYResourceContainerDataSource> dataSource = self.dataSource;
+    if (![dataSource respondsToSelector:@selector(contentPathOfContainer:)]) {
+        return nil;
+    }
+    
+    NSString *contentPath = [dataSource contentPathOfContainer:self];
+    if (contentPath == nil) {
+        return nil;
+    }
+    
+    NSString *filename = [[self class] filenameForWrapper:wrapper];
+    if (filename == nil) {
+        return nil;
+    }
+    NSString *resourcePath = [contentPath stringByAppendingPathComponent:filename];
+    return resourcePath;
+}
 
 + (NSString *)filenameForWrapper:(ZHYResourceWrapper *)wrapper {
     NSString *resourceName = wrapper.resourceName;

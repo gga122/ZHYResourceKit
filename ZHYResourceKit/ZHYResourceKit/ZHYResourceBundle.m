@@ -21,7 +21,7 @@
  |---- `resourceBundleInfo`                  |---- `..\*.bundle\ZHYResourceBundleInfo.plist`
  |---- `resourceContainers`                  |---- `..\*.bundle\ZHYResources\`
  |-------- `ZHYResourceContainer`            |-------- `..\*.bundle\ZHYResources\${resourceType}\`
-  
+ 
  *****/
 
 @interface ZHYResourceBundle () <ZHYResourceContainerDataSource, ZHYResourceContainerDelegate>
