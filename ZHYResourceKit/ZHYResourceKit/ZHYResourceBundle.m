@@ -12,10 +12,24 @@
 #import "ZHYResourceBundleDefines.h"
 #import "ZHYLogger.h"
 
-@interface ZHYResourceBundle () <ZHYResourceContainerDelegate>
+/*****
+ Construction of `ZHYResourceBundle`
+ 
+ 'Class Construction'                        'File Construction'
+ 
+ |- `ZHYResourceBundle`                      |---- `..\*.bundle`
+ |---- `resourceBundleInfo`                  |---- `..\*.bundle\ZHYResourceBundleInfo.plist`
+ |---- `resourceContainers`                  |---- `..\*.bundle\ZHYResources\`
+ |-------- `ZHYResourceContainer`            |-------- `..\*.bundle\ZHYResources\${resourceType}\`
+  
+ *****/
+
+@interface ZHYResourceBundle () <ZHYResourceContainerDataSource, ZHYResourceContainerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary<ZHYResourceBundleInfoKey, id> *resourceBundleInfo;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceContainer *> *resourceContainers;
+
+@property (nonatomic, copy) NSString *path;
 
 - (instancetype)initWithPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
 
@@ -63,6 +77,7 @@
     if (self) {
         _resourceContainers = [NSMutableDictionary dictionary];
         _resourceBundleInfo = info;
+        _path = [path copy];
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *resourceDirectory = [path stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
@@ -88,7 +103,7 @@
                 if (container == nil) {
                     continue;
                 }
-                
+                container.delegate = self;
                 [_resourceContainers setObject:container forKey:container.resourceType];
             }
         }
@@ -109,6 +124,7 @@
     ZHYResourceContainer *container = [self containerForResourceType:resourceType];
     if (container == nil) {
         container = [[ZHYResourceContainer alloc] initWithResourceType:resourceType];
+        container.delegate = self;
         [self.resourceContainers setObject:container forKey:resourceType];
     }
     
@@ -141,7 +157,40 @@
     return container.allResourceWrappers;
 }
 
+#pragma mark - ZHYResourceContainerDataSource
+
+- (NSString *)contentPathOfContainer:(ZHYResourceContainer *)container {
+    return [self contentPathOfContainer:container bundlePath:self.path];
+}
+
+#pragma mark - ZHYResourceContainerDelegate
+
+- (void)resourceContainer:(ZHYResourceContainer *)container didAddWrapper:(ZHYResourceWrapper *)resourceWrapper conflictedWrapper:(ZHYResourceWrapper *)wrapper {
+    // TODO: Notification
+}
+
+- (void)resourceContainer:(ZHYResourceContainer *)container didRemoveWrapper:(ZHYResourceWrapper *)resourceWrapper {
+    // TODO: Notification
+}
+
 #pragma mark - Private Methods
+
+- (NSString *)contentPathOfContainer:(ZHYResourceContainer *)container bundlePath:(NSString *)bundlePath {
+    if (container == nil) {
+        ZHYLogWarning(@"'%@' do not have content path of `nil`.", self);
+        return nil;
+    }
+    
+    if (bundlePath == nil) {
+        ZHYLogWarning(@"'%@' do not create bundle on disk.", self);
+        return nil;
+    }
+    
+    NSString *path = [bundlePath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
+    path = [path stringByAppendingPathComponent:container.resourceType];
+    
+    return path;
+}
 
 - (ZHYResourceContainer *)containerForResourceType:(NSString *)resourceType {
     if (resourceType == nil) {
@@ -178,6 +227,11 @@
 #pragma mark - Public Methods
 
 - (BOOL)writeToContentPath:(NSString *)contentPath {
+    if (self.path != nil && ![self.path isEqualToString:contentPath]) {
+        ZHYLogError(@"'%@' can not write to '%@' because of different path. <path: %@>", self, contentPath, self.path);
+        return NO;
+    }
+    
     NSString *lastComponent = contentPath.lastPathComponent;
     if (![lastComponent.pathExtension isEqualToString:@"bundle"]) {
         ZHYLogError(@"'%@' can not write to '%@' because of invalid last component.", self, contentPath);
@@ -205,13 +259,13 @@
     }
     
     /* write containers contents */
-    NSString *resourceDirectoryPath = [contentPath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
     NSArray<ZHYResourceContainer *> *allContainers = self.resourceContainers.allValues;
     for (ZHYResourceContainer *aContainer in allContainers) {
-        NSString *containerPath = [resourceDirectoryPath stringByAppendingPathComponent:aContainer.resourceType];
+        NSString *containerPath = [self contentPathOfContainer:aContainer bundlePath:contentPath];
         [aContainer writeToContentPath:containerPath];
     }
     
+    self.path = contentPath;
     return YES;
 }
 

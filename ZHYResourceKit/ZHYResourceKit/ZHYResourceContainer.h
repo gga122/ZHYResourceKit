@@ -29,6 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol ZHYResourceContainerDataSource <NSObject>
+
+@optional
+
+- (NSString *)contentPathOfContainer:(ZHYResourceContainer *)container;
+
+@end
+
 /**
  `ZHYResourceContainer` provided basic container for different resources.
  You can NOT add/remove resource wrappers which resource type do not match.
@@ -44,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeResourceWrapper:(ZHYResourceWrapper *)resourceWrapper;
 
 @property (nonatomic, weak) id<ZHYResourceContainerDelegate> delegate;
+@property (nonatomic, weak) id<ZHYResourceContainerDataSource> dataSource;
 
 @property (nonatomic, copy, readonly) NSArray<ZHYResourceWrapper *> *allResourceWrappers;
 

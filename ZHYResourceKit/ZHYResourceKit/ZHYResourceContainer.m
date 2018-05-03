@@ -90,12 +90,34 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     
     [self.wrappers removeObjectForKey:conflictedWrapper.resourceName];
     
+    id<ZHYResourceContainerDataSource> dataSource = self.dataSource;
+    if ([dataSource respondsToSelector:@selector(contentPathOfContainer:)]) {
+        NSString *contentPath = [dataSource contentPathOfContainer:self];
+        if (contentPath != nil) {
+            NSString *resourcePath = [contentPath stringByAppendingPathComponent:conflictedWrapper.resourceName];
+            resourcePath = [resourcePath stringByAppendingPathExtension:kZHYResourceFilePathExtension];
+            
+            
+        }
+    }
+    
     if ([delegate respondsToSelector:@selector(resourceContainer:didRemoveWrapper:)]) {
         [delegate resourceContainer:self didRemoveWrapper:conflictedWrapper];
     }
 }
 
+
+
 #pragma mark - Private Methods
+
++ (NSString *)filenameForWrapper:(ZHYResourceWrapper *)wrapper {
+    NSString *resourceName = wrapper.resourceName;
+    if (resourceName == nil) {
+        return nil;
+    }
+    
+    return [resourceName stringByAppendingPathExtension:kZHYResourceFilePathExtension];
+}
 
 - (BOOL)canAcceptResourceWrapper:(nonnull ZHYResourceWrapper *)wrapper {
     NSString *resourceType = wrapper.resourceType;
@@ -165,8 +187,8 @@ static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
     NSArray<ZHYResourceWrapper *> *allResourceWrappers = self.wrappers.allValues;
     for (ZHYResourceWrapper *aResourceWrapper in allResourceWrappers) {
         @autoreleasepool {
-            NSString *resourcePath = [contentPath stringByAppendingPathComponent:aResourceWrapper.resourceName];
-            resourcePath = [resourcePath stringByAppendingPathExtension:kZHYResourceFilePathExtension];
+            NSString *resourceFilename = [[self class] filenameForWrapper:aResourceWrapper];
+            NSString *resourcePath = [contentPath stringByAppendingPathComponent:resourceFilename];
             if (![NSKeyedArchiver archiveRootObject:aResourceWrapper toFile:resourcePath]) {
                 ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, aResourceWrapper, resourcePath);
                 return NO;
