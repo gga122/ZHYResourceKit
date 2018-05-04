@@ -103,6 +103,8 @@
                 if (container == nil) {
                     continue;
                 }
+                
+                container.dataSource = self;
                 container.delegate = self;
                 [_resourceContainers setObject:container forKey:container.resourceType];
             }
@@ -124,6 +126,7 @@
     ZHYResourceContainer *container = [self containerForResourceType:resourceType];
     if (container == nil) {
         container = [[ZHYResourceContainer alloc] initWithResourceType:resourceType];
+        container.dataSource = self;
         container.delegate = self;
         [self.resourceContainers setObject:container forKey:resourceType];
     }
@@ -188,6 +191,20 @@
     
     NSString *path = [bundlePath stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
     path = [path stringByAppendingPathComponent:container.resourceType];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDirectory = NO;
+    BOOL existed = [fileManager fileExistsAtPath:path isDirectory:&isDirectory];
+    if (!existed) {
+        NSError *error = nil;
+        if (![fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error]) {
+            ZHYLogError(@"'%@' can not create directory at '%@'. <error: %@>", self, path, error);
+        }
+    } else {
+        if (!isDirectory) {
+            [NSException raise:NSInternalInconsistencyException format:@"'%@' find invalid path '%@'.", self, path];
+        }
+    }
     
     return path;
 }

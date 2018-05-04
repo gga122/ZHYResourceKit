@@ -10,7 +10,8 @@
 
 #import "ZHYResourceBundle.h"
 #import "ZHYBundleWindowController.h"
-
+#import "ZHYColorWrapper.h"
+#import "ZHYFontWrapper.h"
 
 @interface AppDelegate ()
 
@@ -60,6 +61,12 @@
         [bundleWindowController.window makeKeyAndOrderFront:nil];
         
         self.bundleWindowController = bundleWindowController;
+        
+        NSString *timeColorName = [NSString stringWithFormat:@"color_%f", [[NSDate date] timeIntervalSince1970]];
+        ZHYColorInfo *colorInfo = [[ZHYColorInfo alloc] initWithColor:[NSColor blackColor] resourceName:timeColorName];
+        ZHYColorWrapper *colorWrapper = [[ZHYColorWrapper alloc] initWithResourceDescriptor:colorInfo];
+        
+        [resourceBundle addResourceWrapper:colorWrapper];
     }
 }
 
