@@ -26,9 +26,18 @@ if (![self canAcceptResourceWrapper:wrapper]) {\
 
 static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
 
+/***** Info Keys *****/
+static NSString * const kZHYResourceContainerInfoKeyType = @"resourceType";
+static NSString * const kZHYResourceContainerInfoKeyVersion = @"version";
+
+/* Info Values */
+static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
+
 @interface ZHYResourceContainer ()
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYResourceWrapper *> *wrappers;
+
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *containerInfos;
 
 @end
 
@@ -65,12 +74,13 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     
     [self.wrappers setObject:resourceWrapper forKey:resourceWrapper.resourceName];
     
-    NSString *resourcePath = [self filePathForWrapper:resourceWrapper];
+    NSString *resourcePath = [self filePathForResourceWrapper:resourceWrapper];
     if (resourcePath != nil) {
         if (![NSKeyedArchiver archiveRootObject:resourceWrapper toFile:resourcePath]) {
             ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, resourceWrapper, resourcePath);
         }
     }
+    [self synchronizeInfosIfNeeded];
     
     if ([delegate respondsToSelector:@selector(resourceContainer:didAddWrapper:conflictedWrapper:)]) {
         [delegate resourceContainer:self didAddWrapper:resourceWrapper conflictedWrapper:conflictedWrapper];
@@ -97,7 +107,7 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     
     [self.wrappers removeObjectForKey:conflictedWrapper.resourceName];
     
-    NSString *resourcePath = [self filePathForWrapper:conflictedWrapper];
+    NSString *resourcePath = [self filePathForResourceWrapper:conflictedWrapper];
     if (resourcePath != nil) {
         NSError *error = nil;
         if (![[NSFileManager defaultManager] removeItemAtPath:resourcePath error:&error]) {
@@ -112,7 +122,24 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
 
 #pragma mark - Private Methods
 
-- (nullable NSString *)filePathForWrapper:(ZHYResourceWrapper *)wrapper {
+- (void)synchronizeInfosIfNeeded {
+    id<ZHYResourceContainerDataSource> dataSource = self.dataSource;
+    if (![dataSource respondsToSelector:@selector(contentPathOfContainer:)]) {
+        return;
+    }
+    
+    NSString *contentPath = [dataSource contentPathOfContainer:self];
+    if (contentPath == nil) {
+        return;
+    }
+    
+    NSString *infosFilePath = [contentPath stringByAppendingPathComponent:kZHYResourceContainerInfoFileName];
+    if (![self.containerInfos writeToFile:infosFilePath atomically:YES]) {
+        ZHYLogError(@"'%@' write infos file failure.", self);
+    }
+}
+
+- (nullable NSString *)filePathForResourceWrapper:(ZHYResourceWrapper *)wrapper {
     id<ZHYResourceContainerDataSource> dataSource = self.dataSource;
     if (![dataSource respondsToSelector:@selector(contentPathOfContainer:)]) {
         return nil;
@@ -123,7 +150,7 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
         return nil;
     }
     
-    NSString *filename = [[self class] filenameForWrapper:wrapper];
+    NSString *filename = [[self class] filenameForResourceWrapper:wrapper];
     if (filename == nil) {
         return nil;
     }
@@ -131,7 +158,7 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     return resourcePath;
 }
 
-+ (NSString *)filenameForWrapper:(ZHYResourceWrapper *)wrapper {
++ (NSString *)filenameForResourceWrapper:(ZHYResourceWrapper *)wrapper {
     NSString *resourceName = wrapper.resourceName;
     if (resourceName == nil) {
         return nil;
@@ -161,14 +188,17 @@ static NSString * const kZHYResourceContainerInfoFileName = @"info.plist";
     return self.wrappers.allValues;
 }
 
+#pragma mark - Private Property
+
+- (NSDictionary<NSString *,id> *)containerInfos {
+    NSMutableDictionary<NSString *, id> *infos = [NSMutableDictionary dictionaryWithCapacity:2];
+    [infos setObject:@(kZHYResourceContainerInfoValueVersion) forKey:kZHYResourceContainerInfoKeyVersion];
+    [infos setObject:self.resourceType forKey:kZHYResourceContainerInfoKeyType];
+    
+    return infos;
+}
+
 @end
-
-/***** Info Keys *****/
-static NSString * const kZHYResourceContainerInfoKeyType = @"resourceType";
-static NSString * const kZHYResourceContainerInfoKeyVersion = @"version";
-
-/* Info Values */
-static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
 
 @implementation ZHYResourceContainer (Serializer)
 
@@ -195,12 +225,8 @@ static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
         }
     }
     
-    NSMutableDictionary<NSString *, id> *infos = [NSMutableDictionary dictionaryWithCapacity:2];
-    [infos setObject:@(kZHYResourceContainerInfoValueVersion) forKey:kZHYResourceContainerInfoKeyVersion];
-    [infos setObject:self.resourceType forKey:kZHYResourceContainerInfoKeyType];
-    
-    NSString *infosFilePath = [contentPath stringByAppendingString:kZHYResourceContainerInfoFileName];
-    if (![infos writeToFile:infosFilePath atomically:YES]) {
+    NSString *infosFilePath = [contentPath stringByAppendingPathComponent:kZHYResourceContainerInfoFileName];
+    if (![self.containerInfos writeToFile:infosFilePath atomically:YES]) {
         ZHYLogError(@"'%@' write infos file failure.", self);
         return NO;
     }
@@ -208,7 +234,7 @@ static NSInteger const kZHYResourceContainerInfoValueVersion = 1;
     NSArray<ZHYResourceWrapper *> *allResourceWrappers = self.wrappers.allValues;
     for (ZHYResourceWrapper *aResourceWrapper in allResourceWrappers) {
         @autoreleasepool {
-            NSString *resourceFilename = [[self class] filenameForWrapper:aResourceWrapper];
+            NSString *resourceFilename = [[self class] filenameForResourceWrapper:aResourceWrapper];
             NSString *resourcePath = [contentPath stringByAppendingPathComponent:resourceFilename];
             if (![NSKeyedArchiver archiveRootObject:aResourceWrapper toFile:resourcePath]) {
                 ZHYLogError(@"'%@' write resource wrapper '%@' at '%@' failure.", self, aResourceWrapper, resourcePath);

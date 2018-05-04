@@ -81,6 +81,13 @@
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *resourceDirectory = [path stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
+        if (![fileManager fileExistsAtPath:resourceDirectory]) {
+            NSError *error = nil;
+            if (![fileManager createDirectoryAtPath:resourceDirectory withIntermediateDirectories:YES attributes:nil error:&error]) {
+                ZHYLogError(@"Can not create directory at '%@'. <error: %@>", resourceDirectory, error);
+            }
+        }
+        
         NSError *error = nil;
         NSArray<NSString *> *contents = [fileManager contentsOfDirectoryAtPath:resourceDirectory error:&error];
         if (contents == nil) {
@@ -99,14 +106,17 @@
             }
             
             for (NSString *aDirectoryName in directoryNames) {
-                ZHYResourceContainer *container = [ZHYResourceContainer containerWithContentPath:aDirectoryName];
-                if (container == nil) {
-                    continue;
+                @autoreleasepool {
+                    NSString *directoryPath = [resourceDirectory stringByAppendingPathComponent:aDirectoryName];
+                    ZHYResourceContainer *container = [ZHYResourceContainer containerWithContentPath:directoryPath];
+                    if (container == nil) {
+                        continue;
+                    }
+                    
+                    container.dataSource = self;
+                    container.delegate = self;
+                    [_resourceContainers setObject:container forKey:container.resourceType];
                 }
-                
-                container.dataSource = self;
-                container.delegate = self;
-                [_resourceContainers setObject:container forKey:container.resourceType];
             }
         }
     }
