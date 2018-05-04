@@ -135,7 +135,18 @@ static NSString * const kZHYColorInfoKeyCodingDetail = @"colorDetail";
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    return nil;
+    NSString *resourceName = [aDecoder decodeObjectForKey:kZHYColorInfoKeyCodingName];
+    NSString *representation = [aDecoder decodeObjectForKey:kZHYColorInfoKeyCodingRepresentation];
+    NSString *resourceDetail = [aDecoder decodeObjectForKey:kZHYColorInfoKeyCodingDetail];
+    
+    self = [super init];
+    if (self) {
+        _resourceName = resourceName;
+        _representation = representation;
+        _resourceDetail = resourceDetail;
+    }
+    
+    return self;
 }
 
 #pragma mark - ZHYResourceDescriptor
