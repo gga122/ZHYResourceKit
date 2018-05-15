@@ -10,7 +10,16 @@
 #import "ZHYBundleInfoCellView.h"
 #import "ZHYResourceBundleDefines.h"
 
-@interface ZHYBundleInfoViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource, NSMenuDelegate>
+static NSString * const kZHYBundleInfoTypeBoolean = @"Boolean";
+static NSString * const kZHYBundleInfoTypeData = @"Data";
+static NSString * const kZHYBundleInfoTypeDate = @"Date";
+static NSString * const kZHYBundleInfoTypeNumber = @"Number";
+static NSString * const kZHYBundleInfoTypeString = @"String";
+
+static NSString * const kZHYBundleInfoTypeArray = @"Array";
+static NSString * const kZHYBundleInfoTypeDictionary = @"Dictionary";
+
+@interface ZHYBundleInfoViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource, NSMenuDelegate, ZHYBundleInfoCellViewDelegate>
 
 @property (weak) IBOutlet NSOutlineView *bundleInfoOutlineView;
 @property (nonatomic, strong) NSMutableDictionary *contents;
@@ -38,13 +47,9 @@
 
 #pragma mark - OutlineView Delegate & DataSource
 
-- (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(nonnull id)item {
-    return 30;
-}
-
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
     if (item == nil) {
-        return NO;
+        return YES;
     }
     
     return ([item isKindOfClass:[NSArray class]] || [item isKindOfClass:[NSDictionary class]]);
@@ -64,7 +69,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
     if (item == nil) {
-        return NO;
+        return YES;
     }
 
     return ([item isKindOfClass:[NSArray class]] || [item isKindOfClass:[NSDictionary class]]);
@@ -83,6 +88,8 @@
     if (rowView == nil) {
         rowView = [[NSTableRowView alloc] initWithFrame:NSZeroRect];
         rowView.identifier = @"rowView";
+        
+        rowView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     }
     
     return rowView;
@@ -106,7 +113,11 @@
     } else if ([tableColumn.identifier isEqualToString:@"type"]) {
         NSPopUpButton *typePopupButton = [outlineView makeViewWithIdentifier:kPopUpButtonIdentifier owner:self];
         if (typePopupButton == nil) {
-            typePopupButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect];
+            typePopupButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
+            
+            [typePopupButton addItemsWithTitles:[[self class] basicTypes]];
+            [typePopupButton.menu addItem:[NSMenuItem separatorItem]];
+            [typePopupButton addItemsWithTitles:[[self class] containerTypes]];
             
             typePopupButton.bezelStyle = NSBezelStyleRoundRect;
             typePopupButton.identifier = kPopUpButtonIdentifier;
@@ -118,23 +129,54 @@
         ZHYBundleInfoCellView *cellView = [outlineView makeViewWithIdentifier:@"key" owner:self];
         if (cellView == nil) {
             cellView = [[ZHYBundleInfoCellView alloc] initWithFrame:NSZeroRect];
+            cellView.identifier = @"key";
+            cellView.delegate = self;
         }
         
-        cellView.objectValue = item;
+        cellView.stringValue = item;
+        cellView.editable = canEditResourceBundleInfoKey(item);
         return cellView;
-//        NSTextField *keyTextField = [outlineView makeViewWithIdentifier:@"key" owner:self];
-//        if (keyTextField == nil) {
-//            keyTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
-//            keyTextField.bordered = NO;
-//            keyTextField.identifier = @"key";
-//        }
-//
-//        keyTextField.editable = canEditResourceBundleInfoKey(item);
-//        keyTextField.stringValue = item;
-//        return keyTextField;
     }
     
     return nil;
+}
+
+#pragma mark - ZHYBundleInfoCellViewDelegate
+
+- (void)bundleInfoCellViewClickedAddRow:(ZHYBundleInfoCellView *)cellView {
+    [self.contents setObject:@"" forKey:@""];
+    
+    [self.bundleInfoOutlineView reloadData];
+}
+
+- (void)bundleInfoCellViewClickedRemoveRow:(ZHYBundleInfoCellView *)cellView {
+    
+}
+
+#pragma mark - Private Methods
+
++ (NSArray<NSString *> *)basicTypes {
+    static NSArray<NSString *> *basicTypes = nil;
+    if (basicTypes == nil) {
+        basicTypes = @[kZHYBundleInfoTypeBoolean, kZHYBundleInfoTypeData, kZHYBundleInfoTypeDate, kZHYBundleInfoTypeNumber, kZHYBundleInfoTypeString];
+    }
+    
+    return basicTypes;
+}
+
++ (NSString *)typeForClass:(Class)cls {
+    NSParameterAssert(cls != nil);
+    
+    return nil;
+}
+
++ (NSArray<NSString *> *)containerTypes {
+    static NSArray<NSString *> *containerTypes = nil;
+    if (containerTypes == nil) {
+        containerTypes = @[kZHYBundleInfoTypeArray, kZHYBundleInfoTypeDictionary];
+    }
+    
+    return containerTypes;
 }
 
 @end

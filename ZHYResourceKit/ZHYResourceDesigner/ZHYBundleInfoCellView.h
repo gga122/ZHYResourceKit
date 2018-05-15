@@ -22,11 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHYBundleInfoCellView : NSView
 
 - (instancetype)initWithFrame:(NSRect)frameRect objectValue:(nullable id)objectValue NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoder:(NSCoder *)decoder NS_UNAVAILABLE;
 
 @property (nonatomic, copy, nullable) id objectValue;
+@property (nonatomic, copy) NSString *stringValue;
 
 @property (nonatomic, weak) id<ZHYBundleInfoCellViewDelegate> delegate;
-
+@property (nonatomic, assign) BOOL editable;
 
 @end
 

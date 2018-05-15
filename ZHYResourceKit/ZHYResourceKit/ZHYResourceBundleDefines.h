@@ -66,11 +66,7 @@ static BOOL canEditResourceBundleInfoKey(ZHYResourceBundleInfoKey key) {
     if ([key isEqualToString:kZHYResourceBundleName]) {
         return NO;
     }
-    
-    if ([key isEqualToString:kZHYResourceBundlePriority]) {
-        return NO;
-    }
-    
+        
     return YES;
 }
 

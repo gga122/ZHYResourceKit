@@ -11,7 +11,6 @@
 @interface ZHYBundleInfoCellView ()
 
 @property (nonatomic, strong) NSTextField *textField;
-@property (nonatomic, strong) NSPopUpButton *popupButton;
 @property (nonatomic, strong) NSButton *addButton;
 @property (nonatomic, strong) NSButton *removeButton;
 
@@ -29,13 +28,7 @@
         textField.bordered = NO;
         [self addSubview:textField];
         _textField = textField;
-        
-        NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect];
-        popupButton.bezelStyle = NSBezelStyleRoundRect;
-        popupButton.bordered = NO;
-        [self addSubview:popupButton];
-        _popupButton = popupButton;
-        
+
         NSImage *addImage = [NSImage imageNamed:NSImageNameAddTemplate];
         NSButton *addButton = [NSButton buttonWithImage:addImage target:self action:@selector(addButtonDidClick:)];
         [self addSubview:addButton];
@@ -68,15 +61,13 @@
 }
 
 - (void)mouseEntered:(NSEvent *)event {
-    self.mouseEntered = YES;
-    
-    [self layoutSubViewsWithFrame:self.frame];
+    self.addButton.hidden = NO;
+    self.removeButton.hidden = NO;
 }
 
 - (void)mouseExited:(NSEvent *)event {
-    self.mouseEntered = YES;
-    
-    [self layoutSubViewsWithFrame:self.frame];
+    self.addButton.hidden = YES;
+    self.removeButton.hidden = YES;
 }
 
 - (void)setFrame:(NSRect)frame {
@@ -89,26 +80,13 @@
     CGFloat height = NSHeight(frame);
     CGFloat width = NSWidth(frame);
     
-    static CGFloat const kPopupButtonWidth = 20.0;
+    CGFloat maxX = width - height;
+    self.removeButton.frame = NSMakeRect(maxX, 0, height, height);
     
-    if (self.mouseEntered) {
-        CGFloat maxX = width - height;
-        self.removeButton.frame = NSMakeRect(maxX, 0, height, height);
-
-        maxX = maxX - height;
-        self.addButton.frame = NSMakeRect(maxX, 0, height, height);
-        
-        maxX = maxX - kPopupButtonWidth;
-        self.popupButton.frame = NSMakeRect(maxX, 0, kPopupButtonWidth, height);
-        
-        self.textField.frame = NSMakeRect(0, 0, maxX, height);
-    } else {
-        self.addButton.frame = NSZeroRect;
-        self.removeButton.frame = NSZeroRect;
-        
-        self.popupButton.frame = NSMakeRect(width - kPopupButtonWidth, 0, kPopupButtonWidth, height);
-        self.textField.frame = NSMakeRect(0, 0, width - kPopupButtonWidth, height);
-    }
+    maxX = maxX - height;
+    self.addButton.frame = NSMakeRect(maxX, 0, height, height);
+    
+    self.textField.frame = NSMakeRect(0, 0, maxX, height);
 }
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
@@ -117,17 +95,41 @@
 
 - (void)prepareForReuse {
     self.textField.stringValue = @"";
-    
+        
     [super prepareForReuse];
 }
 
 
 - (void)addButtonDidClick:(id)sender {
-    
+    id<ZHYBundleInfoCellViewDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(bundleInfoCellViewClickedAddRow:)]) {
+        [delegate bundleInfoCellViewClickedAddRow:self];
+    }
 }
 
 - (void)removeButtonDidClick:(id)sender {
-    
+    id<ZHYBundleInfoCellViewDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(bundleInfoCellViewClickedRemoveRow:)]) {
+        [delegate bundleInfoCellViewClickedRemoveRow:self];
+    }
+}
+
+#pragma mark - Public Property
+
+- (void)setStringValue:(NSString *)stringValue {
+    self.textField.stringValue = stringValue;
+}
+
+- (NSString *)stringValue {
+    return self.textField.stringValue;
+}
+
+- (void)setEditable:(BOOL)editable {
+    self.textField.editable = editable;
+}
+
+- (BOOL)editable {
+    return self.textField.editable;
 }
 
 @end
