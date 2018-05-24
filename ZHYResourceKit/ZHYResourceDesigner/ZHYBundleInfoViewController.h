@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHYBundleInfoViewController : NSViewController
 
-- (instancetype)initWithContents:(NSDictionary *)contents;
+- (instancetype)initWithContents:(NSDictionary<NSString *, id> *)contents;
+
 
 @end
 

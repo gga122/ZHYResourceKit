@@ -8,7 +8,7 @@
 
 #import "ZHYBundleInfoCellView.h"
 
-@interface ZHYBundleInfoCellView ()
+@interface ZHYBundleInfoCellView () <NSTextFieldDelegate>
 
 @property (nonatomic, strong) NSTextField *textField;
 @property (nonatomic, strong) NSButton *addButton;
@@ -26,6 +26,7 @@
     if (self) {
         NSTextField *textField = [[NSTextField alloc] initWithFrame:NSZeroRect];
         textField.bordered = NO;
+        textField.delegate = self;
         [self addSubview:textField];
         _textField = textField;
 
@@ -111,6 +112,39 @@
     id<ZHYBundleInfoCellViewDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(bundleInfoCellViewClickedRemoveRow:)]) {
         [delegate bundleInfoCellViewClickedRemoveRow:self];
+    }
+}
+
+- (void)controlTextDidBeginEditing:(NSNotification *)notification {
+    if (notification.object != self.textField) {
+        return;
+    }
+    
+    id<ZHYBundleInfoCellViewDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(bundleInfoCellView:didBeginEditing:)]) {
+        [delegate bundleInfoCellView:self didBeginEditing:[notification.object stringValue]];
+    }
+}
+
+- (void)controlTextDidEndEditing:(NSNotification *)notification {
+    if (notification.object != self.textField) {
+        return;
+    }
+    
+    id<ZHYBundleInfoCellViewDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(bundleInfoCellView:didEndEditing:)]) {
+        [delegate bundleInfoCellView:self didEndEditing:[notification.object stringValue]];
+    }
+}
+
+- (void)controlTextDidChange:(NSNotification *)notification {
+    if (notification.object != self.textField) {
+        return;
+    }
+    
+    id<ZHYBundleInfoCellViewDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(bundleInfoCellView:didChangeText:)]) {
+        [delegate bundleInfoCellView:self didChangeText:[notification.object stringValue]];
     }
 }
 

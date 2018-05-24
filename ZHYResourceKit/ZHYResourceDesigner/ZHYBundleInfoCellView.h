@@ -14,8 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZHYBundleInfoCellViewDelegate <NSObject>
 
+@optional
+
 - (void)bundleInfoCellViewClickedAddRow:(ZHYBundleInfoCellView *)cellView;
 - (void)bundleInfoCellViewClickedRemoveRow:(ZHYBundleInfoCellView *)cellView;
+
+- (void)bundleInfoCellView:(ZHYBundleInfoCellView *)cellView didBeginEditing:(NSString *)stringValue;
+- (void)bundleInfoCellView:(ZHYBundleInfoCellView *)cellView didChangeText:(NSString *)stringValue;
+- (void)bundleInfoCellView:(ZHYBundleInfoCellView *)cellView didEndEditing:(NSString *)stringValue;
 
 @end
 
