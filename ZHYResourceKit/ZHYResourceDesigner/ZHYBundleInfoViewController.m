@@ -19,10 +19,44 @@ static NSString * const kZHYBundleInfoTypeString = @"String";
 static NSString * const kZHYBundleInfoTypeArray = @"Array";
 static NSString * const kZHYBundleInfoTypeDictionary = @"Dictionary";
 
+NS_INLINE NSString *temporaryBundleInfoKey(NSArray<NSString *> *allKeys) {
+    NSUInteger count = 0;
+
+    for (NSString *aKey in allKeys) {
+        if ([aKey hasPrefix:@"New Item"]) {
+            count += 1;
+        }
+    }
+    
+    if (count == 0) {
+        return @"New Item";
+    }
+    return [NSString stringWithFormat:@"New Item %tu", count];
+}
+
+NSArray<NSString *> *sort(NSArray<NSString *> *allKeys) {
+    return [allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+        if ([obj1 hasPrefix:@"New Item"]) {
+            if ([obj2 hasPrefix:@"New Item"]) {
+                return [obj1 localizedCompare:obj2];
+            } else {
+                return NSOrderedDescending;
+            }
+        } else {
+            if (![obj2 hasPrefix:@"New Item"]) {
+                return [obj1 localizedCompare:obj2];
+            } else {
+                return NSOrderedDescending;
+            }
+        }
+    }];
+}
+
 @interface ZHYBundleInfoViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource, NSMenuDelegate, ZHYBundleInfoCellViewDelegate>
 
 @property (weak) IBOutlet NSOutlineView *bundleInfoOutlineView;
-@property (nonatomic, strong) NSMutableDictionary *contents;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, id> *contents;
+@property (nonatomic, strong) NSMutableArray<NSString *> *allSortedKeys;
 
 @end
 
@@ -36,6 +70,7 @@ static NSString * const kZHYBundleInfoTypeDictionary = @"Dictionary";
     self = [super initWithNibName:@"ZHYBundleInfoViewController" bundle:nil];
     if (self) {
         _contents = [NSMutableDictionary dictionaryWithDictionary:contents];
+        _allSortedKeys = [NSMutableArray arrayWithArray:sort(contents.allKeys)];
     }
     
     return self;
@@ -144,12 +179,18 @@ static NSString * const kZHYBundleInfoTypeDictionary = @"Dictionary";
 #pragma mark - ZHYBundleInfoCellViewDelegate
 
 - (void)bundleInfoCellViewClickedAddRow:(ZHYBundleInfoCellView *)cellView {
-    [self.contents setObject:@"" forKey:@""];
+    NSString *key = temporaryBundleInfoKey(self.contents.allKeys);
+    
+    [self.contents setObject:@"" forKey:key];
     
     [self.bundleInfoOutlineView reloadData];
 }
 
 - (void)bundleInfoCellViewClickedRemoveRow:(ZHYBundleInfoCellView *)cellView {
+    
+}
+
+- (void)bundleInfoCellView:(ZHYBundleInfoCellView *)cellView didEndEditing:(NSString *)stringValue {
     
 }
 
