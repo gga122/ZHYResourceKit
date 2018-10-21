@@ -6,7 +6,7 @@
 //  Copyright © 2018 John Henry. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ZHYVersionComponents.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,8 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, assign, readonly) NSUInteger priority;
+@property (nonatomic, copy, readonly) NSString *version;
 
+@end
 
+@interface ZHYResourceBundleInfo (Designer)
+
+@property (nonatomic, copy, readonly) NSString *creatorVersion;
 
 @end
 

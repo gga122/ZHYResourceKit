@@ -10,6 +10,8 @@
 
 static NSCharacterSet *s_globalVersionCharacterSet = nil;
 
+static NSString * const kZHYVersionComponentsCodingKeyVersionValue = @"versionValue";
+
 @interface ZHYVersionComponents ()
 
 @property (nonatomic, strong) NSArray<NSString *> *values;
@@ -37,6 +39,10 @@ static NSCharacterSet *s_globalVersionCharacterSet = nil;
     if (self == [ZHYVersionComponents self]) {
         s_globalVersionCharacterSet = [NSMutableCharacterSet characterSetWithCharactersInString:@"1234567890."];
     }
+}
+
+- (instancetype)init {
+    return [self initWithVersionValue:@"0.0.0.0"];
 }
 
 - (NSString *)description {
@@ -80,7 +86,33 @@ static NSCharacterSet *s_globalVersionCharacterSet = nil;
     return NSOrderedSame;
 }
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    ZHYVersionComponents *vc = [[ZHYVersionComponents allocWithZone:zone] initWithVersionValue:self.versionValue];
+    return vc;
+}
+
+#pragma mark - NSSecureCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.versionValue forKey:kZHYVersionComponentsCodingKeyVersionValue];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    NSString *versionValue = [aDecoder decodeObjectForKey:kZHYVersionComponentsCodingKeyVersionValue];
+    return [self initWithVersionValue:versionValue];
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
 #pragma mark - Public Property
+
+- (NSString *)versionValue {
+    return [NSString stringWithFormat:@"%@.%@.%@.%@", self.majorValue, self.minorValue, self.patchValue, self.buildValue];
+}
 
 - (NSString *)majorValue {
     if (self.values.count > 0) {

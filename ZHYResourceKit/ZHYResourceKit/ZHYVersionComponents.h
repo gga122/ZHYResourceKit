@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHYVersionComponents : NSObject
+@interface ZHYVersionComponents : NSObject <NSCopying, NSSecureCoding>
 
 - (nullable instancetype)initWithVersionValue:(NSString *)versionValue NS_DESIGNATED_INITIALIZER;
 
