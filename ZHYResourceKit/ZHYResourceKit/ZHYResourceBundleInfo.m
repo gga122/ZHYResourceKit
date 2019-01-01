@@ -10,6 +10,8 @@
 
 @implementation ZHYResourceBundleInfo
 
+#pragma mark - DESIGNATED INITIALIZER
+
 - (nullable instancetype)initWithIdentifier:(NSString *)identifier {
     if (identifier == nil) {
         return nil;
@@ -21,6 +23,16 @@
     }
     
     return self;
+}
+
+#pragma mark - Overridden
+
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithString:[super description]];
+    
+    
+    
+    return description;
 }
 
 

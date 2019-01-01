@@ -10,21 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHYResourceBundleInfo : NSObject
+@interface ZHYResourceBundleInfo : NSObject <NSSecureCoding>
 
-- (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, copy, readonly) NSString *identifier;
 
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, assign, readonly) NSUInteger priority;
-@property (nonatomic, copy, readonly) NSString *version;
+@property (nonatomic, copy, readonly) ZHYVersionComponents *version;
 
 @end
 
 @interface ZHYResourceBundleInfo (Designer)
 
-@property (nonatomic, copy, readonly) NSString *creatorVersion;
+@property (nonatomic, copy, readonly) ZHYVersionComponents *creatorVersion;
 
 @end
 
