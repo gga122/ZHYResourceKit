@@ -10,16 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSString * ZHYResourceBundleInitializerRegisterKey;
+
 /**
  `ZHYResourceBundlerInitializer` describled how a `ZHYResourceBundle` init its resources.
  */
 @interface ZHYResourceBundleInitializer : NSObject
 
-- (instancetype)initWithIdentifier:(NSString *)identifier;
+- (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, copy, readonly) NSString *identifier;
 
-- (BOOL)isValidBundleInfoAttributes:(NSDictionary<NSString *, id> *)bundleInfoAttributes;
+- (nullable NSString *)bundleInfoPathWithDirectoryPath:(NSString *)path;
+
+- (nullable NSString *)resourcePathWithDirectoryPath:(NSString *)path;
+
 
 
 @end

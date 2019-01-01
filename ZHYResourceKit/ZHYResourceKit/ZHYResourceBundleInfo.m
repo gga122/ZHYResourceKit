@@ -8,6 +8,10 @@
 
 #import "ZHYResourceBundleInfo.h"
 
+ZHYResourceBundleInfoAttributeKey const kZHYResourceBundleMagic = @"zhy.resourcekit.bundle.magic";
+ZHYResourceBundleInfoAttributeKey const kZHYResourceBundleName = @"zhy.resourcekit.bundle.name";
+ZHYResourceBundleInfoAttributeKey const kZHYResourceBundlePriority = @"zhy.resourcekit.bundle.priority";
+
 @implementation ZHYResourceBundleInfo
 
 #pragma mark - DESIGNATED INITIALIZER

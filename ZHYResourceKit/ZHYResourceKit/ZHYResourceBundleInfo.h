@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSString * ZHYResourceBundleInfoAttributeKey;
+
 @interface ZHYResourceBundleInfo : NSObject <NSSecureCoding>
 
 - (nullable instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
@@ -27,5 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) ZHYVersionComponents *creatorVersion;
 
 @end
+
+FOUNDATION_EXPORT ZHYResourceBundleInfoAttributeKey const kZHYResourceBundleMagic;
+FOUNDATION_EXPORT ZHYResourceBundleInfoAttributeKey const kZHYResourceBundleName;
+FOUNDATION_EXPORT ZHYResourceBundleInfoAttributeKey const kZHYResourceBundlePriority;
 
 NS_ASSUME_NONNULL_END

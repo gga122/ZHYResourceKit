@@ -8,6 +8,31 @@
 
 #import "ZHYResourceBundleInitializer.h"
 
+static NSMutableDictionary<NSString *, ZHYResourceBundleInitializer *> *s_globalRegisterInitializers = nil;
+
+static NSString * const kZHYResourceBundleInfoFileName = @"ZHYResourceBundleInfo.plist";
+static NSString * const kZHYResourceBundleResourceDirectoryName = @"ZHYResources";
+
 @implementation ZHYResourceBundleInitializer
+
+#pragma mark - Public Methods
+
+- (NSString *)bundleInfoPathWithDirectoryPath:(NSString *)path {
+    if (path == nil) {
+        NSParameterAssert(nil);
+        return nil;
+    }
+    
+    return [path stringByAppendingPathComponent:kZHYResourceBundleInfoFileName];
+}
+
+- (NSString *)resourcePathWithDirectoryPath:(NSString *)path {
+    if (path == nil) {
+        NSParameterAssert(nil);
+        return nil;
+    }
+    
+    return [path stringByAppendingPathComponent:kZHYResourceBundleResourceDirectoryName];
+}
 
 @end
