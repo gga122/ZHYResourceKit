@@ -51,7 +51,7 @@ static NSString * const kZHYVersionComponentsCodingKeyVersionValue = @"versionVa
     [description appendFormat:@"<major: %@>", self.majorValue];
     [description appendFormat:@"<minor: %@>", self.minorValue];
     [description appendFormat:@"<patch: %@>", self.patchValue];
-    [description appendString:@"<build: %@>", self.buildValue];
+    [description appendFormat:@"<build: %@>", self.buildValue];
     
     return description;
 }

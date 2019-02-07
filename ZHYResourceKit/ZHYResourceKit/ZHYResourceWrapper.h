@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ `ZHYResourceWrapper` is an abstract class for wrapping a resource object. Dont use this class directly.
+ */
 @interface ZHYResourceWrapper : NSObject <NSCopying, NSCoding>
 
 - (instancetype)initWithResourceDescriptor:(id<ZHYResourceDescriptor>)descriptor NS_DESIGNATED_INITIALIZER;

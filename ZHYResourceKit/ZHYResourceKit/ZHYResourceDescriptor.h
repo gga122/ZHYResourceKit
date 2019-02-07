@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ `ZHYResourceDescriptor` provides methods for descripting resource.
+ */
 @protocol ZHYResourceDescriptor <NSObject, NSCopying, NSCoding>
 
 @required
